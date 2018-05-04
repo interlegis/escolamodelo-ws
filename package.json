@@ -1,0 +1,20 @@
+{
+  "name": "oauth",
+  "private": true,
+  "dependencies": {
+    "@angular/common": "^6.0.0",
+    "@angular/compiler": "^6.0.0",
+    "@angular/core": "^6.0.0",
+    "@angular/platform-browser": "^6.0.0",
+    "@angular/platform-browser-dynamic": "^6.0.0",
+    "@rails/webpacker": "3.5",
+    "core-js": "^2.5.5",
+    "rxjs": "^6.1.0",
+    "ts-loader": "3.5.0",
+    "typescript": "^2.8.3",
+    "zone.js": "^0.8.26"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "2.11.2"
+  }
+}

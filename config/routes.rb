@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  use_doorkeeper_openid_connect
   get 'pages/index'
   root 'pages#index'
   namespace :api do

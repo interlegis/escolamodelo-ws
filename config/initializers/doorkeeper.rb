@@ -14,7 +14,7 @@ Doorkeeper.configure do
   default_scopes :public
 
   # other available scopes
-  optional_scopes :admin, :write
+  optional_scopes :openid
 
   # If you want to restrict access to the web interface for adding oauth authorized applications, you need to declare the block below.
   # admin_authenticator do

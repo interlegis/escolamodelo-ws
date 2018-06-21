@@ -80,6 +80,7 @@ test:
 #
 production:
   <<: *default
-  database: oauth_production
-  username: oauth
-  password: <%= ENV['OAUTH_DATABASE_PASSWORD'] %>
+  host: <%= ENV['ESCOLA_MODELO_WS_DB_HOST'] %>
+  database: <%= ENV['ESCOLA_MODELO_WS_DB_NAME'] %>
+  username: <%= ENV['ESCOLA_MODELO_WS_DB_USER'] %>
+  password: <%= ENV['ESCOLA_MODELO_WS_DB_PASS'] %>

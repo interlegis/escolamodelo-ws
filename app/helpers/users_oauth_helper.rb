@@ -1,0 +1,2 @@
+module UsersOauthHelper
+end

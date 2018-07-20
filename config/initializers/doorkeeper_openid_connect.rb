@@ -67,32 +67,32 @@ EOL
 
   # Example claims:
   claims do
-    claim :given_name, scope: openid do |user, scopes|
+    claim :given_name, scope: :openid do |user, scopes|
       if scopes.exists?(:profile)
         user.first_name
       end
     end
-    claim :family_name, scope: openid do |user, scopes|
+    claim :family_name, scope: :openid do |user, scopes|
       if scopes.exists?(:profile)
         user.first_name
       end
     end
-    claim :nickname, scope: openid do |user, scopes|
+    claim :nickname, scope: :openid do |user, scopes|
       if scopes.exists?(:profile)
         user.username
       end
     end
-    claim :phone, scope: openid do |user, scopes|
+    claim :phone, scope: :openid do |user, scopes|
       if scopes.exists?(:profile)
         user.phone
       end
     end
-    claim :email, scope: openid do |user, scopes|
+    claim :email, scope: :openid do |user, scopes|
       if scopes.exists?(:email)
         user.first_name
       end
     end
-    claim :locale, scope: openid do |user, scopes|
+    claim :locale, scope: :openid do |user, scopes|
       if scopes.exists?(:profile)
         'pt_br'
       end

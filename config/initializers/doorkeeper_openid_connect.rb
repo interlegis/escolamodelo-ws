@@ -66,13 +66,39 @@ EOL
   # expiration 600
 
   # Example claims:
-  # claims do
-  #   normal_claim :_foo_ do |resource_owner|
-  #     resource_owner.foo
-  #   end
-
-  #   normal_claim :_bar_ do |resource_owner|
-  #     resource_owner.bar
-  #   end
-  # end
+  claims do
+    claim :given_name, scope: openid do |user, scopes|
+      if scopes.exists?(:profile)
+        user.first_name
+      end
+    end
+    claim :family_name, scope: openid do |user, scopes|
+      if scopes.exists?(:profile)
+        user.first_name
+      end
+    end
+    claim :nickname, scope: openid do |user, scopes|
+      if scopes.exists?(:profile)
+        user.username
+      end
+    end
+    claim :phone, scope: openid do |user, scopes|
+      if scopes.exists?(:profile)
+        user.phone
+      end
+    end
+    claim :email, scope: openid do |user, scopes|
+      if scopes.exists?(:email)
+        user.first_name
+      end
+    end
+    claim :locale, scope: openid do |user, scopes|
+      if scopes.exists?(:profile)
+        'pt_br'
+      end
+    end
+    claim :token_id, scope: :openid do |user, scopes, token|
+      token.id
+    end
+  end
 end

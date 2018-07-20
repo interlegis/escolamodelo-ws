@@ -7,5 +7,5 @@
               data: {confirm: "Tem certeza que deseja excluir sua conta?"} do%>
     <i title="Deletar Conta" class="material-icons">delete</i>
   <% end %>
-  <p><%= link_to 'deslogar', session_path(current_user.id), method: :delete %></p>
+  <p><%= link_to 'deslogar', session_path(current_user.id), method: 'delete' %></p>
 <% end %>

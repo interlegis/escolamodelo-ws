@@ -89,7 +89,7 @@ EOL
     end
     claim :email, scope: :openid do |user, scopes|
       if scopes.exists?(:email)
-        user.first_name
+        user.email
       end
     end
     claim :locale, scope: :openid do |user, scopes|

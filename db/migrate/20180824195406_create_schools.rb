@@ -3,7 +3,6 @@ class CreateSchools < ActiveRecord::Migration[5.2]
     create_table :schools do |t|
       t.string :name
       t.string :url
-      t.string :url_logo
 
       t.timestamps
     end

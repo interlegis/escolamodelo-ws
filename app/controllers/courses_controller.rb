@@ -2,7 +2,6 @@ class CoursesController < ApplicationController
   skip_before_action :verify_authenticity_token
   #Adicionar token para que apenas acesso permitido possa acessar os métodos
   # Acrescentar mensagens de erro
-  # Acrescentar campo ead_id ou moodle_id
   # Corrigir school_id
   def adicionar_curso
     @course = Course.new(curso_params)
@@ -18,10 +17,37 @@ class CoursesController < ApplicationController
         message: "Curso atualizado com sucesso",
     }.to_json
   end
+  def index
+    courses = Course.all
+    hash_courses = courses.map do |c|
+      [Hash['nome',c.name],
+       Hash['logo',if c.logo.attached?
+                     root_url[0..-2] + rails_blob_path(c.logo, disposition: "attachment")
+                   else
+                     ''
+                   end
+       ],
+       Hash['categoria',
+            [Hash['nome',c.course_category.name],
+             Hash['logo',
+                  if c.course_category.logo.attached?
+                    root_url[0..-2] + rails_blob_path(c.course_category.logo, disposition: "attachment")
+                  else
+                    ''
+                  end
+             ]
+            ]
+       ]
+      ]
+    end
+    render status: 200, json: {
+        cursos: hash_courses,
+    }.to_json
+  end
 
 
   private
   def curso_params
-    params.require(:course).permit(:name, :course_category_id, :school_id, :course_load, :description, :ead_id)
+    params.require(:course).permit(:name, :course_category_id, :url, :school_id, :course_load, :description, :ead_id)
   end
 end

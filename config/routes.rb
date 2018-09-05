@@ -11,10 +11,12 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   get '/log_in', to: 'sessions#new', as: :log_in
   delete '/log_out', to: 'sessions#destroy', as: :log_out
-  namespace :api do
-    namespace :v1 do
+  scope '/api' do
+    scope '/v1' do
       #Cursos
-      post '/courses/add_course' => 'courses#add_course', :as => 'add_course'
+      post '/courses/adicionar' => 'courses#adicionar_curso', :as => 'adicionar_curso'
+      patch '/courses/atualizar' => 'courses#atualizar_curso', :as => 'atualizar_curso'
+      get '/courses/' => 'courses#index', :as => 'cursos'
     end
   end
 end

@@ -6,6 +6,7 @@ class CoursesController < ApplicationController
   def adicionar_curso
     @course = Course.new(curso_params)
     @course.save
+    #@course.logo.attach(io: StringIO.new('https://saberes.senado.leg.br/images/logo_saberes_xl.png'), filename: 'logo_saberes.png', content_type: 'image/png')
     render status: 200, json: {
         message: "Curso criado com sucesso",
     }.to_json

@@ -17,6 +17,10 @@ Rails.application.routes.draw do
       post '/courses/adicionar' => 'courses#adicionar_curso', :as => 'adicionar_curso'
       patch '/courses/atualizar' => 'courses#atualizar_curso', :as => 'atualizar_curso'
       get '/courses/' => 'courses#index', :as => 'cursos'
+      #Categoria de curso
+      post '/courses_categories/adicionar' => 'course_categories#adicionar_curso', :as => 'adicionar_categoria'
+      patch '/courses_categories/atualizar' => 'course_categories#atualizar_curso', :as => 'atualizar_categoria'
+      get '/courses_categories/' => 'course_categories#index', :as => 'categorias_cursos'
     end
   end
 end

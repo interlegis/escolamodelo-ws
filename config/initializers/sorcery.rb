@@ -2,7 +2,7 @@
 # The default is nothing which will include only core features (password encryption, login/logout).
 # Available submodules are: :user_activation, :http_basic_auth, :remember_me,
 # :reset_password, :session_timeout, :brute_force_protection, :activity_logging, :external
-Rails.application.config.sorcery.submodules = [:activity_logging]
+Rails.application.config.sorcery.submodules = [:activity_logging, :external]
 
 # Here you can configure each submodule's features.
 Rails.application.config.sorcery.configure do |config|
@@ -72,7 +72,7 @@ Rails.application.config.sorcery.configure do |config|
   # What providers are supported by this app, i.e. [:twitter, :facebook, :github, :linkedin, :xing, :google, :liveid, :salesforce, :slack] .
   # Default: `[]`
   #
-  # config.external_providers =
+  config.external_providers = [:google]
 
   # You can change it by your local ca_file. i.e. '/etc/pki/tls/certs/ca-bundle.crt'
   # Path to ca_file. By default use a internal ca-bundle.crt.
@@ -134,14 +134,14 @@ Rails.application.config.sorcery.configure do |config|
   # config.wechat.secret = ""
   # config.wechat.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=wechat"
   #
-  # config.google.key = ""
-  # config.google.secret = ""
-  # config.google.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=google"
-  # config.google.user_info_mapping = {:email => "email", :username => "name"}
-  # config.google.scope = "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
+  config.google.key = "509373964251-kcpbcbjeq0ou6e78nqjeek057jgs6kdq.apps.googleusercontent.com"
+  config.google.secret = "kJwVOgKQaT2MQGynVutIWtvx"
+  config.google.callback_url = "http://localhost:3000/oauth/callback?provider=google"
+  config.google.user_info_mapping = {:email => "email", :username => "name"}
+  config.google.scope = "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
   #
   # For Microsoft Graph, the key will be your App ID, and the secret will be your app password/public key.
-  # The callback URL "can't contain a query string or invalid special characters", see: https://docs.microsoft.com/en-us/azure/active-directory/active-directory-v2-limitations#restrictions-on-redirect-uris
+  # The callback URL "can't contain a query string or invalid special0 characters", see: https://docs.microsoft.com/en-us/azure/active-directory/active-directory-v2-limitations#restrictions-on-redirect-uris
   # More information at https://graph.microsoft.io/en-us/docs
   #
   # config.microsoft.key = ""
@@ -196,6 +196,7 @@ Rails.application.config.sorcery.configure do |config|
 
   # --- user config ---
   config.user_config do |user|
+    user.authentications_class = Authentication
     # -- core --
     # specify username attributes, for example: [:username, :email].
     # Default: `[:email]`

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'oauths/oauth'
+  get 'oauths/callback'
   use_doorkeeper_openid_connect
   get 'pages/index'
   use_doorkeeper
@@ -11,6 +13,10 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   get '/log_in', to: 'sessions#new', as: :log_in
   delete '/log_out', to: 'sessions#destroy', as: :log_out
+  #Login com oauth
+  post 'oauth/callback' => 'oauths#callback'
+  get 'oauth/callback' => 'oauths#callback' # for use with Github, Facebook
+  get 'oauth/:provider' => 'oauths#oauth', :as => :auth_at_provider
   scope '/api' do
     scope '/v1' do
       #Cursos

@@ -17,6 +17,22 @@ class CourseCategoriesController < ApplicationController
         message: "Categoria atualizada com sucesso",
     }.to_json
   end
+  def index
+    categories = CourseCategory.all
+    hash_categories = categories.map do |c|
+      [Hash['nome',c.name],
+       Hash['logo',if c.logo.attached?
+                     root_url[0..-2] + rails_blob_path(c.logo, disposition: "attachment")
+                   else
+                     ''
+                   end
+       ]
+      ]
+    end
+    render status: 200, json: {
+        categorias_cursos: hash_categories,
+    }.to_json
+  end
   private
   def course_category_params
     params.require(:course_category).permit(:name)

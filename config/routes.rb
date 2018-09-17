@@ -25,6 +25,8 @@ Rails.application.routes.draw do
       post '/escolas/adicionar' => 'schools#adicionar_escola', :as => 'adicionar_escola'
       patch '/escolas/atualizar' => 'schools#atualizar_escola', :as => 'atualizar_escola'
       get '/escolas/' => 'schools#index', :as => 'escolas'
+      #Certificados
+      post 'certificados/adicionar' => 'certificates#adicionar_certificado', :as => 'adicionar_certificado'
     end
   end
 end

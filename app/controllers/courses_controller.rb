@@ -5,11 +5,17 @@ class CoursesController < ApplicationController
   # Corrigir school_id
   def adicionar_curso
     @course = Course.new(course_params)
-    @course.save
+    if @course.save
     #@course.logo.attach(io: StringIO.new('https://saberes.senado.leg.br/images/logo_saberes_xl.png'), filename: 'logo_saberes.png', content_type: 'image/png')
-    render status: 200, json: {
-        message: "Curso criado com sucesso",
-    }.to_json
+      render status: 200, json: {
+          message: "Curso criado com sucesso",
+      }.to_json
+    else
+      render status: 400, json: {
+          message: "Não foi possível criar curso",
+      }.to_json
+    end
+
   end
   def atualizar_curso
     @course = Course.find_by(ead_id: course_params[:ead_id], school_id: course_params[:school_id])
@@ -22,7 +28,8 @@ class CoursesController < ApplicationController
   def index
     courses = Course.all
     hash_courses = courses.map do |c|
-      [Hash['nome',c.name],
+      [Hash['id',c.id],
+       Hash['nome',c.name],
        Hash['logo',if c.logo.attached?
                      root_url[0..-2] + rails_blob_path(c.logo, disposition: "attachment")
                    else

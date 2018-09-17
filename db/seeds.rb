@@ -15,13 +15,6 @@ s.logo.attach(
     filename: 'logo_saberes.png',
     content_type: 'image/png'
 )
-s=School.create(name: 'Saberes', url: 'https://saberes.senado.leg.br')
-s.logo.attach(
-    io: open('https://saberes.senado.leg.br
-/images/logo_saberes_xl.png'),
-    filename: 'logo_saberes.png',
-    content_type: 'image/png'
-)
 s=School.create(name: 'Escola do Legislativo - ALMG', url: 'https://ead.almg.gov.br/moodle/')
 s.logo.attach(
     io: open('http://ead.almg.gov.br/moodle/theme/image.php/fadeback/theme/1479830583/logo'),

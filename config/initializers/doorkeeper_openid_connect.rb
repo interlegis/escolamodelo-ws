@@ -97,6 +97,11 @@ EOL
         'pt_br'
       end
     end
+    claim :cpf, scope: :openid do |user, scopes|
+      if scopes.exists?(:profile)
+        user.cpf
+      end
+    end
     claim :token_id, scope: :openid do |user, scopes, token|
       token.id
     end

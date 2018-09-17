@@ -5,7 +5,9 @@ class CoursesController < ApplicationController
   # Corrigir school_id
   def adicionar_curso
     @course = Course.new(course_params)
-    if @course.save
+    school = School.find_by(initials: params[:school])
+    @course.school_id = school
+    if school.present? and @course.save
     #@course.logo.attach(io: StringIO.new('https://saberes.senado.leg.br/images/logo_saberes_xl.png'), filename: 'logo_saberes.png', content_type: 'image/png')
       render status: 200, json: {
           message: "Curso criado com sucesso",
@@ -18,12 +20,17 @@ class CoursesController < ApplicationController
 
   end
   def atualizar_curso
-    @course = Course.find_by(ead_id: course_params[:ead_id], school_id: course_params[:school_id])
-    @course.update(course_params)
-    #Verificar presença de imagem da logo
-    render status: 200, json: {
-        message: "Curso atualizado com sucesso",
-    }.to_json
+    @course = Course.find_by(ead_id: course_params[:ead_id], school_id: course_params[:school])
+    if @course.update(course_params)
+      #Verificar presença de imagem da logo
+      render status: 200, json: {
+          message: "Curso atualizado com sucesso",
+      }.to_json
+    else
+      render status: 400, json: {
+          message: "Não foi possível atualizar curso",
+      }.to_json
+    end
   end
   def index
     courses = Course.all

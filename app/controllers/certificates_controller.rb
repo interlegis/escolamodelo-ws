@@ -29,7 +29,8 @@ class CertificatesController < ApplicationController
   def certificado_usuario #Depois adicionar link do certificado
     certificate = Certificate.find_by(code_id: params[:code]) #talvez incluir outro parâmetro na busca para o caso de código repetido entre moodles
     if certificate.present?
-      hash_certificate = [Hash['id',c.id], Hash['data de emissão',c.issue_date]]
+      hash_certificate = {'id' => certificate.id,
+                          'data de emissão' => certificate.issue_date}
       render status: 200, json: {
           certificados: hash_certificate,
       }.to_json

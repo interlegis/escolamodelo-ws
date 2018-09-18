@@ -28,7 +28,7 @@ class CourseCategoriesController < ApplicationController
       {'id' => c.id,
        'nome' => c.name,
        'logo' => if c.logo.attached?
-                   root_url[0..-2] + rails_blob_path(c.logo, disposition: "attachment")
+                   url_for(c.logo)
                  else
                    ''
                  end

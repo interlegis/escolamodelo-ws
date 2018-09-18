@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_28_193745) do
+ActiveRecord::Schema.define(version: 2018_09_17_130946) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,27 @@ ActiveRecord::Schema.define(version: 2018_08_28_193745) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "authentications", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "provider", null: false
+    t.string "uid", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["provider", "uid"], name: "index_authentications_on_provider_and_uid"
+  end
+
+  create_table "certificates", force: :cascade do |t|
+    t.bigint "course_id"
+    t.bigint "user_id"
+    t.datetime "issue_date"
+    t.float "grade"
+    t.string "code_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_certificates_on_course_id"
+    t.index ["user_id"], name: "index_certificates_on_user_id"
   end
 
   create_table "course_categories", force: :cascade do |t|
@@ -113,12 +134,13 @@ ActiveRecord::Schema.define(version: 2018_08_28_193745) do
     t.string "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "initials"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "username", null: false
     t.string "email", null: false
-    t.string "cpf", null: false
+    t.string "cpf"
     t.string "first_name"
     t.string "last_name"
     t.date "birth"
@@ -137,6 +159,8 @@ ActiveRecord::Schema.define(version: 2018_08_28_193745) do
     t.index ["username", "email", "cpf"], name: "index_users_on_username_and_email_and_cpf", unique: true
   end
 
+  add_foreign_key "certificates", "courses"
+  add_foreign_key "certificates", "users"
   add_foreign_key "courses", "course_categories"
   add_foreign_key "courses", "schools"
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"

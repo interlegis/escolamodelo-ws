@@ -35,26 +35,16 @@ class CoursesController < ApplicationController
   def index
     courses = Course.all
     hash_courses = courses.map do |c|
-      [Hash['id',c.id],
-       Hash['nome',c.name],
-       Hash['logo',if c.logo.attached?
-                     root_url[0..-2] + rails_blob_path(c.logo, disposition: "attachment")
-                   else
-                     ''
-                   end
-       ],
-       Hash['categoria',
-            [Hash['nome',c.course_category.name],
-             Hash['logo',
-                  if c.course_category.logo.attached?
-                    root_url[0..-2] + rails_blob_path(c.course_category.logo, disposition: "attachment")
-                  else
-                    ''
-                  end
-             ]
-            ]
-       ]
-      ]
+      {'id' => c.id,
+      'nome' => c.name,
+       'logo' => if c.logo.attached?
+                   root_url[0..-2] + rails_blob_path(c.logo, disposition: "attachment")
+                 else
+                   ''
+                 end,
+       'descrição' => c.description,
+       'categoria' => c.course_category.id
+      }
     end
     render status: 200, json: {
         cursos: hash_courses,

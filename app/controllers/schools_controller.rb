@@ -24,16 +24,15 @@ class SchoolsController < ApplicationController
   def index
     schools = School.all
     hash_schools = schools.map do |c|
-      [Hash['id',c.id],
-       Hash['nome',c.name],
-       Hash['logo',if c.logo.attached?
-                     root_url[0..-2] + rails_blob_path(c.logo, disposition: "attachment")
-                   else
-                     ''
-                   end
-       ],
-       Hash['url',c.url]
-      ]
+      {'id' => c.id,
+       'nome' => c.name,
+       'logo' => if c.logo.attached?
+                   root_url[0..-2] + rails_blob_path(c.logo, disposition: "attachment")
+                 else
+                   ''
+                 end,
+       'url' => c.url
+      }
     end
     render status: 200, json: {
         escolas: hash_schools,

@@ -25,15 +25,14 @@ class CourseCategoriesController < ApplicationController
   def index
     categories = CourseCategory.all
     hash_categories = categories.map do |c|
-      [Hash['id',c.id],
-       Hash['nome',c.name],
-       Hash['logo',if c.logo.attached?
-                     root_url[0..-2] + rails_blob_path(c.logo, disposition: "attachment")
-                   else
-                     ''
-                   end
-       ]
-      ]
+      {'id' => c.id,
+       'nome' => c.name,
+       'logo' => if c.logo.attached?
+                   root_url[0..-2] + rails_blob_path(c.logo, disposition: "attachment")
+                 else
+                   ''
+                 end
+      }
     end
     render status: 200, json: {
         categorias_cursos: hash_categories,

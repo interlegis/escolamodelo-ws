@@ -10,6 +10,7 @@ class ContactUsMessagesController < ApplicationController
   def adicionar_mensagem
     @mensagem = ContactUsMessage.new(contact_us_params)
     puts @mensagem.name
+    puts contact_us_params
     # @mesagem.date = "09/05/1995"
     if @mensagem.save
       # render json: "Mensagem enviada com sucesso", status: :created
@@ -25,6 +26,6 @@ class ContactUsMessagesController < ApplicationController
 
   private
   def contact_us_params
-    params.require(:contact_us_message).permit(:name, :email, :cpf, :description, :date)
+    params.permit(:name, :email, :cpf, :description, :date, :school_id, :course_category_id, :course_id)
   end
 end

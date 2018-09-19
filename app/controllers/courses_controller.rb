@@ -20,7 +20,8 @@ class CoursesController < ApplicationController
 
   end
   def atualizar_curso
-    @course = Course.find_by(ead_id: course_params[:ead_id], school_id: course_params[:school])
+    school = School.find_by(initials: params[:school])
+    @course = Course.find_by(ead_id: course_params[:ead_id], school_id: school.id)
     if @course.update(course_params)
       #Verificar presença de imagem da logo
       render status: 200, json: {

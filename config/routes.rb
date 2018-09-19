@@ -28,6 +28,9 @@ Rails.application.routes.draw do
       #Certificados
       post 'certificados/adicionar' => 'certificates#adicionar_certificado', :as => 'adicionar_certificado'
       get 'certificados/:cpf' => 'certificates#certificado_usuario', :as => 'certificado_usuario'
+      #Fale conosco
+      get '/fale_conosco/' => 'contact_us_messages#index', :as => 'fale_conosco'
+      post '/fale_conosco/adicionar' => 'contact_us_messages#adicionar_mensagem', :as => 'adicionar_mensagem'
     end
   end
 end

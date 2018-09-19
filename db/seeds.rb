@@ -45,3 +45,6 @@ cat.logo.attach(
     filename: 'logo_cat_doutrinas_politicas.jpg'
 )
 Course.create(name: 'Liberalismo', url: 'https://saberes.senado.leg.br/course/view.php?id=1381', school_id: 1, course_category_id: 3, course_load: 20, description: 'Definir, analisar e discutir o significado das principais correntes de pensamento que inspiram e orientam os partidos políticos de maior expressão - em termos de influência, voto e acesso ao poder - no mundo atual.')
+
+ContactUsMessage.create(name: 'Everaldo Dias', email: 'everaldin@gmail.com', cpf: '0236958745', description: 'Estava em sala e a professora não passou a chamada.', date: '09/08/2018')
+ContactUsMessage.create(name: 'Everaldo Dias', email: 'everaldin@gmail.com', cpf: '0236958745', description: 'Estava em sala e a professora não passou a chamada.', date: '09/08/2018')

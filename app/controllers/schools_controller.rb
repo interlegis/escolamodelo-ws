@@ -14,7 +14,10 @@ class SchoolsController < ApplicationController
     end
   end
   def atualizar_escola
-    @school = School.find_by(initials: params[:school][:initials])
+    @school = School.find_by(initials: params[:initials_school])
+    if !params[:school][:initials].present?
+      params[:school][:initials] = @school.initials
+    end
     @school.update(school_params)
     #verificar presença de imagem
     render status: 200, json: {

@@ -27,7 +27,7 @@ Rails.application.routes.draw do
       get '/escolas/' => 'schools#index', :as => 'escolas'
       #Certificados
       post 'certificados/adicionar' => 'certificates#adicionar_certificado', :as => 'adicionar_certificado'
-      get 'certificados/:code' => 'certificates#certificado_usuario', :as => 'certificado_usuario'
+      get 'certificados/:cpf' => 'certificates#certificado_usuario', :as => 'certificado_usuario'
     end
   end
 end

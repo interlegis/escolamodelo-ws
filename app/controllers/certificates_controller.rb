@@ -2,7 +2,7 @@ class CertificatesController < ApplicationController
   skip_before_action :verify_authenticity_token
   def adicionar_certificado
     certificates=params[:certificates]
-    school=School.find_by(initials: params[:school])
+    school=School.find_by(initials: params[:school]) #adicionar render em caso de não encontrar escola
     error=[]
     certificates.each do |certificate|
       course=Course.find_by('ead_id = ? and school_id = ?', certificate[:course], school.id)
@@ -27,16 +27,19 @@ class CertificatesController < ApplicationController
     end
   end
   def certificado_usuario #Depois adicionar link do certificado
-    certificate = Certificate.find_by(code_id: params[:code]) #talvez incluir outro parâmetro na busca para o caso de código repetido entre moodles
-    if certificate.present?
-      hash_certificate = {'id' => certificate.id,
-                          'data de emissão' => certificate.issue_date}
+    user = User.find_by(cpf: params[:cpf]) #talvez incluir outro parâmetro na busca para o caso de código repetido entre moodles
+    if user.present?
+      hash_certificates=user.certificates.map do |certificate|
+        {'id' => certificate.id,
+         'data de emissão' => certificate.issue_date
+        }
+      end
       render status: 200, json: {
-          certificados: hash_certificate,
+          certificados: hash_certificates,
       }.to_json
     else
       render status: 400, json: {
-          message: "Certificado não encontrado"
+          message: "Usuário não encontrado"
       }.to_json
     end
   end

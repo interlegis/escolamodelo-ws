@@ -15,10 +15,18 @@ class ContactUsMessagesController < ApplicationController
         messages_school.push(message)
       end
     end
+    hash_messages_schools = messages_school.map do |c|
+      {
+        'id' => c.id,
+        'description' => c.description,
+        'cpf' => c.cpf,
+        'email' => c.email,
+      }
+    end
     if messages_school.empty?
       render json: "Nao existe mensagens para esta escola", status: 200
     else
-      render json:messages_school
+      render json:hash_messages_schools
     end
   end
 

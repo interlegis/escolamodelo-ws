@@ -41,6 +41,6 @@ class ContactUsMessagesController < ApplicationController
 
   private
   def contact_us_params
-    params.permit(:name, :email, :cpf, :description, :date, :school_id, :course_category_id, :course_id)
+    params.permit(:name, :email, :cpf, :description, :date, :school_initials, :course_category_id, :course_id)
   end
 end

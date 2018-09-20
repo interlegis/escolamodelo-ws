@@ -9,19 +9,19 @@ require 'open-uri'
 Role.create(name: 'admin')
 Role.create(name: 'usuario')
 User.create(username: 'admin', first_name: 'Admin', last_name: 'Admin', cpf: '000.000.000-00', phone: '(00) 90000-0000', email: 'admin@admin.com', role_id: 1, password: 'admin123')
-s=School.create(name: 'Saberes', url: 'https://saberes.senado.leg.br')
+s=School.create(name: 'Saberes', url: 'https://saberes.senado.leg.br', initials: 'SSL')
 s.logo.attach(
     io: open('https://saberes.senado.leg.br/images/logo_saberes_xl.png'),
     filename: 'logo_saberes.png',
     content_type: 'image/png'
 )
-s=School.create(name: 'Escola do Legislativo - ALMG', url: 'https://ead.almg.gov.br/moodle/')
+s=School.create(name: 'Escola do Legislativo - ALMG', url: 'https://ead.almg.gov.br/moodle/', initials: 'ALM')
 s.logo.attach(
     io: open('http://ead.almg.gov.br/moodle/theme/image.php/fadeback/theme/1479830583/logo'),
     filename: 'logo_almg.png',
     content_type: 'image/png'
 )
-s=School.create(name: 'EaD Senac', url: 'http://www.ead.senac.br/')
+s=School.create(name: 'EaD Senac', url: 'http://www.ead.senac.br/', initials: 'EAS')
 s.logo.attach(
     io: open('http://folhadealagoas.com.br/portal/wp-content/uploads/2017/08/senac.jpg'),
     filename: 'logo_senac.jpg',
@@ -46,5 +46,8 @@ cat.logo.attach(
 )
 Course.create(name: 'Liberalismo', url: 'https://saberes.senado.leg.br/course/view.php?id=1381', school_id: 1, course_category_id: 3, course_load: 20, description: 'Definir, analisar e discutir o significado das principais correntes de pensamento que inspiram e orientam os partidos políticos de maior expressão - em termos de influência, voto e acesso ao poder - no mundo atual.')
 
-ContactUsMessage.create(name: 'Everaldo Dias', email: 'everaldin@gmail.com', cpf: '0236958745', description: 'Estava em sala e a professora não passou a chamada.', date: '09/08/2018')
-ContactUsMessage.create(name: 'Everaldo Dias', email: 'everaldin@gmail.com', cpf: '0236958745', description: 'Estava em sala e a professora não passou a chamada.', date: '09/08/2018')
+ContactUsMessage.create(name: 'Everaldo Dias', email: 'everaldin@gmail.com', cpf: '0236958745', school_initials:'SSL', course_id:1, course_category_id: 1, description: 'Estava em sala e a professora não passou a chamada.', date: '09/08/2018')
+ContactUsMessage.create(name: 'Matheus Roberto', email: 'matheus@gmail.com', cpf: '04523269157', school_initials:'SSL', course_id:2, course_category_id: 1, description: 'O curso de estutura de dados está excelente com o professor Clodovil.', date: '19/06/2018')
+ContactUsMessage.create(name: 'Ronaldo de Assis', email: 'ronaldinho@gmail.com', cpf: '0255948745', school_initials:'ALM', course_id:1, course_category_id: 1, description: 'Não consigo acessar o moodle.', date: '10/05/2018')
+ContactUsMessage.create(name: 'Raimundo Alves', email: 'raimundo@gmail.com', cpf: '8864124515', school_initials:'EAS', course_id:1, course_category_id: 1, description: 'Gostaria de saber o email do professor Oliersson.', date: '23/09/2018')
+ContactUsMessage.create(name: 'Claiderson Sandres', email: 'claiderssin@gmail.com', cpf: '4836958755', school_initials:'ALM', course_id:1, course_category_id: 1, description: 'Como faço para sair do curso?', date: '04/08/2018')

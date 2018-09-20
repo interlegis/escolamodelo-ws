@@ -34,7 +34,8 @@ class SchoolsController < ApplicationController
                  else
                    ''
                  end,
-       'url' => c.url
+       'url' => c.url,
+       'initials' => c.initials
       }
     end
     render status: 200, json: {

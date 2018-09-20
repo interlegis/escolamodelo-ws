@@ -31,6 +31,7 @@ Rails.application.routes.draw do
       #Fale conosco
       get '/fale_conosco/' => 'contact_us_messages#index', :as => 'fale_conosco'
       post '/fale_conosco/adicionar' => 'contact_us_messages#adicionar_mensagem', :as => 'adicionar_mensagem'
+      post '/fale_conosco/' => 'contact_us_messages#mensagem_escola', :as => 'mensagem_escola'
     end
   end
 end

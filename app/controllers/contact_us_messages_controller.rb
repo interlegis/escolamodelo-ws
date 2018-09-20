@@ -7,6 +7,21 @@ class ContactUsMessagesController < ApplicationController
     render json:messages
   end
 
+  def mensagem_escola
+    messages = ContactUsMessage.all
+    messages_school = []
+    for message in messages
+      if message.school_initials == params[:school_initial]
+        messages_school.push(message)
+      end
+    end
+    if messages_school.empty?
+      render json: "Nao existe mensagens para esta escola", status: 200
+    else
+      render json:messages_school
+    end
+  end
+
   def adicionar_mensagem
     @mensagem = ContactUsMessage.new(contact_us_params)
     puts @mensagem.name

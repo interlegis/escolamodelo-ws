@@ -271,10 +271,11 @@ DEPENDENCIES
   kaminari
   listen (>= 3.0.5, < 3.2)
   mailgun-ruby
+  oauth2
   pg (>= 0.18, < 2.0)
   puma (~> 3.11)
   rails (~> 5.2.1)
-  sass-rails (~> 5.0)
+  sassc-rails
   selenium-webdriver
   sorcery
   spring

@@ -1,5 +1,5 @@
 class OauthsController < ApplicationController
-  skip_before_action :require_login, :verify_authenticity_token, raise: false
+  skip_before_action :require_login, raise: false
   def oauth
     login_at(params[:provider])
   end
@@ -10,7 +10,6 @@ class OauthsController < ApplicationController
       redirect_to root_path, :notice => "Logged in from #{provider.titleize}!"
     else
       @user = create_from(provider)
-      print(@user)
       auto_login(@user)
       redirect_to root_path, :notice => "Logged in from #{provider.titleize}!"
     end

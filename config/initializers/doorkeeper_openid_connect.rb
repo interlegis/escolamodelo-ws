@@ -77,11 +77,6 @@ EOL
         user.last_name
       end
     end
-    claim :nickname, scope: :openid do |user, scopes|
-      if scopes.exists?(:profile)
-        user.username
-      end
-    end
     claim :phone, scope: :openid do |user, scopes|
       if scopes.exists?(:profile)
         user.phone

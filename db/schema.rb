@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_20_150432) do
+ActiveRecord::Schema.define(version: 2018_09_21_195708) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -152,7 +152,6 @@ ActiveRecord::Schema.define(version: 2018_09_20_150432) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "username", null: false
     t.string "email", null: false
     t.string "cpf"
     t.string "first_name"
@@ -170,7 +169,6 @@ ActiveRecord::Schema.define(version: 2018_09_20_150432) do
     t.string "last_login_from_ip_address"
     t.index ["last_logout_at", "last_activity_at"], name: "index_users_on_last_logout_at_and_last_activity_at"
     t.index ["role_id"], name: "index_users_on_role_id"
-    t.index ["username", "email", "cpf"], name: "index_users_on_username_and_email_and_cpf", unique: true
   end
 
   add_foreign_key "certificates", "courses"

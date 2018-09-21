@@ -7,6 +7,7 @@ class User < ApplicationRecord
   validates :cpf, uniqueness: true
   before_save :capitalize_name
   belongs_to :role
+  has_many :certificates
   def capitalize_name
     self.first_name=self.first_name.split.map(&:capitalize).join(' ')
     self.last_name=self.last_name.split.map(&:capitalize).join(' ')

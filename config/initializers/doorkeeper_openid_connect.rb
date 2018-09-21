@@ -74,7 +74,7 @@ EOL
     end
     claim :family_name, scope: :openid do |user, scopes|
       if scopes.exists?(:profile)
-        user.first_name
+        user.last_name
       end
     end
     claim :nickname, scope: :openid do |user, scopes|
@@ -95,6 +95,11 @@ EOL
     claim :locale, scope: :openid do |user, scopes|
       if scopes.exists?(:profile)
         'pt_br'
+      end
+    end
+    claim :cpf, scope: :openid do |user, scopes|
+      if scopes.exists?(:profile)
+        user.cpf
       end
     end
     claim :token_id, scope: :openid do |user, scopes, token|

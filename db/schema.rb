@@ -45,6 +45,31 @@ ActiveRecord::Schema.define(version: 2018_09_11_160139) do
     t.index ["provider", "uid"], name: "index_authentications_on_provider_and_uid"
   end
 
+  create_table "certificates", force: :cascade do |t|
+    t.bigint "course_id"
+    t.bigint "user_id"
+    t.datetime "issue_date"
+    t.float "grade"
+    t.string "code_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_certificates_on_course_id"
+    t.index ["user_id"], name: "index_certificates_on_user_id"
+  end
+
+  create_table "contact_us_messages", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "cpf"
+    t.string "description"
+    t.datetime "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "school_initials"
+    t.bigint "course_id"
+    t.bigint "course_category_id"
+  end
+
   create_table "course_categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -122,6 +147,8 @@ ActiveRecord::Schema.define(version: 2018_09_11_160139) do
     t.string "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "initials"
+    t.index ["initials"], name: "index_schools_on_initials", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -146,6 +173,8 @@ ActiveRecord::Schema.define(version: 2018_09_11_160139) do
     t.index ["username", "email", "cpf"], name: "index_users_on_username_and_email_and_cpf", unique: true
   end
 
+  add_foreign_key "certificates", "courses"
+  add_foreign_key "certificates", "users"
   add_foreign_key "courses", "course_categories"
   add_foreign_key "courses", "schools"
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"

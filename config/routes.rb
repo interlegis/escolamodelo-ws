@@ -20,13 +20,24 @@ Rails.application.routes.draw do
   scope '/api' do
     scope '/v1' do
       #Cursos
-      post '/courses/adicionar' => 'courses#adicionar_curso', :as => 'adicionar_curso'
-      patch '/courses/atualizar' => 'courses#atualizar_curso', :as => 'atualizar_curso'
-      get '/courses/' => 'courses#index', :as => 'cursos'
+      post '/cursos/adicionar' => 'courses#adicionar_curso', :as => 'adicionar_curso'
+      patch '/cursos/atualizar' => 'courses#atualizar_curso', :as => 'atualizar_curso'
+      get '/cursos/' => 'courses#index', :as => 'cursos'
       #Categoria de curso
-      post '/courses_categories/adicionar' => 'course_categories#adicionar_curso', :as => 'adicionar_categoria'
-      patch '/courses_categories/atualizar' => 'course_categories#atualizar_curso', :as => 'atualizar_categoria'
-      get '/courses_categories/' => 'course_categories#index', :as => 'categorias_cursos'
+      post '/categorias_cursos/adicionar' => 'course_categories#adicionar_categoria', :as => 'adicionar_categoria'
+      patch '/categorias_cursos/atualizar' => 'course_categories#atualizar_categoria', :as => 'atualizar_categoria'
+      get '/categorias_cursos/' => 'course_categories#index', :as => 'categorias_cursos'
+      #Categoria de curso
+      post '/escolas/adicionar' => 'schools#adicionar_escola', :as => 'adicionar_escola'
+      patch '/escolas/atualizar' => 'schools#atualizar_escola', :as => 'atualizar_escola'
+      get '/escolas/' => 'schools#index', :as => 'escolas'
+      #Certificados
+      post 'certificados/adicionar' => 'certificates#adicionar_certificado', :as => 'adicionar_certificado'
+      get 'certificados/:cpf' => 'certificates#certificado_usuario', :as => 'certificado_usuario'
+      #Fale conosco
+      get '/fale_conosco/' => 'contact_us_messages#index', :as => 'fale_conosco'
+      post '/fale_conosco/adicionar' => 'contact_us_messages#adicionar_mensagem', :as => 'adicionar_mensagem'
+      post '/fale_conosco/' => 'contact_us_messages#mensagem_escola', :as => 'mensagem_escola'
     end
   end
 end

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  course: one
+  user: one
+  issue_date: 2018-09-17
+  grade: 1.5
+  code_id: MyString
+
+two:
+  course: two
+  user: two
+  issue_date: 2018-09-17
+  grade: 1.5
+  code_id: MyString

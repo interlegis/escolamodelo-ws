@@ -27,7 +27,7 @@ class CertificatesController < ApplicationController
     end
   end
   def certificado_usuario #Depois adicionar link do certificado
-    user = User.find_by(cpf: params[:cpf]) #talvez incluir outro parâmetro na busca para o caso de código repetido entre moodles
+    user = User.find_by(cpf: params[:cpf])
     if user.present?
       hash_certificates=user.certificates.map do |certificate|
         {'id' => certificate.id,
@@ -39,7 +39,7 @@ class CertificatesController < ApplicationController
       }.to_json
     else
       render status: 400, json: {
-          message: "Usuário não encontrado"
+          message: "Usuário não encontrado ou CPF incorreto"
       }.to_json
     end
   end

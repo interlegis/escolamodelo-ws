@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
-  attr_accessor :skip_password
+  attr_accessor :skip_password, :uid
   validates :password, length: { minimum: 8 }, unless: :skip_password
   validates :password, confirmation: true
   validates :email, uniqueness: true

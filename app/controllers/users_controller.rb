@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def new
     if current_user
-      redirect_to root_path
+      redirect_to user_path
     end
     @user = User.new
   end
@@ -20,15 +20,21 @@ class UsersController < ApplicationController
   end
 
   def show
+    if !current_user.cpf.present?
+      redirect_to adicionar_dados_path
+    end
     @user = current_user
     if current_user.nil?
-      redirect_to new_session_path
+      redirect_to log_in_path
     elsif current_user and current_user.role.id == 1
       redirect_to painel_path
     end
   end
 
   def edit
+    if !current_user.cpf.present?
+      redirect_to adicionar_dados_path
+    end
     @user = User.find(params[:id])
     unless current_user == @user
       redirect_to root_path
@@ -38,7 +44,10 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     unless current_user == @user
-      redirect_to root_path
+      redirect_to log_in_path
+    end
+    if @user.external?
+      @user.skip_password = true
     end
     if @user.update(user_params)
       redirect_to @user
@@ -59,7 +68,19 @@ class UsersController < ApplicationController
 
   def painel
     unless current_user and current_user.role.id == 1
-      redirect_to root_path
+      redirect_to log_in_path
+    end
+  end
+
+  def adicionar_dados
+    if current_user
+      if current_user.cpf.present?
+        redirect_to user_path
+      else
+        @user = current_user
+      end
+    else
+      redirect_to log_in_path
     end
   end
 

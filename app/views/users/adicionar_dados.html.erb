@@ -4,19 +4,7 @@
     <div class="row"></div>
   </div>
   <div class="col s12 l12 z-depth-1">
-    <%= form_for @user do |f| %>
-      <div class="col s12 l10 offset-l1 input-field">
-        <%= f.label :first_name, 'Nome' %>
-        <%= f.text_field :first_name, :required => true %>
-      </div>
-      <div class="col s12 l10 offset-l1 input-field">
-        <%= f.label :last_name, 'Sobrenome' %>
-        <%= f.text_field :last_name, :required => true %>
-      </div>
-      <div class="col s12 l10 offset-l1 input-field">
-        <%= f.label :email %>
-        <%= f.email_field :email, :required => true %>
-      </div>
+    <%= form_for :user, url: atualizar_usuario_path(@user), method: :patch do |f| %>
       <div class="col s6 l5 offset-l1 input-field">
         <%= f.label :cpf, 'CPF' %>
         <%= f.text_field :cpf, 'data-mask': '000.000.000-00', :required => true %>
@@ -28,14 +16,6 @@
       <div class="col s12 l10 offset-l1 input-field">
         <%= f.label :phone, 'Telefone' %>
         <%= f.text_field :phone, 'data-mask': '(00) 00000-0000' %>
-      </div>
-      <div class="col s6 l5 offset-l1 input-field">
-        <%= f.label :password, 'Senha' %>
-        <%= f.password_field :password, :required => true %>
-      </div>
-      <div class="col s6 l5 input-field">
-        <%= f.label :password_confirmation, 'Redigite a senha' %>
-        <%= f.password_field :password_confirmation, :required => true %>
       </div>
       <div class="col s12 l8 offset-l3">
         <button class="btn waves-effect waves-light" type="submit" name="action">Concluir

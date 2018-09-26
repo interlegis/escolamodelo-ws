@@ -11,7 +11,7 @@ class OauthsController < ApplicationController
     else
       @user = create_from(provider)
       auto_login(@user)
-      redirect_to user_path, :notice => "Logged in from #{provider.titleize}!"
+      redirect_to adicionar_dados_path, :notice => "Logged in from #{provider.titleize}!"
     end
   end
 end

@@ -20,14 +20,16 @@ class UsersController < ApplicationController
   end
 
   def show
-    if !current_user.cpf.present?
-      redirect_to adicionar_dados_path
-    end
-    @user = current_user
-    if current_user.nil?
+    if current_user
+      if !current_user.cpf.present?
+        redirect_to adicionar_dados_path
+      elsif current_user and current_user.role.id == 1
+        redirect_to painel_path
+      else
+        @user = current_user
+      end
+    else
       redirect_to log_in_path
-    elsif current_user and current_user.role.id == 1
-      redirect_to painel_path
     end
   end
 

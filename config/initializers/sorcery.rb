@@ -111,7 +111,7 @@ Rails.application.config.sorcery.configure do |config|
   #
   config.facebook.key = ENV['ESCOLA_MODELO_WS_Facebook_key']
   config.facebook.secret = ENV['ESCOLA_MODELO_WS_Facebook_secret']
-  config.facebook.callback_url = "https://escolamodelows/oauth/callback?provider=facebook"
+  config.facebook.callback_url = "https://escolamodelows.interlegis.leg.br/oauth/callback?provider=facebook"
   config.facebook.user_info_path = "me?fields=email,first_name,last_name"
   config.facebook.user_info_mapping = {:email => "email", :first_name => 'first_name', :last_name => 'last_name'}
   config.facebook.access_permissions = ["email", "publish_actions"]
@@ -136,7 +136,7 @@ Rails.application.config.sorcery.configure do |config|
   #
   config.google.key = ENV['ESCOLA_MODELO_WS_Google_key']
   config.google.secret = ENV['ESCOLA_MODELO_WS_Google_secret']
-  config.google.callback_url = "http://localhost:3000/oauth/callback?provider=google"
+  config.google.callback_url = "http://escolamodelows.interlegis.leg.br/oauth/callback?provider=google"
   config.google.user_info_mapping = {:email => "email", :first_name => "name"}
   config.google.scope = "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
   #

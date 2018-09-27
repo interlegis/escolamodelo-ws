@@ -9,12 +9,33 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     @user.role_id = 2
-
-    if @user.save
-      flash[:success] = 'Bem vindo!'
-      login(params[:user][:email], params[:user][:password])
-      redirect_to root_path
+    existent_user = User.find_by('email = ? or cpf = ?', user_params[:email], user_params[:cpf])
+    conseguiu=false
+    email_cpf_repetido = false
+    if existent_user.present?
+      if existent_user.crypted_password.present?
+        email_cpf_repetido = true
+      else
+        @user = existent_user
+        conseguiu=existent_user.update(password: user_params[:password], password_confirmation: user_params[:password_confirmation])
+      end
     else
+      conseguiu = @user.save
+    end
+    if conseguiu
+      login(params[:user][:email], params[:user][:password])
+      redirect_to user_path(@user)
+    else
+      @user = User.new(user_params)
+      if @user.password.length < 8
+        flash.now[:senha] = 'A senha deve conter no mínimo 8 caracteres.'
+      end
+      if @user.password != @user.password_confirmation
+        flash.now[:senha] = 'As senhas digitadas não coincidem.'
+      end
+      if email_cpf_repetido
+        flash.now[:email] = 'Já existe usuário com esse e-mail ou CPF.'
+      end
       render 'new'
     end
   end

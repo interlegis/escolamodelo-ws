@@ -14,11 +14,8 @@ class OauthsController < ApplicationController
       if !existent_user.present?
         @user = create_from(provider)
       else
-        print(existent_user.id)
-        print(@user.uid)
-        print('User:')
-        print(@user.attributes)
         Authentication.create(provider: provider, user_id: existent_user.id, uid: @user.uid)
+        @user = existent_user
       end
       auto_login(@user)
       redirect_to adicionar_dados_path, :notice => "Logged in from #{provider.titleize}!"

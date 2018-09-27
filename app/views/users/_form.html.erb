@@ -4,6 +4,7 @@
     <div class="row"></div>
   </div>
   <div class="col s12 l12 z-depth-1">
+
     <%= form_for @user do |f| %>
       <div class="col s12 l10 offset-l1 input-field">
         <%= f.label :first_name, 'Nome' %>
@@ -43,6 +44,11 @@
         <%= link_to 'Voltar', :back, class: "btn waves-effect waves-light button_bold" %>
       </div>
     <% end %>
+    <div>
+      <% flash.each do |key, value| %>
+        <p style="color: red; text-align: right"><%= value %></p>
+      <% end %>
+    </div>
     <div class="row hide-on-med-and-down"></div>
   </div>
 </div>

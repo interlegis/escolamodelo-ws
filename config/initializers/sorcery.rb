@@ -136,7 +136,7 @@ Rails.application.config.sorcery.configure do |config|
   #
   config.google.key = ENV['ESCOLA_MODELO_WS_Google_key']
   config.google.secret = ENV['ESCOLA_MODELO_WS_Google_secret']
-  config.google.callback_url = "http://localhost:3000/oauth/callback?provider=google"
+  config.google.callback_url = "https://escolamodelows.interlegis.leg.br/oauth/callback?provider=google"
   config.google.user_info_mapping = {:uid => "id", :email => "email", :first_name => "name"}
   config.google.scope = "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
   #

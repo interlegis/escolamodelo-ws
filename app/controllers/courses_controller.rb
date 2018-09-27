@@ -2,11 +2,10 @@ class CoursesController < ApplicationController
   skip_before_action :verify_authenticity_token
   #Adicionar token para que apenas acesso permitido possa acessar os métodos
   # Acrescentar mensagens de erro
-  # Corrigir school_id
   def adicionar_curso
     @course = Course.new(course_params)
     school = School.find_by(initials: params[:school])
-    @course.school_id = school
+    @course.school_id = school.id
     if school.present? and @course.save
     #@course.logo.attach(io: StringIO.new('https://saberes.senado.leg.br/images/logo_saberes_xl.png'), filename: 'logo_saberes.png', content_type: 'image/png')
       render status: 200, json: {

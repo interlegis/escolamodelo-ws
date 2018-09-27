@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_21_195708) do
+ActiveRecord::Schema.define(version: 2018_09_26_190908) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,14 @@ ActiveRecord::Schema.define(version: 2018_09_21_195708) do
     t.index ["user_id"], name: "index_certificates_on_user_id"
   end
 
+  create_table "contact_us_conversations", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "title"
+    t.string "description"
+    t.date "initial_date"
+  end
+
   create_table "contact_us_messages", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -68,6 +76,10 @@ ActiveRecord::Schema.define(version: 2018_09_21_195708) do
     t.string "school_initials"
     t.bigint "course_id"
     t.bigint "course_category_id"
+    t.bigint "contact_us_conversation_id"
+    t.boolean "was_answered"
+    t.boolean "is_student"
+    t.index ["contact_us_conversation_id"], name: "index_contact_us_messages_on_contact_us_conversation_id"
   end
 
   create_table "course_categories", force: :cascade do |t|
@@ -173,6 +185,7 @@ ActiveRecord::Schema.define(version: 2018_09_21_195708) do
 
   add_foreign_key "certificates", "courses"
   add_foreign_key "certificates", "users"
+  add_foreign_key "contact_us_messages", "contact_us_conversations"
   add_foreign_key "courses", "course_categories"
   add_foreign_key "courses", "schools"
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"

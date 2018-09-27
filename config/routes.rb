@@ -35,9 +35,16 @@ Rails.application.routes.draw do
       post 'certificados/adicionar' => 'certificates#adicionar_certificado', :as => 'adicionar_certificado'
       get 'certificados/' => 'certificates#certificado_usuario', :as => 'certificado_usuario'
       #Fale conosco
+      # Mensagens
       get '/fale_conosco/' => 'contact_us_messages#index', :as => 'fale_conosco'
       post '/fale_conosco/adicionar' => 'contact_us_messages#adicionar_mensagem', :as => 'adicionar_mensagem'
       post '/fale_conosco/' => 'contact_us_messages#mensagem_escola', :as => 'mensagem_escola'
+      post '/fale_conosco/apagar_mensagem' => 'contact_us_messages#apagar_mensagem', :as => 'apagar_mensagem'
+      # Conversas
+      post '/fale_conosco/resposta' => 'contact_us_messages#responder_mensagem', :as => 'resposta_escola'
+      get '/fale_conosco/conversa' => 'contact_us_conversations#index', :as => 'conversas'
+      post '/fale_conosco/mensagens_conversa' => 'contact_us_conversations#mensagens', :as => 'mensagem_conversa'
+      post '/fale_conosco/apagar_conversa' => 'contact_us_conversations#apagar_conversa', :as => 'apagar_conversa'
     end
   end
 end

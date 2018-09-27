@@ -18,6 +18,7 @@
         <%= password_field_tag :password, nil, required: true %>
       </div>
       <%= link_to 'Login with Google', auth_at_provider_path(:provider => :google) %>
+      <%= link_to 'Login with Facebook', auth_at_provider_path(:provider => :facebook) %>
       <div class="col s12 l8 offset-l3">
         <%= button_tag 'Entrar', type: 'submit', class:'waves-effect waves-light btn' %>
         <%= link_to 'Registrar', new_user_path, class:'waves-effect waves-light btn button_bold' %>

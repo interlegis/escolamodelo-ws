@@ -72,7 +72,7 @@ Rails.application.config.sorcery.configure do |config|
   # What providers are supported by this app, i.e. [:twitter, :facebook, :github, :linkedin, :xing, :google, :liveid, :salesforce, :slack] .
   # Default: `[]`
   #
-  config.external_providers = [:google]
+  config.external_providers = [:google, :facebook]
 
   # You can change it by your local ca_file. i.e. '/etc/pki/tls/certs/ca-bundle.crt'
   # Path to ca_file. By default use a internal ca-bundle.crt.
@@ -109,15 +109,15 @@ Rails.application.config.sorcery.configure do |config|
   # config.twitter.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=twitter"
   # config.twitter.user_info_mapping = {:email => "screen_name"}
   #
-  # config.facebook.key = ""
-  # config.facebook.secret = ""
-  # config.facebook.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=facebook"
-  # config.facebook.user_info_path = "me?fields=email"
-  # config.facebook.user_info_mapping = {:email => "email"}
-  # config.facebook.access_permissions = ["email", "publish_actions"]
-  # config.facebook.display = "page"
-  # config.facebook.api_version = "v2.3"
-  # config.facebook.parse = :json
+  config.facebook.key = ENV['ESCOLA_MODELO_WS_Facebook_key']
+  config.facebook.secret = ENV['ESCOLA_MODELO_WS_Facebook_secret']
+  config.facebook.callback_url = "https://escolamodelows.interlegis.leg.br/oauth/callback?provider=facebook"
+  config.facebook.user_info_path = "me?fields=email,first_name,last_name"
+  config.facebook.user_info_mapping = {:email => "email", :first_name => 'first_name', :last_name => 'last_name'}
+  config.facebook.access_permissions = ["email"]
+  config.facebook.display = "page"
+  config.facebook.api_version = "v3.1"
+  #config.facebook.parse = :json
   #
   # config.github.key = ""
   # config.github.secret = ""
@@ -134,10 +134,10 @@ Rails.application.config.sorcery.configure do |config|
   # config.wechat.secret = ""
   # config.wechat.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=wechat"
   #
-  config.google.key = "509373964251-kcpbcbjeq0ou6e78nqjeek057jgs6kdq.apps.googleusercontent.com"
-  config.google.secret = "kJwVOgKQaT2MQGynVutIWtvx"
+  config.google.key = ENV['ESCOLA_MODELO_WS_Google_key']
+  config.google.secret = ENV['ESCOLA_MODELO_WS_Google_secret']
   config.google.callback_url = "http://localhost:3000/oauth/callback?provider=google"
-  config.google.user_info_mapping = {:email => "email", :first_name => "name"}
+  config.google.user_info_mapping = {:uid => "id", :email => "email", :first_name => "name"}
   config.google.scope = "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
   #
   # For Microsoft Graph, the key will be your App ID, and the secret will be your app password/public key.

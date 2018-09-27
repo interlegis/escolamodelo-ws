@@ -89,7 +89,7 @@ class ContactUsMessagesController < ApplicationController
     params.permit(:name, :email, :cpf, :description, :school_initials, :course_category_id, :course_id)
   end
   def contact_us_answer_params
-    params.require(:contact_us_answer).permit(:name, :email, :cpf, :description)
+    params.permit(:name, :email, :cpf, :description)
   end
 
 end

@@ -18,7 +18,7 @@ class ContactUsConversationsController < ApplicationController
           'cpf' => c.cpf,
           'email' => c.email,
           'date' => c.created_at,
-          'is_student' => c.is_student
+          'was_answered' => c.was_answered
         }
       end
       if messages.empty?

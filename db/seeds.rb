@@ -46,11 +46,26 @@ cat.logo.attach(
 )
 Course.create(name: 'Liberalismo', url: 'https://saberes.senado.leg.br/course/view.php?id=1381', school_id: 1, course_category_id: 3, course_load: 20, description: 'Definir, analisar e discutir o significado das principais correntes de pensamento que inspiram e orientam os partidos políticos de maior expressão - em termos de influência, voto e acesso ao poder - no mundo atual.')
 
-ContactUsConversation.create(title: "Ronaldo alves", description: "O que fazer para ter acesso as aulas", initial_date: "11/05/2018", created_at: "2018-09-20T17:55:30.030Z", updated_at: "2018-09-20T17:55:30.030Z")
-ContactUsConversation.create(title: "Robinho Soares", description: "Como posso recuperar a senha do moodle?", initial_date: "18/05/2018", created_at: "2018-09-20T17:55:30.030Z", updated_at: "2018-09-20T17:55:30.030Z")
-ContactUsConversation.create(title: "Raimundinho Dias", description: "É possível baixar todo o moodle da disciplina EDA para o meu computador?", initial_date: "20/05/2018", created_at: "2018-09-20T17:55:30.030Z", updated_at: "2018-09-20T17:55:30.030Z")
-ContactUsMessage.create(name: 'Everaldo Dias', email: 'everaldin@gmail.com', cpf: '0236958745', school_initials:'SSL', course_id:1, course_category_id: 1, description: 'Estava em sala e a professora não passou a chamada.', date: '09/08/2018')
-ContactUsMessage.create(name: 'Matheus Roberto', email: 'matheus@gmail.com', cpf: '04523269157', school_initials:'SSL', course_id:2, course_category_id: 1, description: 'O curso de estutura de dados está excelente com o professor Clodovil.', date: '19/06/2018')
-ContactUsMessage.create(name: 'Ronaldo de Assis', email: 'ronaldinho@gmail.com', cpf: '0255948745', school_initials:'ALM', course_id:1, course_category_id: 1, description: 'Não consigo acessar o moodle.', date: '10/05/2018')
-ContactUsMessage.create(name: 'Raimundo Alves', email: 'raimundo@gmail.com', cpf: '8864124515', school_initials:'EAS', course_id:1, course_category_id: 1, description: 'Gostaria de saber o email do professor Oliersson.', date: '23/09/2018')
-ContactUsMessage.create(name: 'Claiderson Sandres', email: 'claiderssin@gmail.com', cpf: '4836958755', school_initials:'ALM', course_id:1, course_category_id: 1, description: 'Como faço para sair do curso?', date: '04/08/2018')
+{
+	"type_conversation": "dúvida",
+	"title": "RESP1",
+  "school_initials": "APP",
+  "course_id": "2",
+  "course_category_id": "1",
+  "description": "TEST1.",
+  "cpf": "0453232668124",
+	"name": "Matheus Roberto",
+	"email": "roberto.matheus@bol.com.br",
+	"is_student": "false",
+}
+
+@conversa1 = ContactUsConversation.create(type_conversation: "dúvida", title: "Não consigo acessar o moodle", school_initials: "SSL", course_id: "1", description: "O que fazer para ter acesso as aulas", cpf: "0452285554", name: "Morfeus", email: "MorfeusNeo@gmail.com")
+ContactUsConversation.create(type_conversation: "reclamação", title: "O site apresenta um layout muito desagradável", school_initials: "HTT", course_id: "2", description: "O design do site poderia ser mudado para um modelo parecido com o do facebook.", cpf: "123123132", name: "Rezinaldo", email: "reizão@gmail.com")
+ContactUsConversation.create(type_conversation: "sugestão", title: "Melhorar o curso de Web", school_initials: "SSL", course_id: "1", description: "O curso de web poderia apresentar a linguagem javascript.", cpf: "0452285554", name: "Zilmar", email: "Zilmar@gmail.com")
+ContactUsConversation.create(type_conversation: "dúvida", title: "Posso passar a senha do meu moodle para um amigo?", school_initials: "SSL", course_id: "1", description: "Gostaria de saber se eu posso passar a senha do moodle para que um amigo também possa participar das atividades.", cpf: "0452285554", name: "Sassá", email: "sassa@gmail.com")
+
+@conversa1.contact_us_message.create(contact_us_conversation_id: '1', name:'Gezimar', email: 'gezi@gmail.com', cpf: '4564564545', description: 'Tente acessar novamente, liberei o seu acesso.', is_student: 'false')
+@conversa1.contact_us_message.create(contact_us_conversation_id: '1', name:'Morfeus', email: 'morfeusNeo@gmail.com', cpf: '4564564545', description: 'Tentei e continuo sem acesso.', is_student: 'true')
+@conversa1.contact_us_message.create(contact_us_conversation_id: '1', name:'Gezimar', email: 'gezi@gmail.com', cpf: '4564564545', description: 'Tinha esquecido de liberar, agora pode tentar mesmo.', is_student: 'false')
+@conversa1.contact_us_message.create(contact_us_conversation_id: '1', name:'Morfeus', email: 'morfeusNeo@gmail.com', cpf: '4564564545', description: 'Obrigado, agora eu consegui.', is_student: 'true')
+@conversa1.contact_us_message.create(contact_us_conversation_id: '1', name:'Gezimar', email: 'gezi@gmail.com', cpf: '4564564545', description: 'De nada.', is_student: 'false')

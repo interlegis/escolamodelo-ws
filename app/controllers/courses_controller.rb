@@ -4,17 +4,24 @@ class CoursesController < ApplicationController
   # Acrescentar mensagens de erro
   # Corrigir school_id
   def adicionar_curso
-    @course = Course.new(course_params)
     school = School.find_by(initials: params[:school])
-    @course.school_id = school
-    if school.present? and @course.save
-    #@course.logo.attach(io: StringIO.new('https://saberes.senado.leg.br/images/logo_saberes_xl.png'), filename: 'logo_saberes.png', content_type: 'image/png')
-      render status: 200, json: {
-          message: "Curso criado com sucesso",
-      }.to_json
+    @course = Course.new(course_params)
+    @course.school_id = school.id
+    @course.course_category_id = params[:category]
+    if school.present?
+      if @course.save
+      #@course.logo.attach(io: StringIO.new('https://saberes.senado.leg.br/images/logo_saberes_xl.png'), filename: 'logo_saberes.png', content_type: 'image/png')
+        render status: 200, json: {
+            message: "Curso criado com sucesso",
+        }.to_json
+      else
+        render status: 400, json: {
+            message: "Não foi possível criar curso",
+        }.to_json
+      end
     else
-      render status: 400, json: {
-          message: "Não foi possível criar curso",
+      render status: 404, json: {
+          message: "Escola ou categoria não encontradas",
       }.to_json
     end
 
@@ -55,6 +62,6 @@ class CoursesController < ApplicationController
 
   private
   def course_params
-    params.require(:course).permit(:name, :course_category_id, :url, :school_id, :course_load, :description, :ead_id)
+    params.require(:course).permit(:name, :url, :course_load, :description, :ead_id)
   end
 end

@@ -6,5 +6,7 @@ module Types
     field :course_load, Integer, null: true
     field :description, String, null: true
     field :ead_id, Integer, null: true
+    field :category, CourseCategoryType, null: false
+    field :school, SchoolType, null: false
   end
 end

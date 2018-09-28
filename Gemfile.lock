@@ -90,6 +90,10 @@ GEM
     ffi (1.9.25)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    graphiql-rails (1.4.11)
+      railties
+      sprockets-rails
+    graphql (1.8.10)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     i18n (1.1.0)
@@ -270,6 +274,8 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   doorkeeper
   doorkeeper-openid_connect
+  graphiql-rails
+  graphql
   jbuilder (~> 2.5)
   jquery-rails
   kaminari
@@ -294,4 +300,4 @@ RUBY VERSION
    ruby 2.5.1p57
 
 BUNDLED WITH
-   1.16.4
+   1.16.5

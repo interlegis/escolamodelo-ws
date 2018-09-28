@@ -71,3 +71,5 @@ gem 'mailgun-ruby'
 gem 'doorkeeper'
 gem 'doorkeeper-openid_connect'
 gem 'jquery-rails'
+gem 'graphql'
+gem 'graphiql-rails', group: :development

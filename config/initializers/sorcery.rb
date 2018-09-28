@@ -113,7 +113,7 @@ Rails.application.config.sorcery.configure do |config|
   config.facebook.secret = ENV['ESCOLA_MODELO_WS_Facebook_secret']
   config.facebook.callback_url = "https://escolamodelows.interlegis.leg.br/oauth/callback?provider=facebook"
   config.facebook.user_info_path = "me?fields=email,first_name,last_name"
-  config.facebook.user_info_mapping = {:email => "email", :first_name => 'first_name', :last_name => 'last_name'}
+  config.facebook.user_info_mapping = {:uid => "id", :email => "email", :first_name => 'first_name', :last_name => 'last_name'}
   config.facebook.access_permissions = ["email"]
   config.facebook.display = "page"
   config.facebook.api_version = "v3.1"

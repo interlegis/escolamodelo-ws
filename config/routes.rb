@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get '/painel' => 'users#painel', :as => 'painel'
   get '/sign_up' => 'users#new', :as => 'sign_up'
   resources :password_resets, only: [:new, :create, :edit, :update]
-  resources :sessions, only: [:new, :create, :destroy]
+  resources :sessions, only: [:new, :create]
   get '/log_in', to: 'sessions#new', as: :log_in
   delete '/log_out', to: 'sessions#destroy', as: :log_out
   #Login com oauth

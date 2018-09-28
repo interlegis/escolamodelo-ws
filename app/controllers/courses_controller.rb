@@ -5,10 +5,11 @@ class CoursesController < ApplicationController
   # Corrigir school_id
   def adicionar_curso
     school = School.find_by(initials: params[:school])
+    category = Category.find(params[:category])
     @course = Course.new(course_params)
     @course.school_id = school.id
-    @course.course_category_id = params[:category]
-    if school.present?
+    @course.course_category_id = category.id
+    if school.present? and category.present?
       if @course.save
       #@course.logo.attach(io: StringIO.new('https://saberes.senado.leg.br/images/logo_saberes_xl.png'), filename: 'logo_saberes.png', content_type: 'image/png')
         render status: 200, json: {

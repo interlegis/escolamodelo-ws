@@ -32,6 +32,130 @@
   dependencies:
     tslib "^1.9.0"
 
+"@material/animation@^0.39.0":
+  version "0.39.0"
+  resolved "https://registry.yarnpkg.com/@material/animation/-/animation-0.39.0.tgz#d3d503c9f87ac1193dc4a5b0cccfaedb39478439"
+
+"@material/base@^0.39.0":
+  version "0.39.0"
+  resolved "https://registry.yarnpkg.com/@material/base/-/base-0.39.0.tgz#ca451531cf438f51bf999ad7b96b5e8f3929e19a"
+
+"@material/button@^0.40.0":
+  version "0.40.0"
+  resolved "https://registry.yarnpkg.com/@material/button/-/button-0.40.0.tgz#d23cac5d6f628668782cc8b12368d10450e67397"
+  dependencies:
+    "@material/elevation" "^0.40.0"
+    "@material/ripple" "^0.40.0"
+    "@material/rtl" "^0.39.1"
+    "@material/shape" "^0.40.0"
+    "@material/theme" "^0.40.0"
+    "@material/typography" "^0.39.0"
+
+"@material/checkbox@^0.40.0":
+  version "0.40.0"
+  resolved "https://registry.yarnpkg.com/@material/checkbox/-/checkbox-0.40.0.tgz#db9f48a364adf92e1f1c409a9ed40c7cf3f9f3c3"
+  dependencies:
+    "@material/animation" "^0.39.0"
+    "@material/base" "^0.39.0"
+    "@material/ripple" "^0.40.0"
+    "@material/rtl" "^0.39.1"
+    "@material/selection-control" "^0.40.0"
+    "@material/theme" "^0.40.0"
+
+"@material/elevation@^0.40.0":
+  version "0.40.0"
+  resolved "https://registry.yarnpkg.com/@material/elevation/-/elevation-0.40.0.tgz#9740f3c147aecfbfdba38ff50dfea560360ecc5c"
+  dependencies:
+    "@material/animation" "^0.39.0"
+    "@material/theme" "^0.40.0"
+
+"@material/floating-label@^0.40.0":
+  version "0.40.0"
+  resolved "https://registry.yarnpkg.com/@material/floating-label/-/floating-label-0.40.0.tgz#5edfc0b391a58e2802031a6bcabed350c0130722"
+  dependencies:
+    "@material/animation" "^0.39.0"
+    "@material/base" "^0.39.0"
+    "@material/rtl" "^0.39.1"
+    "@material/theme" "^0.40.0"
+    "@material/typography" "^0.39.0"
+
+"@material/form-field@^0.40.0":
+  version "0.40.0"
+  resolved "https://registry.yarnpkg.com/@material/form-field/-/form-field-0.40.0.tgz#bbd86df078efcf3537f3a9c631a7d02d777f4722"
+  dependencies:
+    "@material/base" "^0.39.0"
+    "@material/rtl" "^0.39.1"
+    "@material/selection-control" "^0.40.0"
+    "@material/theme" "^0.40.0"
+    "@material/typography" "^0.39.0"
+
+"@material/layout-grid@^0.39.0":
+  version "0.39.0"
+  resolved "https://registry.yarnpkg.com/@material/layout-grid/-/layout-grid-0.39.0.tgz#8e96645404cfee2655999bc591264c434897af3d"
+
+"@material/line-ripple@^0.40.0":
+  version "0.40.0"
+  resolved "https://registry.yarnpkg.com/@material/line-ripple/-/line-ripple-0.40.0.tgz#5dd890035ec7e99dba19ef8a53de42f1f424d338"
+  dependencies:
+    "@material/animation" "^0.39.0"
+    "@material/base" "^0.39.0"
+    "@material/theme" "^0.40.0"
+
+"@material/notched-outline@^0.40.0":
+  version "0.40.0"
+  resolved "https://registry.yarnpkg.com/@material/notched-outline/-/notched-outline-0.40.0.tgz#b8c1b8569d1df503c7a383e03e5486fc4ab9e6b4"
+  dependencies:
+    "@material/animation" "^0.39.0"
+    "@material/base" "^0.39.0"
+    "@material/rtl" "^0.39.1"
+    "@material/shape" "^0.40.0"
+    "@material/theme" "^0.40.0"
+
+"@material/ripple@^0.40.0":
+  version "0.40.0"
+  resolved "https://registry.yarnpkg.com/@material/ripple/-/ripple-0.40.0.tgz#a37874eef3fbc1cb55b268d6b9d373957c80659f"
+  dependencies:
+    "@material/animation" "^0.39.0"
+    "@material/base" "^0.39.0"
+    "@material/theme" "^0.40.0"
+
+"@material/rtl@^0.39.1":
+  version "0.39.1"
+  resolved "https://registry.yarnpkg.com/@material/rtl/-/rtl-0.39.1.tgz#dcaf6f93fc6cd540137edb352139dc8139bca436"
+
+"@material/selection-control@^0.40.0":
+  version "0.40.0"
+  resolved "https://registry.yarnpkg.com/@material/selection-control/-/selection-control-0.40.0.tgz#589cbd125292a9a2ee64e64f219ae6c97b3209d8"
+  dependencies:
+    "@material/ripple" "^0.40.0"
+
+"@material/shape@^0.40.0":
+  version "0.40.0"
+  resolved "https://registry.yarnpkg.com/@material/shape/-/shape-0.40.0.tgz#40f87a12c0835ae1810e90acb4004c3b74b6e2e7"
+
+"@material/textfield@^0.40.0":
+  version "0.40.0"
+  resolved "https://registry.yarnpkg.com/@material/textfield/-/textfield-0.40.0.tgz#95d956cbe9fb29854f16d334742cf8b407140c4c"
+  dependencies:
+    "@material/animation" "^0.39.0"
+    "@material/base" "^0.39.0"
+    "@material/floating-label" "^0.40.0"
+    "@material/line-ripple" "^0.40.0"
+    "@material/notched-outline" "^0.40.0"
+    "@material/ripple" "^0.40.0"
+    "@material/rtl" "^0.39.1"
+    "@material/shape" "^0.40.0"
+    "@material/theme" "^0.40.0"
+    "@material/typography" "^0.39.0"
+
+"@material/theme@^0.40.0":
+  version "0.40.0"
+  resolved "https://registry.yarnpkg.com/@material/theme/-/theme-0.40.0.tgz#0b91750bf6334fa7bebf2b1aabb8ec727f519e13"
+
+"@material/typography@^0.39.0":
+  version "0.39.0"
+  resolved "https://registry.yarnpkg.com/@material/typography/-/typography-0.39.0.tgz#7d7468673e104609d926528ffe5571cfd44d8c3c"
+
 "@rails/webpacker@3.5":
   version "3.5.5"
   resolved "https://registry.yarnpkg.com/@rails/webpacker/-/webpacker-3.5.5.tgz#8911c66bcefc8bc6b91270e92f0d39e3c2d43116"

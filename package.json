@@ -7,6 +7,13 @@
     "@angular/core": "^6.0.9",
     "@angular/platform-browser": "^6.0.9",
     "@angular/platform-browser-dynamic": "^6.0.9",
+    "@material/button": "^0.40.0",
+    "@material/checkbox": "^0.40.0",
+    "@material/floating-label": "^0.40.0",
+    "@material/form-field": "^0.40.0",
+    "@material/layout-grid": "^0.39.0",
+    "@material/line-ripple": "^0.40.0",
+    "@material/textfield": "^0.40.0",
     "@rails/webpacker": "3.5",
     "core-js": "^2.5.7",
     "jquery-mask-plugin": "^1.14.15",
@@ -17,5 +24,8 @@
   },
   "devDependencies": {
     "webpack-dev-server": "2.11.2"
+  },
+  "scripts": {
+    "start": "bin/webpack-dev-server"
   }
 }

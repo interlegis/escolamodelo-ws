@@ -8,6 +8,7 @@ class User < ApplicationRecord
   before_save :capitalize_name
   belongs_to :role
   has_many :certificates
+  has_one :api_access
   def capitalize_name
     self.first_name=self.first_name.split.map(&:capitalize).join(' ')
     if self.last_name.present?

@@ -18,11 +18,11 @@ module Types
     field :schools, [SchoolType], null: false do
       description "Find all schools"
     end
-    field :category, CourseCategoryType, null: false do
+    field :course_category, CourseCategoryType, null: false do
       description "Find a category by ID"
       argument :id, ID, required: true
     end
-    field :categories, [CourseCategoryType], null: false do
+    field :course_categories, [CourseCategoryType], null: false do
       description "Find all categories"
     end
     def course(id:)
@@ -37,10 +37,10 @@ module Types
     def schools
       School.all
     end
-    def category(id:)
+    def course_category(id:)
       CourseCategory.find(id)
     end
-    def categories
+    def course_categories
       CourseCategory.all
     end
   end

@@ -73,6 +73,15 @@ ActiveRecord::Schema.define(version: 2018_10_04_133601) do
     t.string "title"
     t.string "description"
     t.date "initial_date"
+    t.string "school_initials"
+    t.bigint "course_id"
+    t.bigint "course_category_id"
+    t.boolean "was_answered"
+    t.string "type_conversation"
+    t.string "cpf"
+    t.string "name"
+    t.string "email"
+    t.bigint "user_id"
   end
 
   create_table "contact_us_messages", force: :cascade do |t|
@@ -80,14 +89,9 @@ ActiveRecord::Schema.define(version: 2018_10_04_133601) do
     t.string "email"
     t.string "cpf"
     t.string "description"
-    t.datetime "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "school_initials"
-    t.bigint "course_id"
-    t.bigint "course_category_id"
     t.bigint "contact_us_conversation_id"
-    t.boolean "was_answered"
     t.boolean "is_student"
     t.index ["contact_us_conversation_id"], name: "index_contact_us_messages_on_contact_us_conversation_id"
   end

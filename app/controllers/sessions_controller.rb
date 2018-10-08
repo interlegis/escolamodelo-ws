@@ -6,11 +6,11 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if login(params[:email], params[:password])
-      redirect_to user_path
+    if login(params[:user][:email], params[:user][:password])
+      render js: "window.location='#{user_path}'"
     else
-      flash.now[:warning] = 'E-mail and/or password is incorrect.'
-      render 'new'
+      render new
+      render status: 400, json: {error: 'Email ou senha incorretos'}.to_json
     end
   end
 

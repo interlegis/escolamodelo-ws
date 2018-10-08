@@ -1,10 +1,13 @@
-@import '~@material/form-field/mdc-form-field';
-@import '~@material/textfield/mdc-text-field';
 @import '~@material/button/mdc-button';
 @import "~@material/checkbox/mdc-checkbox";
 @import '~@material/layout-grid/mdc-layout-grid';
 @import "~@material/line-ripple/mdc-line-ripple";
+//forms
+@import '~@material/form-field/mdc-form-field';
+@import '~@material/textfield/mdc-text-field';
 @import "~@material/floating-label/mdc-floating-label";
-p {
-  color: blue;
+@import "~@material/textfield/helper-text/mdc-text-field-helper-text";
+.email, .password {
+  display: block;
+  width: 100%;
 }

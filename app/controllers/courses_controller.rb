@@ -5,7 +5,7 @@ class CoursesController < ApplicationController
   # Corrigir school_id
   def adicionar_curso
     school = School.find_by(initials: params[:school])
-    category = Category.find(params[:category])
+    category = CourseCategory.find(params[:category])
     @course = Course.new(course_params)
     @course.school_id = school.id
     @course.course_category_id = category.id

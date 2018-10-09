@@ -2,7 +2,6 @@ class CoursesController < ApplicationController
   skip_before_action :verify_authenticity_token
   #Adicionar token para que apenas acesso permitido possa acessar os métodos
   # Acrescentar mensagens de erro
-  # Corrigir school_id
   def adicionar_curso
     school = School.find_by(initials: params[:school])
     category = CourseCategory.find(params[:category])

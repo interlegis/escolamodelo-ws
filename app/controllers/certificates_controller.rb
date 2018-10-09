@@ -14,7 +14,6 @@ class CertificatesController < ApplicationController
       end
     end
     if error.length == 0
-      #@course.logo.attach(io: StringIO.new('https://saberes.senado.leg.br/images/logo_saberes_xl.png'), filename: 'logo_saberes.png', content_type: 'image/png')
       render status: 200, json: {
           message: "Certificados salvos com sucesso",
       }.to_json
@@ -26,12 +25,13 @@ class CertificatesController < ApplicationController
       }.to_json
     end
   end
-  def certificado_usuario #Depois adicionar link do certificado
+  def certificado_usuario
     user = User.find_by(cpf: params[:cpf])
     if user.present?
       hash_certificates=user.certificates.map do |certificate|
         {'id' => certificate.id,
-         'data de emissão' => certificate.issue_date
+         'data de emissão' => certificate.issue_date,
+         'url' => certificate.course.school.url+ '/blocks/get_certificate/review.php?code=' + certificate.code_id + '&user=' + user.cpf
         }
       end
       render status: 200, json: {

@@ -31,7 +31,10 @@ class CertificatesController < ApplicationController
       hash_certificates=user.certificates.map do |certificate|
         {'id' => certificate.id,
          'data_de_emissao' => certificate.issue_date,
-         'url' => certificate.course.school.url+ '/blocks/get_certificate/review.php?code=' + certificate.code_id + '&user=' + user.cpf
+         'url' => certificate.course.school.url+ '/blocks/get_certificate/review.php?code=' + certificate.code_id + '&user=' + user.cpf,
+         'nota' => certificate.grade,
+         'curso' => certificate.course.name,
+         'escola' => certificate.course.school.name
         }
       end
       render status: 200, json: {

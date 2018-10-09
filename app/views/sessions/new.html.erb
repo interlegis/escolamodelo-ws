@@ -1,4 +1,3 @@
-
 <!-- tem que arrumar a responsividade -->
 <%= form_with url: sessions_path, scope: :user do |f| %>
   <div class="mdc-layout-grid">
@@ -6,9 +5,9 @@
       <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-2-tablet"></div>
       <div class="mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-phone mdc-layout-grid__cell--span-4-tablet">
         <div class="mdc-text-field email">
-          <%= f.text_field :email, required: true, class: 'mdc-text-field__input',
+          <%= f.text_field :email, class: 'mdc-text-field__input',
                            'aria-controls': 'email-helper-text',
-              'aria-describedby': 'email-helper-text' %>
+                           'aria-describedby': 'email-helper-text' %>
           <%= f.label :email, 'Email', class: 'mdc-floating-label' %>
           <div class="mdc-line-ripple"></div>
         </div>
@@ -21,42 +20,37 @@
       <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-2-tablet"></div>
       <div class="mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-phone mdc-layout-grid__cell--span-4-tablet">
         <div class="mdc-text-field password">
-          <%= f.password_field :password, required: true, class: 'mdc-text-field__input' %>
+          <%= f.password_field :password, class: 'mdc-text-field__input' %>
           <%= f.label :password, 'Senha', class: 'mdc-floating-label' %>
           <div class="mdc-line-ripple"></div>
         </div>
       </div>
     </div>
-      <div class="mdc-layout-grid__inner" style="padding-top: 1vh; margin-left: 5vw;">
-        <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-2-tablet"></div>
-        <div class="mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-phone mdc-layout-grid__cell--span-4-tablet">
-          <div class="mdc-layout-grid__inner">
-            <div class="mdc-layout-grid__cell--span-3">
-            <button class="mdc-button mdc-button--raised" type="submit">
-              Login
-            </button>
-            </div>
-            <div class="mdc-layout-grid__cell--span-4"></div>
-            <div class="mdc-layout-grid__cell--span-3">
-              <%= button_to 'Registrar', new_user_path, class: 'mdc-button mdc-button--raised' %>
-            </div>
-          </div>
-        </div>
-      </div>
-
     <div class="mdc-layout-grid__inner" style="padding-top: 1vh; margin-left: 5vw;">
       <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-2-tablet"></div>
       <div class="mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-phone mdc-layout-grid__cell--span-4-tablet">
         <div class="mdc-layout-grid__inner">
           <div class="mdc-layout-grid__cell--span-3">
-            <%= link_to image_tag('google_signin/1x/btn_google_signin_dark_normal_web.png', border: 0), auth_at_provider_path(:provider => :google) %>
-
+            <%= button_to 'Entrar', new_user_path, type: 'submit', class: 'mdc-button mdc-button--raised', style: 'background-color: red;' %>
           </div>
           <div class="mdc-layout-grid__cell--span-4"></div>
-          <div class="mdc-layout-grid__cell--span-3">
-            <%= button_to 'Facebook', auth_at_provider_path(:provider => :facebook), class: 'mdc-button mdc-button--raised' %>
+          <div class="mdc-layout-grid__cell--span-3" style="padding-left: 1vw;">
+            <%= link_to 'Registrar', new_user_path, class: 'mdc-button mdc-button--raised', style: 'background-color: red;' %>
           </div>
         </div>
+      </div>
+    </div>
+
+    <div class="mdc-layout-grid__inner" style="padding-top: 1vh; margin-left: 5vw;">
+      <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-2-tablet"></div>
+      <div class="mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-phone mdc-layout-grid__cell--span-4-tablet">
+        <%= link_to image_tag('google_signin/1x/btn_google_signin_dark_normal_web.png', border: 0, style: 'width: 50%; height: auto'), auth_at_provider_path(:provider => :google) %>
+      </div>
+    </div>
+    <div class="mdc-layout-grid__inner" style="padding-top: 1vh; margin-left: 5vw;">
+      <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-2-tablet"></div>
+      <div cclass="mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-phone mdc-layout-grid__cell--span-4-tablet">
+        <%= link_to image_tag('facebook_signin.png', border: 0, style: 'width: 200%; height: auto'), auth_at_provider_path(:provider => :facebook) %>
       </div>
     </div>
   </div>

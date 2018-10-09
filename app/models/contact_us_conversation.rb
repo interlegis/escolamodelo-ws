@@ -5,6 +5,5 @@ class ContactUsConversation < ApplicationRecord
 
   def init
     self.was_answered ||= false
-    # self.is_student ||= true
   end
 end

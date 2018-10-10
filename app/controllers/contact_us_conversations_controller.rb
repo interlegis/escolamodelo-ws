@@ -3,7 +3,11 @@ class ContactUsConversationsController < ApplicationController
 
   def index
     if params[:school_initials].present?
-      conversations = ContactUsConversation.all.where(school_initials: params[:school_initials], was_answered: false).order("created_at")
+      if params[:not_answered] == true
+        conversations = ContactUsConversation.all.where(school_initials: params[:school_initials], was_answered: true).order("updated_at")
+      else
+        conversations = ContactUsConversation.all.where(school_initials: params[:school_initials], was_answered: false).order("created_at")
+      end
       if params[:limit].present?
         hash_conversation = conversations.page(params[:page]).per(params[:limit]).map do |c|
           {
@@ -38,13 +42,20 @@ class ContactUsConversationsController < ApplicationController
   def adicionar_mensagem
     if params[:conversation_id].present?
       @conversation = ContactUsConversation.find(params[:conversation_id])
-      if params[:is_student] == true
+      if params[:is_student] != false
+        puts params[:is_student]
         @conversation.update(:was_answered => false)
       else
         @conversation.update(:was_answered => true)
       end
     else
-      @conversation = ContactUsConversation.create(contact_us_conversation_params)
+      if params[:school_initials].present? && params[:is_student] == true
+        @conversation = ContactUsConversation.create(contact_us_conversation_params)
+      else
+        return render status: 400, json: {
+          message: "Ocorreu um erro! Conversa ou escola não identificada."
+        }.to_json
+      end
     end
 
     @message = @conversation.contact_us_message.create(contact_us_message_params)

@@ -69,3 +69,13 @@ ContactUsConversation.create(type_conversation: "dúvida", title: "Posso passar 
 @conversa1.contact_us_message.create(contact_us_conversation_id: '1', name:'Gezimar', email: 'gezi@gmail.com', cpf: '4564564545', description: 'Tinha esquecido de liberar, agora pode tentar mesmo.', is_student: 'false')
 @conversa1.contact_us_message.create(contact_us_conversation_id: '1', name:'Morfeus', email: 'morfeusNeo@gmail.com', cpf: '4564564545', description: 'Obrigado, agora eu consegui.', is_student: 'true')
 @conversa1.contact_us_message.create(contact_us_conversation_id: '1', name:'Gezimar', email: 'gezi@gmail.com', cpf: '4564564545', description: 'De nada.', is_student: 'false')
+
+CourseRegistrationStatus.create(status: 'Inicializado')
+CourseRegistrationStatus.create(status: 'Inscrito')
+@quiz = Quiz.create
+@quiz_question1 = QuizQuestion.create(question: 'Questão teste 1?', quiz_id: @quiz.id)
+@quiz_question2 = QuizQuestion.create(question: 'Questão teste 2?', quiz_id: @quiz.id)
+@quiz_answer1 = QuizAnswer.create(answer: 'Resposta 1 questão 1', quiz_question_id: @quiz_question1.id)
+@quiz_answer2 = QuizAnswer.create(answer: 'Resposta 2 questão 1', quiz_question_id: @quiz_question1.id)
+@quiz_answer3 = QuizAnswer.create(answer: 'Resposta 1 questão 2', quiz_question_id: @quiz_question2.id)
+@quiz_answer4 = QuizAnswer.create(answer: 'Resposta 2 questão 2', quiz_question_id: @quiz_question2.id)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_04_133601) do
+ActiveRecord::Schema.define(version: 2018_10_10_134855) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,6 +102,23 @@ ActiveRecord::Schema.define(version: 2018_10_04_133601) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "course_registration_statuses", force: :cascade do |t|
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "course_registrations", force: :cascade do |t|
+    t.bigint "course_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "course_registration_status_id"
+    t.index ["course_id"], name: "index_course_registrations_on_course_id"
+    t.index ["course_registration_status_id"], name: "index_course_registrations_on_course_registration_status_id"
+    t.index ["user_id"], name: "index_course_registrations_on_user_id"
+  end
+
   create_table "courses", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -162,6 +179,27 @@ ActiveRecord::Schema.define(version: 2018_10_04_133601) do
     t.string "nonce", null: false
   end
 
+  create_table "quiz_answers", force: :cascade do |t|
+    t.string "answer"
+    t.bigint "quiz_question_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["quiz_question_id"], name: "index_quiz_answers_on_quiz_question_id"
+  end
+
+  create_table "quiz_questions", force: :cascade do |t|
+    t.text "question"
+    t.bigint "quiz_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["quiz_id"], name: "index_quiz_questions_on_quiz_id"
+  end
+
+  create_table "quizzes", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -175,6 +213,15 @@ ActiveRecord::Schema.define(version: 2018_10_04_133601) do
     t.datetime "updated_at", null: false
     t.string "initials"
     t.index ["initials"], name: "index_schools_on_initials", unique: true
+  end
+
+  create_table "user_quiz_answers", force: :cascade do |t|
+    t.bigint "course_registration_id"
+    t.bigint "quiz_answer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_registration_id"], name: "index_user_quiz_answers_on_course_registration_id"
+    t.index ["quiz_answer_id"], name: "index_user_quiz_answers_on_quiz_answer_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -193,6 +240,7 @@ ActiveRecord::Schema.define(version: 2018_10_04_133601) do
     t.datetime "last_logout_at"
     t.datetime "last_activity_at"
     t.string "last_login_from_ip_address"
+    t.boolean "restriction", default: false
     t.index ["last_logout_at", "last_activity_at"], name: "index_users_on_last_logout_at_and_last_activity_at"
     t.index ["role_id"], name: "index_users_on_role_id"
   end
@@ -201,10 +249,17 @@ ActiveRecord::Schema.define(version: 2018_10_04_133601) do
   add_foreign_key "certificates", "courses"
   add_foreign_key "certificates", "users"
   add_foreign_key "contact_us_messages", "contact_us_conversations"
+  add_foreign_key "course_registrations", "course_registration_statuses"
+  add_foreign_key "course_registrations", "courses"
+  add_foreign_key "course_registrations", "users"
   add_foreign_key "courses", "course_categories"
   add_foreign_key "courses", "schools"
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_openid_requests", "oauth_access_grants", column: "access_grant_id"
+  add_foreign_key "quiz_answers", "quiz_questions"
+  add_foreign_key "quiz_questions", "quizzes"
+  add_foreign_key "user_quiz_answers", "course_registrations"
+  add_foreign_key "user_quiz_answers", "quiz_answers"
   add_foreign_key "users", "roles"
 end

@@ -49,7 +49,7 @@ class ContactUsConversationsController < ApplicationController
         @conversation.update(:was_answered => true)
       end
     else
-      if params[:school_initials].present? && params[:is_student] == true
+      if params[:school_initials].present? == true
         @conversation = ContactUsConversation.create(contact_us_conversation_params)
       else
         return render status: 400, json: {

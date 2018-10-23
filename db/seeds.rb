@@ -73,9 +73,87 @@ ContactUsConversation.create(type_conversation: "dúvida", title: "Posso passar 
 CourseRegistrationStatus.create(status: 'Inicializado')
 CourseRegistrationStatus.create(status: 'Inscrito')
 @quiz = Quiz.create
-@quiz_question1 = QuizQuestion.create(question: 'Questão teste 1?', quiz_id: @quiz.id)
-@quiz_question2 = QuizQuestion.create(question: 'Questão teste 2?', quiz_id: @quiz.id)
-@quiz_answer1 = QuizAnswer.create(answer: 'Resposta 1 questão 1', quiz_question_id: @quiz_question1.id)
-@quiz_answer2 = QuizAnswer.create(answer: 'Resposta 2 questão 1', quiz_question_id: @quiz_question1.id)
-@quiz_answer3 = QuizAnswer.create(answer: 'Resposta 1 questão 2', quiz_question_id: @quiz_question2.id)
-@quiz_answer4 = QuizAnswer.create(answer: 'Resposta 2 questão 2', quiz_question_id: @quiz_question2.id)
+@quiz_question = QuizQuestion.create(question: 'Estado em que reside', quiz_id: @quiz.id, tag: 'QUEST_UF_RESIDENCIA')
+["AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS","MG","PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR","SC","SP","SE","TO"].each do |estado|
+  @quiz_answer1 = QuizAnswer.create(answer: estado, quiz_question_id: @quiz_question.id)
+end
+
+@quiz_question = QuizQuestion.create(question: 'Minha Principal Atividade Profissional', quiz_id: @quiz.id, tag: 'QUEST_ATIVIDADE_PROFISSIONAL')
+['Servidor do Tribunal de Contas Estadual e/ou Municipal',
+'Outras categorias de funcionários públicos',
+'Servidor da Assembleia Legislativa',
+'Autônomo',
+'Servidor da Câmara Municipal',
+'Estudante',
+'Servidor do Poder Executivo',
+'Servidor da Câmara dos Deputados',
+'Servidor do Poder Judiciário',
+'Não pertenço a nenhuma das categorias acima',
+'Servidor do Senado Federal',
+'Iniciativa privada',
+'Servidor do Tribunal de Contas da União'].each do |v|
+	@quiz_answer1 = QuizAnswer.create(answer: v, quiz_question_id: @quiz_question.id)
+end
+@quiz_question = QuizQuestion.create(question: 'Gênero', quiz_id: @quiz.id, tag: 'QUEST_GENERO')
+['Masculino', 'Feminino', 'Outro'].each do |v|
+	@quiz_answer1 = QuizAnswer.create(answer: v, quiz_question_id: @quiz_question.id)
+end
+@quiz_question = QuizQuestion.create(question: 'Idade', quiz_id: @quiz.id, tag: 'QUEST_IDADE')
+['Acima de 65 anos',
+ 'De 55 a 65 anos',
+ 'Menos de 18 anos',
+ 'De 25 a 34 anos',
+ 'De 18 a 24 anos',
+ 'De 35 a 44 anos',
+ 'De 45 a 54 anos'].each do |v|
+	@quiz_answer1 = QuizAnswer.create(answer: v, quiz_question_id: @quiz_question.id)
+end
+
+@quiz_question = QuizQuestion.create(question: 'Minha formação', quiz_id: @quiz.id, tag: 'QUEST_FORMACAO')
+['Doutorado',
+'Graduação',
+'Mestrado',
+'Especialização',
+'Ensino Fundamental',
+'Ensino Médio'].each do |v|
+	@quiz_answer1 = QuizAnswer.create(answer: v, quiz_question_id: @quiz_question.id)
+end
+@quiz_question = QuizQuestion.create(question: 'Horas semanais que pretendo dedicar ao curso', quiz_id: @quiz.id, tag: 'QUEST_HORAS_DEDICAR_CURSO')
+['De 21 a 30 horas',
+'De 31 a 40 horas',
+'Mais de 60 horas',
+'De 41 a 60 horas',
+'De 11 a 20 horas',
+'Até 10 horas'].each do |v|
+	@quiz_answer1 = QuizAnswer.create(answer: v, quiz_question_id: @quiz_question.id)
+end
+@quiz_question = QuizQuestion.create(question: 'Local que pretendo, preferencialmente, acessar o curso', quiz_id: @quiz.id, tag: 'QUEST_LOCAL_ACESSAR_CURSO')
+['Trabalho',
+'Café',
+'Casa',
+'Lan house'].each do |v|
+	@quiz_answer1 = QuizAnswer.create(answer: v, quiz_question_id: @quiz_question.id)
+end
+@quiz_question = QuizQuestion.create(question: 'Principal ferramenta que devo utilizar para acessar o curso', quiz_id: @quiz.id, tag: 'QUEST_FERRAM_ACESSAR_CURSO')
+['Desktop',
+'Celular',
+'Tablet',
+'Notebook'].each do |v|
+	@quiz_answer1 = QuizAnswer.create(answer: v, quiz_question_id: @quiz_question.id)
+end
+@quiz_question = QuizQuestion.create(question: 'Tenho experiência em cursos na modalidade a distância', quiz_id: @quiz.id, tag: 'QUEST_EXPERIENCIA_ANTERIOR_EAD')
+['Sim.',
+ 'Não.'].each do |v|
+	@quiz_answer1 = QuizAnswer.create(answer: v, quiz_question_id: @quiz_question.id)
+end
+@quiz_question = QuizQuestion.create(question: 'Minha principal motivação para realizar o curso', quiz_id: @quiz.id, tag: 'QUEST_MOTIVACAO_PRINCIPAL')
+['Obtenção do material instrucional',
+'Curiosidade',
+'Complementação de carga horária IES',
+'Licença capacitação',
+'Progressão funcional',
+'Adicional de especialização',
+'Obtenção de certificado',
+'Capacitação profissional'].each do |v|
+	@quiz_answer1 = QuizAnswer.create(answer: v, quiz_question_id: @quiz_question.id)
+end

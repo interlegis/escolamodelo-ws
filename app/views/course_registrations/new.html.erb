@@ -1,11 +1,12 @@
-<%= form_with url: registrado_curso_path(params[:id]), scope: :registration do |f| %>
+<%= form_with url: registrado_curso_path(params[:id]), scope: :registration, local: true do |f| %>
   <% @quiz_questions.each do |question| %>
-    <p><%= question.question %></p>
-    <% question.quiz_answers.each do |answer| %>
-      <%= f.radio_button 'question'+question.id.to_s, answer.id %>
-      <%= f.label 'question'+question.id.to_s, answer.answer %>
-    <% end %>
+    <div class="mdc-select">
+      <%= f.select 'question' + question.id.to_s, options_for_select(question.quiz_answers.map {|answer| [answer.answer, answer.id]}), {}, {:class => 'mdc-select__native-control'} %>
+      <%= f.label 'question' + question.id.to_s, question.question, class: 'mdc-floating-label mdc-floating-label--float-above' %>
+      <div class="mdc-line-ripple"></div>
+    </div>
+    <br>
   <% end %>
   <br>
-  <%= f.submit 'Inscrever' %>
+  <%= f.submit 'Inscrever', class: 'mdc-button mdc-button--raised', style: 'background-color: red;' %>
 <% end %>

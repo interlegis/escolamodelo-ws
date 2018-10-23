@@ -13,6 +13,7 @@
     "@material/form-field": "^0.40.0",
     "@material/layout-grid": "^0.39.0",
     "@material/line-ripple": "^0.40.0",
+    "@material/select": "^0.40.1",
     "@material/textfield": "^0.40.0",
     "@rails/webpacker": "3.5",
     "core-js": "^2.5.7",

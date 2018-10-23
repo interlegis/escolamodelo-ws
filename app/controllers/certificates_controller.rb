@@ -30,7 +30,7 @@ class CertificatesController < ApplicationController
     if user.present?
       hash_certificates=user.certificates.map do |certificate|
         {'id' => certificate.id,
-         'data_de_emissao' => certificate.issue_date,
+         'data_de_emissao' => certificate.issue_date.strftime("%d-%m-%Y"),
          'url' => certificate.course.school.url+ '/blocks/get_certificate/review.php?code=' + certificate.code_id + '&user=' + user.cpf,
          'nota' => certificate.grade,
          'curso' => certificate.course.name,

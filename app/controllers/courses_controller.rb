@@ -50,7 +50,7 @@ class CoursesController < ApplicationController
                  else
                    ''
                  end,
-       'descrição' => c.description,
+       'descricao' => c.description,
        'categoria' => c.course_category.id
       }
     end

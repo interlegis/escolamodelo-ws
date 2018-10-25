@@ -63,18 +63,17 @@ class ContactUsConversationsController < ApplicationController
       }.to_json
   end
 
-  # Não precisa do conversation_id
   def adicionar_mensagem
-    user=User.find_by(cpf: params[:cpf])
-    if params[:conversation_id].present?
-      @conversation = user.contact_us_conversations.find(params[:conversation_id])
+    if params[:conversation_id].present? # Se a conversa já existir
+      @conversation = ContactUsConversation.find(params[:conversation_id])
       if params[:is_student] != false
         puts params[:is_student]
         @conversation.update(:was_answered => false)
       else
         @conversation.update(:was_answered => true)
       end
-    else
+    else # Conversa ainda não existe
+      user=User.find_by(cpf: params[:cpf])
       if params[:school_initials].present? == true
         @conversation = user.contact_us_conversations.create(contact_us_conversation_params.merge(was_answered: false))
       else

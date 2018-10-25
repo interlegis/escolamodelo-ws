@@ -50,6 +50,7 @@ Rails.application.routes.draw do
       get 'certificados/' => 'certificates#certificado_usuario', :as => 'certificado_usuario'
       #Fale conosco
       post '/fale_conosco/conversa' => 'contact_us_conversations#index', :as => 'conversa'
+      post '/fale_conosco/conversa_usuario' => 'contact_us_conversations#conversa_usuario', :as => 'conversa_usuario'
       post '/fale_conosco/mensagens' => 'contact_us_conversations#visualizar_mensagens', :as => 'mensagens'
       post '/fale_conosco/adicionar' => 'contact_us_conversations#adicionar_mensagem', :as => 'adicionar_mensagem'
       post '/fale_conosco/apagar_mensagem' => 'contact_us_messages#apagar_mensagem', :as => 'apagar_mensagem'

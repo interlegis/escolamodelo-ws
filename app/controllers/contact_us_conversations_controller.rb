@@ -38,7 +38,30 @@ class ContactUsConversationsController < ApplicationController
     end
   end
 
-
+  def conversa_usuario
+    user = User.find_by(cpf: params[:cpf])
+    @conversation = user.contact_us_conversations.all
+    hash_conversation_user = @conversation.map do |c|
+      {
+        'id_conversa' => c.id,
+        'titulo' => c.title,
+        'cpf' => c.cpf,
+        'data_mensagem' => c.created_at,
+        'situacao' => c.was_answered
+      }
+    end
+    if @conversation.empty?
+      render status: 400, json: {
+        message: "Não existem conversas."
+      }.to_json
+    else
+      render json:hash_conversation_user
+    end
+    rescue StandardError => e
+      render status: 400, json: {
+        message: "Não existe usuário com este cpf."
+      }.to_json
+  end
 
   # Não precisa do conversation_id
   def adicionar_mensagem

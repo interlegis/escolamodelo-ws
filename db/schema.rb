@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_19_131635) do
+ActiveRecord::Schema.define(version: 2018_10_24_173124) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,7 +81,10 @@ ActiveRecord::Schema.define(version: 2018_10_19_131635) do
     t.string "cpf"
     t.string "name"
     t.string "email"
+    t.bigint "school_id"
     t.bigint "user_id"
+    t.index ["school_id"], name: "index_contact_us_conversations_on_school_id"
+    t.index ["user_id"], name: "index_contact_us_conversations_on_user_id"
   end
 
   create_table "contact_us_messages", force: :cascade do |t|
@@ -249,6 +252,8 @@ ActiveRecord::Schema.define(version: 2018_10_19_131635) do
   add_foreign_key "api_accesses", "users"
   add_foreign_key "certificates", "courses"
   add_foreign_key "certificates", "users"
+  add_foreign_key "contact_us_conversations", "schools"
+  add_foreign_key "contact_us_conversations", "users"
   add_foreign_key "contact_us_messages", "contact_us_conversations"
   add_foreign_key "course_registrations", "course_registration_statuses"
   add_foreign_key "course_registrations", "courses"

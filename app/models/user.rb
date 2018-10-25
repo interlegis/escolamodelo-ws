@@ -8,6 +8,7 @@ class User < ApplicationRecord
   before_save :capitalize_name
   belongs_to :role
   has_many :certificates
+  has_many :contact_us_conversations
   has_many :course_registrations
   has_one :api_access
   def capitalize_name

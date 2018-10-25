@@ -3,7 +3,7 @@ class ContactUsConversationsController < ApplicationController
 
   def index
     if params[:school_initials].present?
-      if params[:not_answered] == true
+      if params[:was_answered] == true
         conversations = ContactUsConversation.all.where(school_initials: params[:school_initials], was_answered: true).order("updated_at")
       else
         conversations = ContactUsConversation.all.where(school_initials: params[:school_initials], was_answered: false).order("created_at")
@@ -38,10 +38,13 @@ class ContactUsConversationsController < ApplicationController
     end
   end
 
+
+
   # Não precisa do conversation_id
   def adicionar_mensagem
+    user=User.find_by(cpf: params[:cpf])
     if params[:conversation_id].present?
-      @conversation = ContactUsConversation.find(params[:conversation_id])
+      @conversation = user.contact_us_conversations.find(params[:conversation_id])
       if params[:is_student] != false
         puts params[:is_student]
         @conversation.update(:was_answered => false)
@@ -50,14 +53,13 @@ class ContactUsConversationsController < ApplicationController
       end
     else
       if params[:school_initials].present? == true
-        @conversation = ContactUsConversation.create(contact_us_conversation_params)
+        @conversation = user.contact_us_conversations.create(contact_us_conversation_params.merge(was_answered: false))
       else
         return render status: 400, json: {
           message: "Ocorreu um erro! Conversa ou escola não identificada."
         }.to_json
       end
     end
-
     @message = @conversation.contact_us_message.create(contact_us_message_params)
     if @conversation.save
       render status: 200, json: {
@@ -68,6 +70,10 @@ class ContactUsConversationsController < ApplicationController
         message: "Ocorreu um erro"
       }.to_json
     end
+    rescue StandardError => e
+      render status: 400, json: {
+        message: "Não existe usuário com este cpf."
+      }.to_json
   end
 
   def visualizar_mensagens

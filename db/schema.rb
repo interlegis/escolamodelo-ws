@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_24_173124) do
+ActiveRecord::Schema.define(version: 2018_10_26_194536) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -132,6 +132,9 @@ ActiveRecord::Schema.define(version: 2018_10_24_173124) do
     t.integer "course_load"
     t.text "description"
     t.integer "ead_id"
+    t.string "certificador"
+    t.string "conteudista"
+    t.integer "carga_horaria"
     t.index ["course_category_id"], name: "index_courses_on_course_category_id"
     t.index ["school_id"], name: "index_courses_on_school_id"
   end

@@ -8,6 +8,9 @@ class CoursesController < ApplicationController
     @course = Course.new(course_params)
     @course.school_id = school.id
     @course.course_category_id = category.id
+    @course.certificador = params[:certificador]
+    @course.conteudista = params[:conteudista]
+    @course.carga_horaria = params[:carga_horaria]
     if school.present? and category.present?
       if @course.save
       #@course.logo.attach(io: StringIO.new('https://saberes.senado.leg.br/images/logo_saberes_xl.png'), filename: 'logo_saberes.png', content_type: 'image/png')
@@ -51,7 +54,10 @@ class CoursesController < ApplicationController
                    ''
                  end,
        'descricao' => c.description,
-       'categoria' => c.course_category.id
+       'categoria' => c.course_category.id,
+       'certificador' => c.certificador,
+       'conteudista' => c.conteudista,
+       'carga_horaria' => c.carga_horaria
       }
     end
     render status: 200, json: {
@@ -62,6 +68,6 @@ class CoursesController < ApplicationController
 
   private
   def course_params
-    params.require(:course).permit(:name, :url, :course_load, :description, :ead_id)
+    params.require(:course).permit(:name, :url, :course_load, :description, :ead_id, :conteudista, :certificador, :carga_horaria)
   end
 end

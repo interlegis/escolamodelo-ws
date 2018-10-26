@@ -11,11 +11,11 @@ Role.create(name: 'usuario')
   User.create(first_name: 'Admin', last_name: 'Admin', cpf: '000.000.000-00', phone: '(00) 90000-0000', email: 'admin@admin.com', role_id: 1, password: 'admin123')
   User.create(first_name: 'Ronaldinho', last_name: 'Gaúcho', cpf: '000.000.000-01', phone: '(00) 90000-0001', email: 'ronaldinho@gaucho.com', role_id: 1, password: 'ronaldinho123')
 s=School.create(name: 'Saberes', url: 'https://saberes.senado.leg.br', initials: 'SSL')
-# s.logo.attach(
-#     io: open('https://saberes.senado.leg.br/images/logo_saberes_xl.png'),
-#     filename: 'logo_saberes.png',
-#     content_type: 'image/png'
-# )
+s.logo.attach(
+    io: open('https://saberes.senado.leg.br/theme/image.php/ilb/theme/1539274492/logo_saberes_xl'),
+    filename: 'logo_saberes.png',
+    content_type: 'image/png'
+)
 s=School.create(name: 'Escola do Legislativo - ALMG', url: 'https://ead.almg.gov.br/moodle/', initials: 'ALM')
 s.logo.attach(
     io: open('http://ead.almg.gov.br/moodle/theme/image.php/fadeback/theme/1479830583/logo'),
@@ -46,9 +46,11 @@ cat.logo.attach(
     filename: 'logo_cat_doutrinas_politicas.jpg'
 )
 
-Course.create(name: 'Liberalismo', ead_id: '1', url: 'https://saberes.senado.leg.br/course/view.php?id=1381', school_id: 1, course_category_id: 3, course_load: 20, description: 'Definir, analisar e discutir o significado das principais correntes de pensamento que inspiram e orientam os partidos políticos de maior expressão - em termos de influência, voto e acesso ao poder - no mundo atual.')
-Course.create(name: 'Liberalismo2', ead_id: '2', url: 'https://saberes.senado.leg.br/course/view.php?id=1381', school_id: 1, course_category_id: 3, course_load: 20, description: 'Definir, analisar e discutir o significado das principais correntes de pensamento que inspiram e orientam os partidos políticos de maior expressão - em termos de influência, voto e acesso ao poder - no mundo atual.')
-Course.create(name: 'Liberalismo3', ead_id: '3', url: 'https://saberes.senado.leg.br/course/view.php?id=1381', school_id: 1, course_category_id: 3, course_load: 20, description: 'Definir, analisar e discutir o significado das principais correntes de pensamento que inspiram e orientam os partidos políticos de maior expressão - em termos de influência, voto e acesso ao poder - no mundo atual.')
+Course.create(certificador: "ENAP", conteudista: "Unicorreios", carga_horaria: '20', name: 'Liberalismo', ead_id: '1', url: 'https://saberes.senado.leg.br/course/view.php?id=1381', school_id: 1, course_category_id: 3, course_load: 20, description: 'Definir, analisar e discutir o significado das principais correntes de pensamento que inspiram e orientam os partidos políticos de maior expressão - em termos de influência, voto e acesso ao poder - no mundo atual.')
+Course.create(certificador: "ENAP", conteudista: "NUTEAD - UEPG", carga_horaria: '30', name: 'GESTÃO DA INFORMAÇÃO E DOCUMENTAÇÃO - CONCEITOS BÁSICOS EM GESTÃO DOCUMENTAL', ead_id: '2', url: 'https://saberes.senado.leg.br/course/view.php?id=1381', school_id: 1, course_category_id: 2, course_load: 20, description: 'Definir, analisar e discutir o significado das principais correntes de pensamento que inspiram e orientam os partidos políticos de maior expressão - em termos de influência, voto e acesso ao poder - no mundo atual.')
+Course.create(certificador: "ENAP", conteudista: "OGU/CGU", carga_horaria: '35', name: 'ELABORAÇÃO DE PLANO DE DADOS ABERTOS', ead_id: '3', url: 'https://saberes.senado.leg.br/course/view.php?id=1381', school_id: 1, course_category_id: 1, course_load: 20, description: 'Definir, analisar e discutir o significado das principais correntes de pensamento que inspiram e orientam os partidos políticos de maior expressão - em termos de influência, voto e acesso ao poder - no mundo atual.')
+Course.create(certificador: "ENAP", conteudista: "OGU/CGU", carga_horaria: '35', name: 'ACESSO À INFORMAÇÃO', ead_id: '3', url: 'https://saberes.senado.leg.br/course/view.php?id=1381', school_id: 1, course_category_id: 2, course_load: 20, description: 'Definir, analisar e discutir o significado das principais correntes de pensamento que inspiram e orientam os partidos políticos de maior expressão - em termos de influência, voto e acesso ao poder - no mundo atual.')
+Course.create(certificador: "ENAP", conteudista: "OGU/CGU", carga_horaria: '35', name: 'NOÇÕES GERAIS DE DIREITOS AUTORAIS', ead_id: '3', url: 'https://saberes.senado.leg.br/course/view.php?id=1381', school_id: 1, course_category_id: 1, course_load: 20, description: 'Definir, analisar e discutir o significado das principais correntes de pensamento que inspiram e orientam os partidos políticos de maior expressão - em termos de influência, voto e acesso ao poder - no mundo atual.')
 
 Certificate.create(course_id: '1', user_id: '1', issue_date: '2018-10-08T17:04:00.799Z', grade: '80.0', code_id: "1")
 Certificate.create(course_id: '2', user_id: '1', issue_date: '2018-10-08T17:04:00.799Z', grade: '95.0', code_id: "1")

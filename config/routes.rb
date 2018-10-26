@@ -51,8 +51,8 @@ Rails.application.routes.draw do
       #Fale conosco
       post '/fale_conosco/conversa' => 'contact_us_conversations#index', :as => 'conversa'
       post '/fale_conosco/conversa_usuario' => 'contact_us_conversations#conversa_usuario', :as => 'conversa_usuario'
-      post '/fale_conosco/mensagens' => 'contact_us_conversations#visualizar_mensagens', :as => 'mensagens'
-      post '/fale_conosco/adicionar' => 'contact_us_conversations#adicionar_mensagem', :as => 'adicionar_mensagem'
+      post '/fale_conosco/mensagens' => 'contact_us_conversations#detalhar_conversa', :as => 'detalhar_conversa'
+      post '/fale_conosco/adicionar' => 'contact_us_conversations#adicionar_conversa', :as => 'adicionar_conversa'
       post '/fale_conosco/apagar_mensagem' => 'contact_us_messages#apagar_mensagem', :as => 'apagar_mensagem'
       post '/fale_conosco/apagar_conversa' => 'contact_us_conversations#apagar_conversa', :as => 'apagar_conversa'
       patch '/fale_conosco/atualizar_mensagem' => 'contact_us_messages#atualizar_mensagem', :as => 'atualizar_mensagem'

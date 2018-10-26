@@ -63,7 +63,7 @@ class ContactUsConversationsController < ApplicationController
       }.to_json
   end
 
-  def adicionar_mensagem
+  def adicionar_conversa
     if params[:conversation_id].present? # Se a conversa já existir
       @conversation = ContactUsConversation.find(params[:conversation_id])
       if params[:is_student] != false
@@ -82,7 +82,7 @@ class ContactUsConversationsController < ApplicationController
         }.to_json
       end
     end
-    @message = @conversation.contact_us_message.create(contact_us_message_params)
+    @conversation.contact_us_message.create(contact_us_message_params)
     if @conversation.save
       render status: 200, json: {
         message: "Conversa criada com sucesso",
@@ -98,7 +98,7 @@ class ContactUsConversationsController < ApplicationController
       }.to_json
   end
 
-  def visualizar_mensagens
+  def detalhar_conversa
     @conversation = ContactUsConversation.where(id: params[:conversation_id]).first
     if @conversation.present?
       messages = @conversation.contact_us_message.all.order(:created_at)

@@ -10,14 +10,14 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @user.role_id = 2
     existent_user = User.find_by('email = ? or cpf = ?', user_params[:email], user_params[:cpf])
-    conseguiu=false
+    conseguiu = false
     email_cpf_repetido = false
     if existent_user.present?
       if existent_user.crypted_password.present?
         email_cpf_repetido = true
       else
         @user = existent_user
-        conseguiu=existent_user.update(password: user_params[:password], password_confirmation: user_params[:password_confirmation])
+        conseguiu = existent_user.update(password: user_params[:password], password_confirmation: user_params[:password_confirmation])
       end
     else
       conseguiu = @user.save
@@ -113,6 +113,6 @@ class UsersController < ApplicationController
     params.require(:user).permit(:email, :password, :password_confirmation,
                                  :first_name, :last_name, :cpf,
                                  :birth, :phone, :username
-                                 )
+    )
   end
 end

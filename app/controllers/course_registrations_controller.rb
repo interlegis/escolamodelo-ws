@@ -27,4 +27,23 @@ class CourseRegistrationsController < ApplicationController
       render 'new'
     end
   end
+
+  def cursos_usuario
+    course_registrations = User.courses_registrations
+    hash_courses = course_registrations.map do |c|
+      {'id' => c.id,
+       'course' => {
+           'id' => c.course.id,
+           'nome' => c.course.name
+       },
+       'registration_status' => {
+           'id' => c.course_registration_status.id,
+           'status' => c.course_registration_status.status
+       }
+      }
+    end
+    render status: 200, json: {
+        cursos_usuario: hash_courses,
+    }.to_json
+  end
 end

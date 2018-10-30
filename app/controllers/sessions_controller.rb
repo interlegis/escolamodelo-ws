@@ -10,13 +10,13 @@ class SessionsController < ApplicationController
   def create
     if login(params[:user][:email], params[:user][:password])
       if params[:user][:return] == 'evl'
-        render js: "window.location='#{'https://evl.interlegis.leg.br'}'"
+        redirect_to 'https://evl.interlegis.leg.br'
       else
         school=School.find_by_initials(params[:user][:return])
         if school.present?
-          render js: "window.location='#{school.url}'"
+          redirect_to school.url
         else
-          render js: "window.location='#{user_path}'"
+          redirect_to user_path
         end
       end
 

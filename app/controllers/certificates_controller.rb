@@ -48,7 +48,7 @@ class CertificatesController < ApplicationController
     end
   end
   def detalhes_certificado
-    certificado = Certificate.find_by(code_id: params[:id_certificado])
+    certificado = Certificate.find_by(code_id: params[:code_id])
     if certificado.present?
       escola = School.find_by(id: certificado.course.school_id)
       certificado_json = {

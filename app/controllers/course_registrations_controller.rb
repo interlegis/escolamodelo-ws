@@ -19,7 +19,7 @@ class CourseRegistrationsController < ApplicationController
       if registration.save
         print('cheguei aqui')
         print(params[:registration])
-        params[:registration].each do |key,value|
+        params[:registration].each do |key, value|
           UserQuizAnswer.create(quiz_answer_id: value, course_registration_id: registration.id)
         end
       end
@@ -29,21 +29,28 @@ class CourseRegistrationsController < ApplicationController
   end
 
   def cursos_usuario
-    course_registrations = User.courses_registrations
-    hash_courses = course_registrations.map do |c|
-      {'id' => c.id,
-       'course' => {
-           'id' => c.course.id,
-           'nome' => c.course.name
-       },
-       'registration_status' => {
-           'id' => c.course_registration_status.id,
-           'status' => c.course_registration_status.status
-       }
-      }
+    user = User.find(params[:id])
+    if user.present?
+      course_registrations = user.course_registrations
+      hash_courses = course_registrations.map do |c|
+        {'id' => c.id,
+         'course' => {
+             'id' => c.course.id,
+             'nome' => c.course.name
+         },
+         'registration_status' => {
+             'id' => c.course_registration_status.id,
+             'status' => c.course_registration_status.status
+         }
+        }
+      end
+      render status: 200, json: {
+          cursos_usuario: hash_courses,
+      }.to_json
+    else
+      render status: 400, json: {
+          erro: 'Usuário não encontrado'
+      }.to_json
     end
-    render status: 200, json: {
-        cursos_usuario: hash_courses,
-    }.to_json
   end
 end

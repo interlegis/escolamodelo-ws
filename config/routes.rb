@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :password_resets, only: [:new, :create, :edit, :update]
   resources :sessions, only: [:new, :create]
   get '/log_in', to: 'sessions#new', as: :log_in
+  post '/log_inn', to: 'sessions#create', as: :log_inn
   delete '/log_out', to: 'sessions#destroy', as: :log_out
   #Login com oauth
   post 'oauth/callback' => 'oauths#callback'
@@ -49,6 +50,7 @@ Rails.application.routes.draw do
       get '/registros/:id' => 'course_registrations#cursos_usuario', :as => 'cursos_usuario'
       #Certificados
       post 'certificados/adicionar' => 'certificates#adicionar_certificado', :as => 'adicionar_certificado'
+      post 'certificados/detalhar' => 'certificates#detalhes_certificado', :as => 'detalhes_certificado'
       get 'certificados/' => 'certificates#certificado_usuario', :as => 'certificado_usuario'
       #Fale conosco
       post '/fale_conosco/conversa' => 'contact_us_conversations#index', :as => 'conversa'

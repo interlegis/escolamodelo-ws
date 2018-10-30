@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
     end
   end
 
+  # A senha precisa ser criptografada antes de enviar
   def create
     if login(params[:user][:email], params[:user][:password])
       if params[:user][:return] == 'evl'

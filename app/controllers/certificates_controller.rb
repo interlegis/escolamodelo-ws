@@ -34,7 +34,8 @@ class CertificatesController < ApplicationController
          'url' => certificate.course.school.url+ '/blocks/get_certificate/review.php?code=' + certificate.code_id + '&user=' + user.cpf,
          'nota' => certificate.grade,
          'curso' => certificate.course.name,
-         'escola' => certificate.course.school.name
+         'escola' => certificate.course.school.name,
+         'code_id' => certificate.code_id
         }
       end
       render status: 200, json: {
@@ -43,6 +44,26 @@ class CertificatesController < ApplicationController
     else
       render status: 400, json: {
           message: "Usuário não encontrado ou CPF incorreto"
+      }.to_json
+    end
+  end
+  def detalhes_certificado
+    certificado = Certificate.find_by(code_id: params[:id_certificado])
+    if certificado.present?
+      escola = School.find_by(id: certificado.course.school_id)
+      certificado_json = {
+        'nome_aluno' => certificado.user.first_name + " " + certificado.user.last_name,
+        'cpf' => certificado.user.cpf,
+        'curso' => certificado.course.name,
+        'duracao' => certificado.course.carga_horaria,
+        'escola' => escola.name
+      }
+      render status: 200, json:{
+        certificado: certificado_json,
+      }.to_json
+    else
+      render status: 400, json: {
+          message: "Certificado não encontrado"
       }.to_json
     end
   end

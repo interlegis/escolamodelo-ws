@@ -33,6 +33,8 @@ class CourseRegistrationsController < ApplicationController
     if user.present?
       course_registrations = user.course_registrations
       hash_courses = course_registrations.map do |c|
+        course = Course.find(c.course_id)
+        school = School.find(course.school_id)
         {'id' => c.id,
          'course' => {
              'id' => c.course.id,
@@ -41,6 +43,9 @@ class CourseRegistrationsController < ApplicationController
          'registration_status' => {
              'id' => c.course_registration_status.id,
              'status' => c.course_registration_status.status
+         },
+         'school' => {
+             'url' => school.url
          }
         }
       end

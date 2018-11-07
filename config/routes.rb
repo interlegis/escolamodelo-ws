@@ -24,6 +24,11 @@ Rails.application.routes.draw do
   post 'oauth/callback' => 'oauths#callback'
   get 'oauth/callback' => 'oauths#callback' # for use with Github, Facebook
   get 'oauth/:provider' => 'oauths#oauth', :as => :auth_at_provider
+  #Análises
+  get '/analise' => 'reviews#index'
+  post '/analise' => 'reviews#criar'
+  patch '/analise' => 'reviews#atualizar'
+  post '/analiseDeletar' => 'reviews#deletar'
 
   #Registro em curso
   get 'cursos/:id/registro/' => 'course_registrations#new', :as => 'registro_curso'

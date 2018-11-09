@@ -1,59 +1,146 @@
 <!-- tem que arrumar a responsividade -->
 <%= form_with url: sessions_path, scope: :user, local: true do |f| %>
-  <div class="mdc-layout-grid">
-    <div class="mdc-layout-grid__inner" style="margin-left: 5vw;">
-      <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-2-tablet"></div>
-      <div class="mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-phone mdc-layout-grid__cell--span-4-tablet">
-        <div class="mdc-text-field email">
-          <%= f.text_field :email, class: 'mdc-text-field__input',
-                           'aria-controls': 'email-helper-text',
-                           'aria-describedby': 'email-helper-text' %>
-          <%= f.label :email, 'Email', class: 'mdc-floating-label' %>
-          <div class="mdc-line-ripple"></div>
-        </div>
-        <p id="email-helper-text" class="mdc-text-field-helper-text mdc-text-field-helper-text--validation-msg" aria-hidden="true">
-          Um email é necessário
-        </p>
-      </div>
-    </div>
-    <div class="mdc-layout-grid__inner" style="padding-top: 1vh; margin-left: 5vw;">
-      <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-2-tablet"></div>
-      <div class="mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-phone mdc-layout-grid__cell--span-4-tablet">
-        <div class="mdc-text-field password">
-          <%= f.password_field :password, class: 'mdc-text-field__input' %>
-          <%= f.label :password, 'Senha', class: 'mdc-floating-label' %>
-          <div class="mdc-line-ripple"></div>
-        </div>
-      </div>
-    </div>
-    <%= f.hidden_field :return, value: @retorno %>
-    <div class="mdc-layout-grid__inner" style="padding-top: 1vh; margin-left: 5vw;">
-      <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-2-tablet"></div>
-      <div class="mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-phone mdc-layout-grid__cell--span-4-tablet">
-        <div class="mdc-layout-grid__inner">
-          <div class="mdc-layout-grid__cell--span-3">
-            <%= button_to 'Entrar', new_user_path, type: 'submit', class: 'mdc-button mdc-button--raised', style: 'background-color: red;' %>
-          </div>
-          <div class="mdc-layout-grid__cell--span-4"></div>
-          <div class="mdc-layout-grid__cell--span-3" style="padding-left: 1vw;">
-            <%= link_to 'Registrar', new_user_path, class: 'mdc-button mdc-button--raised', style: 'background-color: red;' %>
-          </div>
-        </div>
-      </div>
-    </div>
+<header class="business-header bg-overlay ">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12  text-center align">
 
-    <div class="mdc-layout-grid__inner" style="padding-top: 1vh; margin-left: 5vw;">
-      <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-2-tablet"></div>
-      <div class="mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-phone mdc-layout-grid__cell--span-4-tablet">
-        <%= link_to image_tag('google_signin/1x/btn_google_signin_dark_normal_web.png', border: 0, style: 'width: 50%; height: auto'), auth_at_provider_path(:provider => :google) %>
-      </div>
-    </div>
-    <div class="mdc-layout-grid__inner" style="padding-top: 1vh; margin-left: 5vw;">
-      <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-2-tablet"></div>
-      <div cclass="mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-phone mdc-layout-grid__cell--span-4-tablet">
-        <%= link_to image_tag('facebook_signin.png', border: 0, style: 'width: 200%; height: auto'), auth_at_provider_path(:provider => :facebook) %>
+          <div class="t40">
+          </div>
+          <div class="container t60">
+              <div class="d-flex justify-content-center h-100">
+                  <div class="card">
+                      <div class="card-header">
+                          <h3>Sign In</h3>
+                          <div class="d-flex justify-content-end social_icon">
+                              <span><i class="fab fa-facebook-square"></i></span>
+                              <span><i class="fab fa-google-plus-square"></i></span>
+                              <span><i class="fab fa-twitter-square"></i></span>
+                          </div>
+                      </div>
+                      <div class="card-body">
+                          <form>
+                              <div class="input-group form-group">
+                                  <div class="input-group-prepend">
+                                      <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                  </div>
+                                  <input type="text" class="form-control" placeholder="username">
+
+                              </div>
+                              <div class="input-group form-group">
+                                  <div class="input-group-prepend">
+                                      <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                  </div>
+                                  <input type="password" class="form-control" placeholder="password">
+                              </div>
+                              <div class="row align-items-center remember">
+                                  <input type="checkbox">Remember Me
+                              </div>
+                              <div class="form-group">
+                                  <input type="submit" value="Login" class="btn float-right login_btn">
+                              </div>
+                          </form>
+                      </div>
+                      <div class="card-footer">
+                          <div class="d-flex justify-content-center links">
+                              Don't have an account?<a href="#">Sign Up</a>
+                          </div>
+                          <div class="d-flex justify-content-center">
+                              <a href="#">Forgot your password?</a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+
+
+
+
+
+<!--
+        <div class="mdc-layout-grid">
+          <div class="mdc-layout-grid__inner" style="margin-left: 5vw;">
+            <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-2-tablet"></div>
+            <div class="mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-phone mdc-layout-grid__cell--span-4-tablet">
+              <div class="mdc-text-field email">
+                <%= f.text_field :email, class: 'mdc-text-field__input',
+                'aria-controls': 'email-helper-text',
+                'aria-describedby': 'email-helper-text' %>
+                <%= f.label :email, 'Email', class: 'mdc-floating-label' %>
+                <div class="mdc-line-ripple"></div>
+              </div>
+              <p id="email-helper-text" class="mdc-text-field-helper-text mdc-text-field-helper-text--validation-msg" aria-hidden="true">
+                Um email é necessário
+              </p>
+            </div>
+          </div>
+          <div class="mdc-layout-grid__inner" style="padding-top: 1vh; margin-left: 5vw;">
+            <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-2-tablet"></div>
+            <div class="mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-phone mdc-layout-grid__cell--span-4-tablet">
+              <div class="mdc-text-field password">
+                <%= f.password_field :password, class: 'mdc-text-field__input' %>
+                <%= f.label :password, 'Senha', class: 'mdc-floating-label' %>
+                <div class="mdc-line-ripple"></div>
+              </div>
+            </div>
+          </div>
+          <%= f.hidden_field :return, value: @retorno %>
+          <div class="mdc-layout-grid__inner" style="padding-top: 1vh; margin-left: 5vw;">
+            <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-2-tablet"></div>
+            <div class="mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-phone mdc-layout-grid__cell--span-4-tablet">
+              <div class="mdc-layout-grid__inner">
+                <div class="mdc-layout-grid__cell--span-3">
+                  <%= button_to 'Entrar', new_user_path, type: 'submit', class: 'mdc-button mdc-button--raised', style: 'background-color: red;' %>
+                </div>
+                <div class="mdc-layout-grid__cell--span-4"></div>
+                <div class="mdc-layout-grid__cell--span-3" style="padding-left: 1vw;">
+                  <%= link_to 'Registrar', new_user_path, class: 'mdc-button mdc-button--raised', style: 'background-color: red;' %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mdc-layout-grid__inner" style="padding-top: 1vh; margin-left: 5vw;">
+            <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-2-tablet"></div>
+            <div class="mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-phone mdc-layout-grid__cell--span-4-tablet">
+              <%= link_to image_tag('google_signin/1x/btn_google_signin_dark_normal_web.png', border: 0, style: 'width: 50%; height: auto'), auth_at_provider_path(:provider => :google) %>
+            </div>
+          </div>
+          <div class="mdc-layout-grid__inner" style="padding-top: 1vh; margin-left: 5vw;">
+            <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-2-tablet"></div>
+            <div cclass="mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-phone mdc-layout-grid__cell--span-4-tablet">
+              <%= link_to image_tag('facebook_signin.png', border: 0, style: 'width: 200%; height: auto'), auth_at_provider_path(:provider => :facebook) %>
+            </div>
+          </div>
+        </div>
+
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       </div>
     </div>
   </div>
+</header>
+
+
+
+
 <% end %>
 

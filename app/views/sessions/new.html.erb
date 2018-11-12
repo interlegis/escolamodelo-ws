@@ -5,53 +5,110 @@
     <div class="row">
       <div class="col-lg-12  text-center align">
 
-          <div class="t40">
-          </div>
-          <div class="container t60">
-              <div class="d-flex justify-content-center h-100">
-                  <div class="card">
-                      <div class="card-header">
-                          <h3>Sign In</h3>
-                          <div class="d-flex justify-content-end social_icon">
-                              <span><i class="fab fa-facebook-square"></i></span>
-                              <span><i class="fab fa-google-plus-square"></i></span>
-                              <span><i class="fab fa-twitter-square"></i></span>
-                          </div>
-                      </div>
-                      <div class="card-body">
-                          <form>
-                              <div class="input-group form-group">
-                                  <div class="input-group-prepend">
-                                      <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                  </div>
-                                  <input type="text" class="form-control" placeholder="username">
 
-                              </div>
-                              <div class="input-group form-group">
-                                  <div class="input-group-prepend">
-                                      <span class="input-group-text"><i class="fas fa-key"></i></span>
+
+
+
+          <div class="accordion " id="accordionExample">
+              <div class="card">
+                  <div class="card-header" id="headingOne">
+                      <h5 class="mb-0">
+                          <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                              <h3>Log In</h3>
+                          </button>
+                      </h5>
+                  </div>
+
+                  <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                      <div class="card-body">
+                          <div class="container">
+                              <div class="d-flex justify-content-center h-100">
+                                  <div class="card">
+                                      <div class="card-body">
+                                          <form>
+                                              <div class="input-group form-group">
+                                                  <div class="mdc-text-field email">
+                                                      <%= f.text_field :email, class: 'mdc-text-field__input',
+                                                      'aria-controls': 'email-helper-text',
+                                                      'aria-describedby': 'email-helper-text' %>
+                                                      <%= f.label :email, 'Email', class: 'mdc-floating-label' %>
+                                                      <div class="mdc-line-ripple"></div>
+                                                  </div>
+
+
+                                              </div>
+                                              <p id="email-helper-text" class="mdc-text-field-helper-text mdc-text-field-helper-text--validation-msg" aria-hidden="true">
+                                                  Um email é necessário
+                                              </p>
+                                              <div class="input-group form-group">
+                                                  <div class="mdc-text-field password">
+                                                      <%= f.password_field :password, class: 'mdc-text-field__input' %>
+                                                      <%= f.label :password, 'Senha', class: 'mdc-floating-label' %>
+                                                      <div class="mdc-line-ripple"></div>
+                                                  </div>
+
+                                              </div>
+                                              <div class="d-flex justify-content-center">
+                                                  <a href="#">Forgot your password?</a>
+                                              </div>
+                                              <div class="row align-items-center remember">
+                                                  <input type="checkbox">Remember Me
+                                              </div>
+                                              <div class="form-group">
+                                                  <%= button_to 'Entrar', new_user_path, type: 'submit', class: 'btn btn-success btn-block' %>
+                                              </div>
+                                          </form>
+                                      </div>
+                                      <div class="card-footer">
+                                          <div class="d-flex justify-content-center links">
+                                              Don't have an account?<%= link_to 'Registrar', new_user_path, class: 'mdc-button mdc-button--raised', style: 'background-color: red;' %>
+                                          </div>
+
+                                      </div>
                                   </div>
-                                  <input type="password" class="form-control" placeholder="password">
                               </div>
-                              <div class="row align-items-center remember">
-                                  <input type="checkbox">Remember Me
-                              </div>
-                              <div class="form-group">
-                                  <input type="submit" value="Login" class="btn float-right login_btn">
-                              </div>
-                          </form>
+                          </div>
+
+
                       </div>
-                      <div class="card-footer">
-                          <div class="d-flex justify-content-center links">
-                              Don't have an account?<a href="#">Sign Up</a>
-                          </div>
-                          <div class="d-flex justify-content-center">
-                              <a href="#">Forgot your password?</a>
-                          </div>
+                  </div>
+              </div>
+              <div class="card">
+                  <div class="card-header" id="headingTwo">
+                      <h5 class="mb-0">
+                          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                              <h3>Sign In</h3>
+                          </button>
+                      </h5>
+                  </div>
+                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                      <div class="card-body">
+                          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
                       </div>
                   </div>
               </div>
           </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -70,10 +127,10 @@
                 <%= f.label :email, 'Email', class: 'mdc-floating-label' %>
                 <div class="mdc-line-ripple"></div>
               </div>
-              <p id="email-helper-text" class="mdc-text-field-helper-text mdc-text-field-helper-text--validation-msg" aria-hidden="true">
-                Um email é necessário
-              </p>
             </div>
+              <p id="email-helper-text" class="mdc-text-field-helper-text mdc-text-field-helper-text--validation-msg" aria-hidden="true">
+                  Um email é necessário
+              </p>
           </div>
           <div class="mdc-layout-grid__inner" style="padding-top: 1vh; margin-left: 5vw;">
             <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-2-tablet"></div>
@@ -115,9 +172,9 @@
           </div>
         </div>
 
+
+
 -->
-
-
 
 
 

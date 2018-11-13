@@ -1,3 +1,113 @@
+@media screen and
+(min-width: 200px) and
+(max-width: 449px) {
+  .tamanhoCard{
+    width: 100% !important;
+  }
+
+}
+
+@media screen and
+(min-width: 450px) and
+(max-width: 575px) {
+
+  .tamanhoCard{
+    width: 100% !important;
+  }
+
+}
+
+@media screen and
+(min-width: 576px) and
+(max-width: 639px) {
+  .tamanhoCard{
+    width: 80% !important;
+  }
+
+}
+
+@media screen and
+(min-width: 640px) and
+(max-width: 799px) {
+
+  .tamanhoCard{
+    width: 80% !important;
+  }
+}
+
+@media screen and
+(min-width: 800px) and
+(max-width: 1023px) {
+  .tamanhoCard{
+    width: 70% !important;
+  }
+
+}
+
+@media screen and
+(min-width: 1024px) and
+(max-width: 1279px) {
+
+
+}
+
+
+@media screen and
+(min-width: 1280px) and
+(max-width: 1365px){
+
+
+}
+
+
+@media screen and
+(min-width: 1366px) and
+(max-width: 1439px){
+
+
+}
+
+
+@media screen and
+(min-width: 1440px) and
+(max-width: 1599px){
+
+
+}
+
+
+@media screen and
+(min-width: 1600px) and
+(max-width: 1679px){
+
+
+}
+
+@media screen and
+(min-width: 1680px) and
+(max-width: 4080px){
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .bg-overlay  {
   height:100vh;
   min-height:100vh;
@@ -32,7 +142,9 @@ html,body{
   margin-bottom: auto;
   background-color: rgba(0,0,0,0.5) !important;
 }
-
+.tamanhoCard{
+  width: 40%;
+}
 .social_icon span{
   font-size: 60px;
   margin-left: 10px;
@@ -98,9 +210,38 @@ input:focus{
   margin-left: 4px;
 }
 
-.t40{
-  height: 40% !important;
+.t30{
+  height: 30% !important;
 }
-.t50{
-  height: 60% !important;
+.t40{
+  height: 50% !important;
+}
+.titleProperties{
+  color: whitesmoke;
+  font-weight: bold;
+}
+
+hr.two {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgb(255,255,255), rgba(0, 0, 0, 0));
+}
+
+hr.two:after {
+  content: "or";
+  display: inline-block;
+  position: relative;
+  padding: 0 0.25em;
+  color:white;
+  font-weight: bold;
+}
+
+.whitef{
+  color:white;
+}
+.card-body{
+  width: 100% !important;
+}
+.links a {
+  margin-left: 0px !important;
 }

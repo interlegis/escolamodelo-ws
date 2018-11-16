@@ -90,24 +90,6 @@
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .bg-overlay  {
   height:100vh;
   min-height:100vh;
@@ -119,8 +101,17 @@
   -o-background-size: cover;
 
 }
+.bg-signin  {
+  height:100vh;
+  min-height:100vh;
+  overflow:auto;
+  background: linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)),url('https://images.pexels.com/photos/261679/pexels-photo-261679.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260') center center no-repeat scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
 
-/* Made with love by Mutiullah Samim*/
+}
 
 @import url('https://fonts.googleapis.com/css?family=Numans');
 
@@ -244,4 +235,171 @@ hr.two:after {
 }
 .links a {
   margin-left: 0px !important;
+}
+.text-color{
+  color: white !important;
+}
+.half{
+  width: 50% !important;
+}
+
+.form-container {
+  display: block;
+  margin: 1%;
+  text-align: left;
+}
+
+.form-container-2 {
+  display: block;
+  margin: 1%;
+  text-align: left;
+}
+
+lable {
+  display: block;
+  position: relative;
+  text-transform: uppercase;
+  color: #aaa;
+}
+
+input[type='password'] {
+  width: 100%;
+  box-sizing: border-box;
+  height: 55px;
+  display: inline-block;
+  border: 3px solid #2F96EF;
+  border-radius: 5px;
+  padding: 0 15px;
+  margin: 10px 0;
+  transition: .2s;
+}
+
+input[type='password']:focus {
+  outline: none;
+  -moz-outline: none;
+  -webkit-outline: none;
+}
+
+input[type='passwordhp'] {
+  width: 100%;
+  box-sizing: border-box;
+  height: 55px;
+  display: inline-block;
+  border: 3px solid #2F96EF;
+  border-radius: 5px;
+  padding: 0 15px;
+  margin: 10px 0;
+  transition: .2s;
+}
+
+input[type='passwordhp']:focus {
+  outline: none;
+  -moz-outline: none;
+  -webkit-outline: none;
+}
+lable:before {
+  color: #aaa;
+  font-size: 22px;
+  position: absolute;
+  right: 25px;
+  top: 44px;
+}
+
+.progress-bar_wrap {
+  width: 300px;
+  height: 5px;
+  background: #F6F6FA;
+  display: inline-block;
+  vertical-align: middle;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.form-1 .progress-bar_item {
+  display: inline-block;
+  height: 100%;
+  width: 33.33%;
+  float: left;
+  visibility: hidden;
+  transition: background-color .2s, visisility .1s;
+}
+
+.form-1 .active {
+  visibility: visible;
+}
+
+.progress-bar_item-1 {
+
+}
+
+.progress-bar_item-2 {
+
+}
+
+.progress-bar_item-3 {
+
+}
+
+.progress-bar_text {
+  display: inline-block;
+  color: #aaa;
+  margin-left: 5px;
+  transition: .2s;
+}
+
+.form-2 .progress-bar_item {
+  display: inline-block;
+  height: 100%;
+  width: 32.5%;
+  margin-right: .8%;
+  border-radius: 5px;
+  float: left;
+
+  transition: background-color .2s, visisility .1s;
+}
+
+.form-2 .progress-bar_item-1.active {
+  background-color: #FF4B47;
+}
+
+.form-2 .progress-bar_item-2.active {
+  background-color: #F9AE35;
+}
+
+.form-2 .progress-bar_item-3.active {
+  background-color: #2DAF7D;
+}
+
+input[type='normal'] {
+  width: 100%;
+  box-sizing: border-box;
+  height: 55px;
+  display: inline-block;
+  border: 3px solid #2F96EF;
+  border-radius: 5px;
+  padding: 0 15px;
+  margin: 10px 0;
+  transition: .2s;
+}
+
+input[type='normal']:focus {
+  outline: none;
+  -moz-outline: none;
+  -webkit-outline: none;
+}
+
+.tamanhoCardSign{
+  width: 65%;
+}
+
+.inputCampos{
+  width: 100%;
+  box-sizing: border-box;
+  height: 55px;
+  display: inline-block;
+  border: 3px solid #2F96EF;
+  border-radius: 5px;
+  padding: 0 15px;
+  margin: 10px 0;
+  transition: .2s;
 }

@@ -74,3 +74,4 @@ gem 'graphql'
 gem 'graphiql-rails', group: :development
 gem 'rails-assets-tether'
 gem 'jquery-rails'
+gem 'jquery_mask_rails'

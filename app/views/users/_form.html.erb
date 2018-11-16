@@ -1,54 +1,102 @@
-<div class="row login">
-  <div class="hide-on-med-and-down">
-    <div class="row"></div>
-    <div class="row"></div>
-  </div>
-  <div class="col s12 l12 z-depth-1">
 
-    <%= form_for @user do |f| %>
-      <div class="col s12 l10 offset-l1 input-field">
-        <%= f.label :first_name, 'Nome' %>
-        <%= f.text_field :first_name, :required => true %>
+<header class="business-header bg-signin">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12  text-center align">
+        <div>
+          <div class="card-body">
+            <div class="container">
+              <h3 class="titleProperties">SIGN IN</h3>
+              <div class="d-flex justify-content-center h-100">
+                <div class="card tamanhoCardSign">
+                  <div class="card-body text-color">
+                      <%= form_for @user do |f| %>
+                    <div class="form-container-2">
+                        <lable>
+                            <%= f.text_field :first_name, :required => true, class: 'inputCampos', placeholder: "Nome" %>
+                        </lable>
+                    </div>
+
+                    <div class="form-container-2">
+                        <lable>
+                            <%= f.text_field :last_name, :required => true, class: 'inputCampos', placeholder: "Sobrenome" %>
+                        </lable>
+                    </div>
+
+                    <div class="form-container-2">
+                        <lable>
+                            <%= f.email_field :email, :required => true, class: 'inputCampos', placeholder: "E-Mail" %>
+                        </lable>
+                    </div>
+
+                    <div class="form-container-2">
+                        <lable>
+                            <%= f.text_field :cpf, 'data-mask': '000.000.000-00', :required => true, class: 'inputCampos', placeholder: "CPF" %>
+                        </lable>
+                    </div>
+
+
+                    <div class="form-container-2">
+                        <lable>
+                            <%= f.text_field :birth, 'data-mask': '00/00/0000', class: 'inputCampos', placeholder: "Data de Nascimento" %>
+                        </lable>
+                    </div>
+
+                    <div class="form-container-2">
+                        <lable>
+                            <%= f.text_field :phone, 'data-mask': '(00) 00000-0000', class: 'inputCampos', placeholder: "Telefone" %>
+                        </lable>
+                    </div>
+
+
+                    <div class="form-container">
+                        <lable>Senha
+                          <input class="input-2" type="password" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;">
+                        </lable>
+                        <div class="progress-bar_wrap">
+                          <div class="progress-bar_item progress-bar_item-1"></div>
+                          <div class="progress-bar_item progress-bar_item-2"></div>
+                          <div class="progress-bar_item progress-bar_item-3"></div>
+                        </div>
+                        <span class="progress-bar_text">Senha está em branco!</span>
+
+                    </div>
+
+
+                    <div class="form-container">
+                        <lable>Digite novamente a Senha
+                          <input class="input-2" type="password" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;">
+                        </lable>
+                        <div class="progress-bar_wrap">
+                          <div class="progress-bar_item progress-bar_item-1"></div>
+                          <div class="progress-bar_item progress-bar_item-2"></div>
+                          <div class="progress-bar_item progress-bar_item-3"></div>
+                        </div>
+                        <span class="progress-bar_text">Senha está em branco!</span>
+
+                    </div>
+                    <div class="card-body row" style="margin: 0px !important;">
+                      <div class="half" style="padding: 1%">
+                        <%= link_to 'Voltar', :back, class: "btn btn-primary btn-lg btn-block" %>
+                      </div>
+                      <div class="half" style="padding: 1%">
+                        <button type="submit" name="action" type="button" class="btn btn-success btn-lg btn-block">Concluir</button>
+                      </div>
+                    </div>
+                    <% end %>
+                    <div>
+                      <% flash.each do |key, value| %>
+                      <p style="color: red; text-align: right"><%= value %></p>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="col s12 l10 offset-l1 input-field">
-        <%= f.label :last_name, 'Sobrenome' %>
-        <%= f.text_field :last_name, :required => true %>
-      </div>
-      <div class="col s12 l10 offset-l1 input-field">
-        <%= f.label :email %>
-        <%= f.email_field :email, :required => true %>
-      </div>
-      <div class="col s6 l5 offset-l1 input-field">
-        <%= f.label :cpf, 'CPF' %>
-        <%= f.text_field :cpf, 'data-mask': '000.000.000-00', :required => true %>
-      </div>
-      <div class="col s6 l5 input-field">
-        <%= f.label :birth, 'Data de nascimento' %>
-        <%= f.text_field :birth, 'data-mask': '00/00/0000' %>
-      </div>
-      <div class="col s12 l10 offset-l1 input-field">
-        <%= f.label :phone, 'Telefone' %>
-        <%= f.text_field :phone, 'data-mask': '(00) 00000-0000' %>
-      </div>
-      <div class="col s6 l5 offset-l1 input-field">
-        <%= f.label :password, 'Senha' %>
-        <%= f.password_field :password, :required => true %>
-      </div>
-      <div class="col s6 l5 input-field">
-        <%= f.label :password_confirmation, 'Redigite a senha' %>
-        <%= f.password_field :password_confirmation, :required => true %>
-      </div>
-      <div class="col s12 l8 offset-l3">
-        <button class="btn waves-effect waves-light" type="submit" name="action">Concluir
-        </button>
-        <%= link_to 'Voltar', :back, class: "btn waves-effect waves-light button_bold" %>
-      </div>
-    <% end %>
-    <div>
-      <% flash.each do |key, value| %>
-        <p style="color: red; text-align: right"><%= value %></p>
-      <% end %>
     </div>
-    <div class="row hide-on-med-and-down"></div>
   </div>
-</div>
+</header>
+<% end %>

@@ -15,7 +15,9 @@
                                         <form>
                                             <div class="form-container-2">
                                                 <lable>
-                                                    <input type="normal" placeholder="E-Mail">
+                                                    <%= f.text_field :email, class: 'inputCampos',
+                                                    'aria-controls': 'email-helper-text',
+                                                    'aria-describedby': 'email-helper-text', placeholder: "E-Mail" %>
                                                 </lable>
                                             </div>
 
@@ -32,13 +34,14 @@
 
                                             <div class="form-container-2">
                                                 <lable>
-                                                    <input type="password" placeholder="Senha">
+                                                    <%= f.password_field :password, class: 'inputCampos', placeholder: "Senha"  %>
                                                 </lable>
                                             </div>
 
                                             <p id="email-helper-text" class="mdc-text-field-helper-text mdc-text-field-helper-text--validation-msg" aria-hidden="true">
                                             Um email é necessário
                                             </p>
+                                            <%= f.hidden_field :return, value: @retorno %>
                                             <!--
                                             <div class="input-group form-group">
                                                 <div class="mdc-text-field password">

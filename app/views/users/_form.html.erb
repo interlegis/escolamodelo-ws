@@ -49,32 +49,12 @@
                     </div>
 
 
-                    <div class="form-container">
-                        <lable>Senha
-                          <input class="input-2" type="password" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;">
-                        </lable>
-                        <div class="progress-bar_wrap">
-                          <div class="progress-bar_item progress-bar_item-1"></div>
-                          <div class="progress-bar_item progress-bar_item-2"></div>
-                          <div class="progress-bar_item progress-bar_item-3"></div>
-                        </div>
-                        <span class="progress-bar_text">Senha está em branco!</span>
 
-                    </div>
+                      <div class="form-container-2">
+                          <input type="password" class="form-control input-lg" id="password" placeholder="Password" required="" />
+                          <div class="pwstrength_viewport_progress"></div>
+                      </div>
 
-
-                    <div class="form-container">
-                        <lable>Digite novamente a Senha
-                          <input class="input-2" type="password" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;">
-                        </lable>
-                        <div class="progress-bar_wrap">
-                          <div class="progress-bar_item progress-bar_item-1"></div>
-                          <div class="progress-bar_item progress-bar_item-2"></div>
-                          <div class="progress-bar_item progress-bar_item-3"></div>
-                        </div>
-                        <span class="progress-bar_text">Senha está em branco!</span>
-
-                    </div>
                     <div class="card-body row" style="margin: 0px !important;">
                       <div class="half" style="padding: 1%">
                         <%= link_to 'Voltar', :back, class: "btn btn-primary btn-lg btn-block" %>
@@ -99,4 +79,3 @@
     </div>
   </div>
 </header>
-<% end %>

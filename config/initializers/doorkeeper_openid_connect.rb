@@ -92,7 +92,7 @@ EOL
         'pt_br'
       end
     end
-    claim :cpf, scope: :openid do |user, scopes|
+    claim :username, scope: :openid do |user, scopes|
       if scopes.exists?(:profile)
         user.cpf
       end

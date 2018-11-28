@@ -21,8 +21,7 @@ class SessionsController < ApplicationController
       end
 
     else
-      render new
-      render status: 400, json: {error: 'Email ou senha incorretos'}.to_json
+      render 'new'
     end
   end
 

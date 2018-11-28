@@ -74,7 +74,7 @@ class ContactUsConversationsController < ApplicationController
       end
     else # Conversa ainda não existe
       user=User.find_by(cpf: params[:cpf])
-      if params[:school_initials].present? == true
+      if params[:school_initials].present? == true and user.present?
         @conversation = user.contact_us_conversations.create(contact_us_conversation_params.merge(was_answered: false))
       else
         return render status: 400, json: {

@@ -23,6 +23,14 @@ class UsersController < ApplicationController
       conseguiu = @user.save
     end
     if conseguiu
+      o = [('a'..'z'), ('A'..'Z'), ('1' .. '9')].map(&:to_a).flatten
+      key='a'
+      loop do
+        key=(0...50).map { o[rand(o.length)] }.join
+        api=ApiAccess.find_by(key: key)
+        break if !api.present?
+      end
+      @api=ApiAccess.new(user_id: @user.id, api_access_level_id: 1, key: key)
       login(params[:user][:email], params[:user][:password])
       redirect_to user_path(@user)
     else
@@ -69,10 +77,13 @@ class UsersController < ApplicationController
     unless current_user == @user
       redirect_to log_in_path
     end
-    if @user.external?
+    if @user.external? #verifica se o login foi feito por Facebook ou Google
       @user.skip_password = true
     end
     if @user.update(user_params)
+      if @user.cpf.present? and @user.api_access.api_access_level_id == 1
+        @user.api_access.update(api_access_level_id: 2)
+      end
       redirect_to @user
     else
       render 'edit'

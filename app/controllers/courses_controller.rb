@@ -50,9 +50,15 @@ class CoursesController < ApplicationController
       render status: 400, json: {
           message: "Estado inválido",
       }.to_json
+    elsif not params[:category].present?
+      render status: 400, json: {
+          message: "Categoria não informada",
+      }.to_json
     else
       school = School.find_by(initials: params[:school])
-      @course = Course.find_by(ead_id: params[:ead_id], school_id: school.id)
+      category = CourseCategory.find(params[:category])
+      @course = Course.find_by(id: params[:id])
+      @course.course_category_id = category.id
       @course.status = params[:status].capitalize
       if @course.save()
         render status: 200, json: {

@@ -12,6 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2018_11_28_122042) do
 
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -36,12 +37,19 @@ ActiveRecord::Schema.define(version: 2018_11_28_122042) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "api_access_levels", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "api_accesses", force: :cascade do |t|
     t.string "key", null: false
-    t.integer "access_level"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "api_access_level_id"
+    t.index ["api_access_level_id"], name: "index_api_accesses_on_api_access_level_id"
     t.index ["key"], name: "index_api_accesses_on_key", unique: true
     t.index ["user_id"], name: "index_api_accesses_on_user_id"
   end
@@ -263,6 +271,7 @@ ActiveRecord::Schema.define(version: 2018_11_28_122042) do
     t.index ["role_id"], name: "index_users_on_role_id"
   end
 
+  add_foreign_key "api_accesses", "api_access_levels"
   add_foreign_key "api_accesses", "users"
   add_foreign_key "certificates", "courses"
   add_foreign_key "certificates", "users"

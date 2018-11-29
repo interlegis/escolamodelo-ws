@@ -45,20 +45,22 @@ class CoursesController < ApplicationController
   end
 
   def avaliar_curso
-    if params[:status].capitalize != "Aprovado" && params[:status].capitalize != "Reprovado"
+    if params[:status].capitalize != "Aprovado" && params[:status].capitalize != "Reprovado" && params[:status].capitalize != "Pendente"
       render status: 400, json: {
           message: "Estado inválido",
       }.to_json
-    elsif not params[:category].present?
+    elsif params[:category].blank? && params[:status].capitalize == "Aprovado"
       render status: 400, json: {
           message: "Categoria não informada",
       }.to_json
     else
       school = School.find_by(initials: params[:school])
-      category = CourseCategory.find(params[:category])
       @course = Course.find_by(id: params[:id])
-      @course.course_category_id = category.id
       @course.status = params[:status].capitalize
+      if params[:status].capitalize == "Aprovado"
+        category = CourseCategory.find(params[:category])
+        @course.course_category_id = category.id
+      end
       if @course.save()
         render status: 200, json: {
             message: "O estado do curso foi alterado com sucesso",

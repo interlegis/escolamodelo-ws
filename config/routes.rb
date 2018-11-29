@@ -41,6 +41,8 @@ Rails.application.routes.draw do
     scope '/v1' do
       #Cursos
       post '/cursos/adicionar' => 'courses#adicionar_curso', :as => 'adicionar_curso'
+      get '/cursos/avaliar' => 'courses#index_cursos_pendentes', :as => 'index_cursos_pendentes'
+      post '/cursos/avaliar' => 'courses#avaliar_curso', :as => 'avaliar_curso'
       patch '/cursos/atualizar' => 'courses#atualizar_curso', :as => 'atualizar_curso'
       get '/cursos/' => 'courses#index', :as => 'cursos'
       #Categoria de curso

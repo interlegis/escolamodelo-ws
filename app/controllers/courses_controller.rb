@@ -102,7 +102,7 @@ class CoursesController < ApplicationController
   end
 
   def index
-    courses = Course.all
+    courses = Course.all.where.not(status: ['Pendente', 'Reprovado'])
     hash_courses = courses.map do |c|
       {'id' => c.id,
       'ead_id' => c.ead_id,
@@ -113,7 +113,7 @@ class CoursesController < ApplicationController
                    ''
                  end,
        'descricao' => c.description,
-       'categoria' => c.course_category.id,
+       'categoria' => c.course_category_id,
        'certificador' => c.certificador,
        'conteudista' => c.conteudista,
        'carga_horaria' => c.carga_horaria,

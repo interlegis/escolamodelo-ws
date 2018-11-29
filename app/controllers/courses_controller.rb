@@ -4,10 +4,9 @@ class CoursesController < ApplicationController
   # Acrescentar mensagens de erro
   def adicionar_curso
     school = School.find_by(initials: params[:school])
-    category = CourseCategory.find(params[:category])
     @course = Course.new(course_params)
     @course.school_id = school.id
-    @course.course_category_id = category.id
+    @course.course_category_id = nil
     @course.certificador = params[:certificador]
     @course.conteudista = params[:conteudista]
     @course.carga_horaria = params[:carga_horaria]
@@ -85,7 +84,6 @@ class CoursesController < ApplicationController
                      ''
                    end,
          'descricao' => c.description,
-         'categoria' => c.course_category.id,
          'certificador' => c.certificador,
          'conteudista' => c.conteudista,
          'carga_horaria' => c.carga_horaria,

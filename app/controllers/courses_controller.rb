@@ -2,44 +2,40 @@ class CoursesController < ApplicationController
   skip_before_action :verify_authenticity_token
   #Adicionar token para que apenas acesso permitido possa acessar os métodos
   # Acrescentar mensagens de erro
-  def adicionar_curso
+
+  def registrar_curso
     school = School.find_by(initials: params[:school])
-    @course = Course.new(course_params)
-    @course.school_id = school.id
-    @course.course_category_id = nil
-    @course.certificador = params[:certificador]
-    @course.conteudista = params[:conteudista]
-    @course.carga_horaria = params[:carga_horaria]
-    @course.status = "Pendente"
     if school.present?
-      if @course.save
-      #@course.logo.attach(io: StringIO.new('https://saberes.senado.leg.br/images/logo_saberes_xl.png'), filename: 'logo_saberes.png', content_type: 'image/png')
-        render status: 200, json: {
-            message: "Curso criado com sucesso",
-        }.to_json
+      @course = Course.find_by(ead_id: course_params[:ead_id], school_id: school.id)
+      if @course #Verifica se o curso existe
+        if @course.update(course_params)
+          #Verificar presença de imagem da logo
+          render status: 200, json: {
+              message: "Curso atualizado com sucesso",
+          }.to_json
+        else
+          render status: 400, json: {
+              message: "Não foi possível atualizar curso",
+          }.to_json
+        end
       else
-        render status: 400, json: {
-            message: "Não foi possível criar curso",
-        }.to_json
+        @course = Course.new(course_params)
+        @course.school_id = school.id
+        @course.status = "Pendente"
+          if @course.save
+            #@course.logo.attach(io: StringIO.new('https://saberes.senado.leg.br/images/logo_saberes_xl.png'), filename: 'logo_saberes.png', content_type: 'image/png')
+            render status: 200, json: {
+               message: "Curso criado com sucesso",
+            }.to_json
+          else
+            render status: 400, json: {
+               message: "Não foi possível criar curso",
+            }.to_json
+          end
       end
     else
       render status: 404, json: {
-          message: "Escola ou categoria não encontradas",
-      }.to_json
-    end
-
-  end
-  def atualizar_curso
-    school = School.find_by(initials: params[:school])
-    @course = Course.find_by(ead_id: course_params[:ead_id], school_id: school.id)
-    if @course.update(course_params)
-      #Verificar presença de imagem da logo
-      render status: 200, json: {
-          message: "Curso atualizado com sucesso",
-      }.to_json
-    else
-      render status: 400, json: {
-          message: "Não foi possível atualizar curso",
+        message: "Escola não encontrada",
       }.to_json
     end
   end
@@ -74,7 +70,7 @@ class CoursesController < ApplicationController
   end
 
   def index_cursos_pendentes
-    courses = Course.all.where(status: "Pendente")
+    courses = Course.all.where(status: "Pendente", visible: 'true')
     if courses.present?
       hash_courses = courses.map do |c|
         {'id' => c.id,
@@ -91,6 +87,7 @@ class CoursesController < ApplicationController
          'carga_horaria' => c.carga_horaria,
          'iniciais_escola' => c.school.initials,
          'status' => c.status,
+         'visible' => c.visible
         }
       end
       render status: 200, json: {
@@ -104,7 +101,7 @@ class CoursesController < ApplicationController
   end
 
   def index
-    courses = Course.all.where.not(status: ['Pendente', 'Reprovado'])
+    courses = Course.all.where.not(status: ['Pendente', 'Reprovado'], visible: 'false')
     hash_courses = courses.map do |c|
       {'id' => c.id,
       'ead_id' => c.ead_id,
@@ -121,6 +118,7 @@ class CoursesController < ApplicationController
        'carga_horaria' => c.carga_horaria,
        'iniciais_escola' => c.school.initials,
        'status' => c.status,
+       'visible' => c.visible,
       }
     end
     render status: 200, json: {
@@ -131,6 +129,6 @@ class CoursesController < ApplicationController
 
   private
   def course_params
-    params.require(:course).permit(:name, :url, :course_load, :description, :ead_id, :conteudista, :certificador, :carga_horaria)
+    params.require(:course).permit(:name, :url, :course_load, :description, :ead_id, :conteudista, :certificador, :carga_horaria, :visible)
   end
 end

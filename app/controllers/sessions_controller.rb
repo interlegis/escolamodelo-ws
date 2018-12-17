@@ -3,6 +3,7 @@ class SessionsController < ApplicationController
     if current_user
       redirect_to root_path
     else
+      @social = params[:social]
       @retorno = params[:return]
     end
   end
@@ -19,7 +20,6 @@ class SessionsController < ApplicationController
           redirect_to user_path
         end
       end
-
     else
       render 'new'
     end

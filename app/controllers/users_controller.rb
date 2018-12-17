@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def create
+  def create #isso precisa ser alterado, se já existir cadastro deve entrar pela rede social e depois pode adicionar senha
     @user = User.new(user_params)
     @user.role_id = 2
     existent_user = User.find_by('email = ? or cpf = ?', user_params[:email], user_params[:cpf])
@@ -16,8 +16,7 @@ class UsersController < ApplicationController
       if existent_user.crypted_password.present?
         email_cpf_repetido = true
       else
-        @user = existent_user
-        conseguiu = existent_user.update(password: user_params[:password], password_confirmation: user_params[:password_confirmation])
+        redirect_to log_in_path(social: true)
       end
     else
       conseguiu = @user.save

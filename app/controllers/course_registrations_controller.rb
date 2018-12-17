@@ -29,32 +29,47 @@ class CourseRegistrationsController < ApplicationController
   end
 
   def cursos_usuario
-    user = User.find(params[:id])
-    if user.present?
-      course_registrations = user.course_registrations
-      hash_courses = course_registrations.map do |c|
-        course = Course.find(c.course_id)
-        school = School.find(course.school_id)
-        {'id' => c.id,
-         'course' => {
-             'id' => c.course.id,
-             'nome' => c.course.name
-         },
-         'registration_status' => {
-             'id' => c.course_registration_status.id,
-             'status' => c.course_registration_status.status
-         },
-         'school' => {
-             'url' => school.url
-         }
-        }
+    api_key = ApiAccess.find_by(key: params[:key])
+    if api_key.present?
+      if api_key.api_access_level_id >= 3 #Confirmar se BasicApiControl é suficiente para buscar cursos de qualquer usuário
+        user = User.find_by(cpf: params[:cpf])
+      elsif api_key.api_access_level_id == 2 #retornar os dados do próprio usuário se a permissão for insuficiente
+        user = api_key.user
+      else
+        render status: 400, json: {
+            erro: 'Usuário não completou os dados ainda'
+        }.to_json
       end
-      render status: 200, json: {
-          cursos_usuario: hash_courses,
-      }.to_json
+      if user.present?
+        course_registrations = user.course_registrations
+        hash_courses = course_registrations.map do |c|
+          course = Course.find(c.course_id)
+          school = School.find(course.school_id)
+          {'id' => c.id,
+           'course' => {
+               'id' => c.course.id,
+               'nome' => c.course.name
+           },
+           'registration_status' => {
+               'id' => c.course_registration_status.id,
+               'status' => c.course_registration_status.status
+           },
+           'school' => {
+               'url' => school.url
+           }
+          }
+        end
+        render status: 200, json: {
+            cursos_usuario: hash_courses,
+        }.to_json
+      else
+        render status: 400, json: {
+            erro: 'Usuário não encontrado'
+        }.to_json
+      end
     else
       render status: 400, json: {
-          erro: 'Usuário não encontrado'
+          erro: 'Chave não encontrada'
       }.to_json
     end
   end

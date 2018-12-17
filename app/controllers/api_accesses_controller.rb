@@ -7,7 +7,7 @@ class ApiAccessesController < ApplicationController
     end
   end
   def create
-    if current_user and current_user.role_id = 1
+    if current_user and current_user.role_id == 1
       user=User.find_by_cpf(params[:api][:user])
       if user.present?
         o = [('a'..'z'), ('A'..'Z'), ('1' .. '9')].map(&:to_a).flatten
@@ -33,14 +33,14 @@ class ApiAccessesController < ApplicationController
     end
   end
   def index
-    if !(current_user and current_user.role_id = 1)
+    if !(current_user and current_user.role_id == 1)
       redirect_to user_path
     else
       @api_keys = ApiAccess.all
     end
   end
   def destroy
-    if current_user and current_user.role_id = 1
+    if current_user and current_user.role_id == 1
       @api = ApiAccess.find(params[:id])
       @api.destroy
       redirect_to api_accesses_path

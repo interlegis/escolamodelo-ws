@@ -10,17 +10,9 @@ class SessionsController < ApplicationController
 
   def create
     if login(params[:user][:email], params[:user][:password])
-      if params[:user][:return] == 'evl'
-        redirect_to 'https://evl.interlegis.leg.br'
-      else
-        school=School.find_by_initials(params[:user][:return])
-        if school.present?
-          redirect_to school.url
-        else
-          redirect_to user_path
-        end
-      end
+      redirect_to params[:user][:return]
     else
+      @retorno = params[:user][:return]
       render 'new'
     end
   end

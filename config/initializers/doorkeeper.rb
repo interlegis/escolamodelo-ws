@@ -7,7 +7,7 @@ Doorkeeper.configure do
     if current_user
       current_user
     else
-      redirect_to new_session_path
+      redirect_to new_session_path(return: request.original_url)
       nil
     end
   end

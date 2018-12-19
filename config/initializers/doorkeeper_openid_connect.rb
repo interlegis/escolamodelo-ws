@@ -97,6 +97,11 @@ EOL
         user.cpf
       end
     end
+    claim :access_key, scope: :openid do |user, scopes|
+      if scopes.exists?(:profile)
+        user.api_access.key
+      end
+    end
     claim :token_id, scope: :openid do |user, scopes, token|
       token.id
     end

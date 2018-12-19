@@ -1,0 +1,7 @@
+<%= form_with scope: :api_access, local: true, url: api_accesses_path do |f| %>
+  <%= f.label :user_id, 'Usuário' %>
+  <%= f.select :user_id, options_for_select(@users.collect {|u| [u.first_name + u.last_name, u.id]}) %> <!-- isso deve ser trocado por uma busca por ajax -->
+  <%= f.label :api_access_level_id, 'Nível de Permissão' %>
+  <%= f.select :api_access_level_id, options_for_select(@api_access_levels.collect {|level| [level.name, level.id]}) %>
+  <%= f.submit 'Criar Chave' %>
+<% end %>

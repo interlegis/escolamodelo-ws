@@ -1,23 +1,29 @@
 class ApiAccessesController < ApplicationController
   def new
-    if !(current_user and current_user.role_id == 1)
-      redirect_to user_path
+    if current_user
+      if current_user.role_id == 1
+        @api = ApiAccess.new
+        @api_access_levels = ApiAccessLevel.all
+        @users = User.all
+      else
+        redirect_to user_path
+      end
     else
-      @api = ApiAccess.new
+      redirect_to log_in_path
     end
   end
+
   def create
-    if current_user and current_user.role_id == 1
-      user=User.find_by_cpf(params[:api][:user])
-      if user.present?
-        o = [('a'..'z'), ('A'..'Z'), ('1' .. '9')].map(&:to_a).flatten
-        key='a'
+    if current_user
+      if current_user.role_id == 1
+        o = [('a'..'z'), ('A'..'Z'), ('1'..'9')].map(&:to_a).flatten
+        key = 'a'
         loop do
-          key=(0...50).map { o[rand(o.length)] }.join
-          api=ApiAccess.find_by(key: key)
+          key = (0...50).map {o[rand(o.length)]}.join
+          api = ApiAccess.find_by(key: key)
           break if !api.present?
         end
-        @api=ApiAccess.new(user_id: user.id, api_access_level_id: params[:api][:level], key: key)
+        @api = ApiAccess.new(user_id: params[:api_access][:user_id], api_access_level_id: params[:api][:api_access_level_id], key: key)
         if @api.save
           redirect_to api_accesses_path
         else
@@ -25,13 +31,13 @@ class ApiAccessesController < ApplicationController
           render 'new'
         end
       else
-        flash.now[:erro] = 'Usuário inexistente'
-        render 'new'
+        redirect_to user_path
       end
     else
-      redirect_to user_path
+      redirect_to log_in_path
     end
   end
+
   def index
     if !(current_user and current_user.role_id == 1)
       redirect_to user_path
@@ -39,13 +45,18 @@ class ApiAccessesController < ApplicationController
       @api_keys = ApiAccess.all
     end
   end
+
   def destroy
-    if current_user and current_user.role_id == 1
-      @api = ApiAccess.find(params[:id])
-      @api.destroy
-      redirect_to api_accesses_path
+    if current_user
+      if current_user.role_id == 1
+        @api = ApiAccess.find(params[:id])
+        @api.destroy
+        redirect_to api_accesses_path
+      else
+        redirect_to user_path
+      end
     else
-      redirect_to user_path
+      log_in_path
     end
   end
 end

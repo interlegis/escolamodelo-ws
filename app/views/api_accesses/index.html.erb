@@ -1,3 +1,15 @@
+<table>
+<tr>
+<th>Nome</th>
+<th>Chave</th>
+<th>Nível de acesso</th>
+</tr>
 <% @api_keys.each do |api_key| %>
-  <p><%= api_key.user.first_name + api_key.user.last_name %> <%= api_key.key %> <%= api_key.api_access_level.name %></p>
+  <tr>
+    <td><%= api_key.user.first_name + api_key.user.last_name %></td>
+    <td><%= api_key.key %></td>
+    <td><%= api_key.api_access_level.name %></td>
+    <td><%= link_to 'Apagar', api_access_path(api_key), method: :delete %></td>
+  </tr>
 <% end %>
+</table>

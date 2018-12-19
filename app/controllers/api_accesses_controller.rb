@@ -23,7 +23,7 @@ class ApiAccessesController < ApplicationController
           api = ApiAccess.find_by(key: key)
           break if !api.present?
         end
-        @api = ApiAccess.new(user_id: params[:api_access][:user_id], api_access_level_id: params[:api][:api_access_level_id], key: key)
+        @api = ApiAccess.new(user_id: params[:api_access][:user_id], api_access_level_id: params[:api_access][:api_access_level_id], key: key)
         if @api.save
           redirect_to api_accesses_path
         else

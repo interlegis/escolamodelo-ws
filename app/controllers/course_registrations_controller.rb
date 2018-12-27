@@ -44,7 +44,7 @@ class CourseRegistrationsController < ApplicationController
         course_registrations = user.course_registrations
         hash_courses = course_registrations.map do |c|
           course = Course.find(c.course_id)
-          school = School.find(course.school_id)
+          school = course.school
           {'id' => c.id,
            'course' => {
                'id' => c.course.id,

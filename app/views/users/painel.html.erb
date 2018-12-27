@@ -3,4 +3,6 @@
 <p>Minha chave: <%= current_user.api_access.key %></p>
 <%= link_to 'Chaves de usuários', api_accesses_path %>
 <br>
+<%= link_to 'Aplicações OAUTH', oauth_applications_path %>
+<br>
 <%= link_to 'Atualizar Perfil', edit_user_path(current_user) %>

@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
     if current_user
       redirect_to root_path
     else
-      @social = params[:social]
+      @social = params[:social] #indica que o login deve ser feito por redes sociais
       @retorno = params[:return]
     end
   end

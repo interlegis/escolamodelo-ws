@@ -76,7 +76,7 @@ class UsersController < ApplicationController
     unless current_user == @user
       redirect_to log_in_path
     end
-    if @user.external? #verifica se o login foi feito por Facebook ou Google
+    if !params[:user][:password].present? #verifica se o login foi fornecida uma senha nova
       @user.skip_password = true
     end
     if @user.update(user_params)

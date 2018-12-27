@@ -6,53 +6,57 @@
         <div>
           <div class="card-body">
             <div class="container">
-              <h3 class="titleProperties">SIGN IN</h3>
+              <h3 class="titleProperties">Registrar Conta</h3>
               <div class="d-flex justify-content-center h-100">
                 <div class="card tamanhoCardSign">
                   <div class="card-body text-color">
                       <%= form_for @user do |f| %>
                     <div class="form-container-2">
-                        <lable>
+                        <label>
                             <%= f.text_field :first_name, :required => true, class: 'inputCampos', placeholder: "Nome" %>
-                        </lable>
+                        </label>
                     </div>
 
                     <div class="form-container-2">
-                        <lable>
+                        <label>
                             <%= f.text_field :last_name, :required => true, class: 'inputCampos', placeholder: "Sobrenome" %>
-                        </lable>
+                        </label>
                     </div>
 
                     <div class="form-container-2">
-                        <lable>
+                        <label>
                             <%= f.email_field :email, :required => true, class: 'inputCampos', placeholder: "E-Mail" %>
-                        </lable>
+                        </label>
                     </div>
 
                     <div class="form-container-2">
-                        <lable>
+                        <label>
                             <%= f.text_field :cpf, 'data-mask': '000.000.000-00', :required => true, class: 'inputCampos', placeholder: "CPF" %>
-                        </lable>
+                        </label>
                     </div>
 
 
                     <div class="form-container-2">
-                        <lable>
-                            <%= f.text_field :birth, 'data-mask': '00/00/0000', class: 'inputCampos', placeholder: "Data de Nascimento" %>
-                        </lable>
+                        <label>
+                            <%= f.text_field :birth, 'data-mask': '00/00/0000', class: 'inputCampos', placeholder: "Data de Nascimento", :required => true %>
+                        </label>
                     </div>
 
                     <div class="form-container-2">
-                        <lable>
-                            <%= f.text_field :phone, 'data-mask': '(00) 00000-0000', class: 'inputCampos', placeholder: "Telefone" %>
-                        </lable>
+                        <label>
+                            <%= f.text_field :phone, 'data-mask': '(00) 00000-0000', class: 'inputCampos', placeholder: "Telefone", :required => true %>
+                        </label>
                     </div>
 
 
 
                       <div class="form-container-2">
-                          <input type="password" class="form-control input-lg" id="password" placeholder="Password" required="" />
-                          <div class="pwstrength_viewport_progress"></div>
+                          <%= f.password_field :password, id: "password", placeholder: "Senha", :required => true %>
+                      </div>
+
+                      <div class="form-container-2">
+                        <%= f.password_field :password_confirmation, placeholder: "Confirmação de senha", :required => true %>
+                        <div class="pwstrength_viewport_progress"></div>
                       </div>
 
                     <div class="card-body row" style="margin: 0px !important;">

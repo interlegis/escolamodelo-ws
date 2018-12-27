@@ -1,10 +1,10 @@
 <p><%= current_user.first_name %> <%= current_user.last_name %></p>
 <p><%= current_user.email %></p>
-<% if current_user %>
-  <%= link_to user_path(current_user.id), method: 'delete',
-              class:'btn-floating halfway-fab waves-effect waves-light logo-color-orange',
-              data: {confirm: "Tem certeza que deseja excluir sua conta?"} do%>
-    <i title="Deletar Conta" class="material-icons">delete</i>
-  <% end %>
-  <p><%= link_to 'deslogar', log_out_path(current_user.id), method: 'delete' %></p>
+<% if current_user.api_access.api_access_level_id > 2 %>
+  <p>Minha chave: <%= current_user.api_access.key %></p>
 <% end %>
+<%= link_to 'Atualizar Perfil', edit_user_path(current_user) %>
+<br>
+<%= link_to 'Apagar conta', user_path(current_user.id), method: 'delete',
+              class:'btn-floating halfway-fab waves-effect waves-light logo-color-orange',
+              data: {confirm: "Tem certeza que deseja excluir sua conta?"} %>

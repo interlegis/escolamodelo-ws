@@ -5,7 +5,12 @@ class CourseRegistrationsController < ApplicationController
         if params[:id].present?
           @course = Course.find(params[:id])
         else
-          @course = Course.find_by(school_id: params[:school], ead_id: params[:school_course])
+          school = School.find_by(initials: params[:school])
+          if school.present?
+            @course = Course.find_by(school_id: school.id, ead_id: params[:school_course])
+          else
+            @course = nil
+          end
         end
         if @course.present?
           @redirect = params[:redirect]

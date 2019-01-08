@@ -1,4 +1,6 @@
-<%= form_with url: registrado_curso_path(params[:id]), scope: :registration, local: true do |f| %>
+<%= form_with url: registrado_curso_path, scope: :registration, local: true do |f| %>
+  <%= f.hidden_field :course_id, :value => @course.id %>
+  <%= f.hidden_field :redirect, :value => @redirect %>
   <% @quiz_questions.each do |question| %>
     <div class="mdc-select">
       <%= f.select 'question' + question.id.to_s, options_for_select(question.quiz_answers.map {|answer| [answer.answer, answer.id]}), {}, {:class => 'mdc-select__native-control'} %>

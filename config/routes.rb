@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get '/log_in', to: 'sessions#new', as: :log_in
   post '/log_inn', to: 'sessions#create', as: :log_inn
   delete '/log_out', to: 'sessions#destroy', as: :log_out
+  get '/log_out', to: 'sessions#destroy', as: :log_out_extern
   #Login com oauth
   post 'oauth/callback' => 'oauths#callback'
   get 'oauth/callback' => 'oauths#callback' # for use with Github, Facebook
@@ -31,8 +32,8 @@ Rails.application.routes.draw do
   post '/analiseDeletar' => 'reviews#deletar'
 
   #Registro em curso
-  get 'cursos/:id/registro/' => 'course_registrations#new', :as => 'registro_curso'
-  post 'cursos/:id/registro/' => 'course_registrations#create', :as => 'registrado_curso'
+  get 'cursos/registro/' => 'course_registrations#new', :as => 'registro_curso'
+  post 'cursos/registro/' => 'course_registrations#create', :as => 'registrado_curso'
 
   #Api Keys
   resources :api_accesses, only: [:new,:create,:index,:destroy]

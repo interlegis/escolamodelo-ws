@@ -19,7 +19,7 @@ class CourseRegistrationsController < ApplicationController
       end
     else
       redirect_to log_in_path(return: registro_curso_path(id: params[:id],
-                                                             school_id: params[:school],
+                                                             school: params[:school],
                                                              school_course: params[:school_course],
                                                              redirect: params[:redirect]))
     end

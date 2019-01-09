@@ -1,4 +1,6 @@
 class CourseRegistrationsController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   def new
     if current_user
       if !current_user.restriction
@@ -95,5 +97,33 @@ class CourseRegistrationsController < ApplicationController
           erro: 'Chave não encontrada'
       }.to_json
     end
+  end
+
+  def confirmacao_matricula
+    school = School.find_by(initials: params[:school])
+    if school
+      course = Course.find_by(school_id: school.id , ead_id: params[:course])
+      if course
+        course_registration = CourseRegistration.find_by(course_id: course, user_id: 1)
+        if course_registration
+          render status: 200, json: {
+            situacao: course_registration.course_registration_status.status,
+          }.to_json
+        else
+          render status: 400, json: {
+            sitaucao: 'Não registrado',
+          }.to_json
+        end
+      else
+        render status: 400, json: {
+          mensagem: 'Curso não encontrado',
+        }.to_json
+      end
+    else
+      render status: 400, json: {
+        mensagem: 'Escola não encontrada',
+      }.to_json
+    end
+
   end
 end

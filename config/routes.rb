@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   #Registro em curso
   get 'cursos/registro/' => 'course_registrations#new', :as => 'registro_curso'
   post 'cursos/registro/' => 'course_registrations#create', :as => 'registrado_curso'
+  post '/cursos/confirmar' => 'course_registrations#confirmacao_matricula', :as => 'confirmacao'
 
   #Api Keys
   resources :api_accesses, only: [:new,:create,:index,:destroy]

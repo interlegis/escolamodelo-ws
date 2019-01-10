@@ -82,6 +82,31 @@ class CoursesController < ApplicationController
     end
   end
 
+  def buscar_cursos
+    school = School.find_by(initials: params[:school])
+    puts school
+    courses = Course.all.where('(lower(name) LIKE ? OR lower(description) LIKE ?) AND school_id != ?', "%#{params[:expression].downcase}%", "%#{params[:expression].downcase}%", school.id)
+    if courses.present?
+      hash_courses = courses.map do |c|
+        {'name' => c.name,
+         'description' => c.description,
+         'url' => if c.url?
+                    c.url
+                  else
+                    c.school.url +  "/course/view.php?id=" + c.ead_id.to_s
+                  end,
+        }
+      end
+      render status: 200, json: {
+          cursos: hash_courses,
+      }.to_json
+    else
+      render status: 400, json: {
+          cursos: "",
+      }.to_json
+    end
+  end
+
   def index_cursos_pendentes
     courses = Course.all.where(status: "Pendente", visible: 'true')
     if courses.present?

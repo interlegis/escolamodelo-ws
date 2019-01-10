@@ -46,6 +46,7 @@ Rails.application.routes.draw do
       get '/cursos/avaliar' => 'courses#index_cursos_pendentes', :as => 'index_cursos_pendentes'
       post '/cursos/avaliar' => 'courses#avaliar_curso', :as => 'avaliar_curso'
       get '/cursos/' => 'courses#index', :as => 'cursos'
+      post '/cursos/buscar' => 'courses#buscar_cursos', :as => 'buscar_cursos'
       #Categoria de curso
       post '/categorias_cursos/adicionar' => 'course_categories#adicionar_categoria', :as => 'adicionar_categoria'
       patch '/categorias_cursos/atualizar' => 'course_categories#atualizar_categoria', :as => 'atualizar_categoria'

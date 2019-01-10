@@ -104,14 +104,15 @@ class CourseRegistrationsController < ApplicationController
     if school
       course = Course.find_by(school_id: school.id , ead_id: params[:course])
       if course
-        course_registration = CourseRegistration.find_by(course_id: course, user_id: 1)
+        api_key = ApiAccess.find_by(key: params[:key])
+        course_registration = CourseRegistration.find_by(course_id: course.id, user_id: api_key.user_id)
         if course_registration
           render status: 200, json: {
             situacao: course_registration.course_registration_status.status,
           }.to_json
         else
-          render status: 400, json: {
-            sitaucao: 'Não registrado',
+          render status: 200, json: {
+            situacao: 'Não registrado',
           }.to_json
         end
       else

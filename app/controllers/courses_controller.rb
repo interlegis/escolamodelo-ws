@@ -1,6 +1,5 @@
 class CoursesController < ApplicationController
   skip_before_action :verify_authenticity_token
-  #Adicionar token para que apenas acesso permitido possa acessar os métodos
   # Acrescentar mensagens de erro
 
   def registrar_curso
@@ -85,7 +84,7 @@ class CoursesController < ApplicationController
   def buscar_cursos
     school = School.find_by(initials: params[:school])
     puts school
-    courses = Course.all.where('(lower(name) LIKE ? OR lower(description) LIKE ?) AND school_id != ?', "%#{params[:expression].downcase}%", "%#{params[:expression].downcase}%", school.id)
+    courses = Course.where('(lower(name) LIKE ? OR lower(description) LIKE ?) AND school_id != ?', "%#{params[:expression].downcase}%", "%#{params[:expression].downcase}%", school.id)
     if courses.present?
       hash_courses = courses.map do |c|
         {'name' => c.name,

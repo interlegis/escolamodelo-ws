@@ -107,7 +107,7 @@ class CoursesController < ApplicationController
   end
 
   def index_cursos_pendentes
-    courses = Course.all.where(status: "Pendente", visible: 'true')
+    courses = Course.where(status: "Pendente", visible: 'true')
     if courses.present?
       hash_courses = courses.map do |c|
         {'id' => c.id,

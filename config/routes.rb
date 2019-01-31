@@ -56,7 +56,7 @@ Rails.application.routes.draw do
       patch '/escolas/atualizar' => 'schools#atualizar_escola', :as => 'atualizar_escola'
       get '/escolas/' => 'schools#index', :as => 'escolas'
       #Registros de Cursos
-      get '/registros/:id' => 'course_registrations#cursos_usuario', :as => 'cursos_usuario'
+      get '/registros/' => 'course_registrations#cursos_usuario', :as => 'cursos_usuario'
       #Certificados
       post 'certificados/adicionar' => 'certificates#adicionar_certificado', :as => 'adicionar_certificado'
       post 'certificados/detalhar' => 'certificates#detalhes_certificado', :as => 'detalhes_certificado'

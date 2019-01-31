@@ -11,7 +11,11 @@ class CoursesController < ApplicationController
           @course = Course.find_by(ead_id: course_params[:ead_id], school_id: school.id)
           if @course #Verifica se o curso existe
             if @course.update(course_params)
-              #Verificar presença de imagem da logo
+              if params[:course][:logo].present?
+                require 'open-uri'
+                @course.logo.purge
+                @course.logo.attach(io: open(params[:course][:logo]), filename: @course.name.downcase)
+              end
               render status: 200, json: {
                   message: "Curso atualizado com sucesso",
               }.to_json
@@ -25,7 +29,10 @@ class CoursesController < ApplicationController
             @course.school_id = school.id
             @course.status = "Pendente"
             if @course.save
-              #@course.logo.attach(io: StringIO.new('https://saberes.senado.leg.br/images/logo_saberes_xl.png'), filename: 'logo_saberes.png', content_type: 'image/png')
+              if params[:course][:logo].present?
+                require 'open-uri'
+                @course.logo.attach(io: open(params[:course][:logo]), filename: @course.name.downcase)
+              end
               render status: 200, json: {
                   message: "Curso criado com sucesso",
               }.to_json

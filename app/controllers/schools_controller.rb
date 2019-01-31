@@ -7,7 +7,10 @@ class SchoolsController < ApplicationController
       if @api_key.api_access_level_id == 4
         @school = School.new(school_params)
         if @school.save
-          #@course.logo.attach(io: StringIO.new('https://saberes.senado.leg.br/images/logo_saberes_xl.png'), filename: 'logo_saberes.png', content_type: 'image/png')
+          if params[:school][:logo].present?
+            require 'open-uri'
+            @school.logo.attach(io: open(params[:school][:logo]), filename: @school.name.downcase)
+          end
           render status: 200, json: {
               message: "Escola criada com sucesso",
           }.to_json
@@ -36,11 +39,19 @@ class SchoolsController < ApplicationController
         if !params[:school][:initials].present?
           params[:school][:initials] = @school.initials
         end
-        @school.update(school_params)
-        #verificar presença de imagem
-        render status: 200, json: {
-            message: "Escola atualizada com sucesso",
-        }.to_json
+        if @school.update(school_params)
+          if params[:school][:logo].present?
+            require 'open-uri'
+            @school.logo.attach(io: open(params[:school][:logo]), filename: @school.name.downcase)
+          end
+          render status: 200, json: {
+              message: "Escola atualizada com sucesso",
+          }.to_json
+        else
+          render status: 400, json: {
+              message: "Não foi possível atualizar a escola",
+          }.to_json
+        end
       else
         render status: 400, json: {
             message: "Permissão negada",

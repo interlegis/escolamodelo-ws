@@ -52,8 +52,7 @@ Rails.application.routes.draw do
       patch '/categorias_cursos/atualizar' => 'course_categories#atualizar_categoria', :as => 'atualizar_categoria'
       get '/categorias_cursos/' => 'course_categories#index', :as => 'categorias_cursos'
       #Escolas
-      post '/escolas/adicionar' => 'schools#adicionar_escola', :as => 'adicionar_escola'
-      patch '/escolas/atualizar' => 'schools#atualizar_escola', :as => 'atualizar_escola'
+      post '/escolas/registrar' => 'schools#registrar_escola', :as => 'registrar_escola'
       get '/escolas/' => 'schools#index', :as => 'escolas'
       #Registros de Cursos
       get '/registros/' => 'course_registrations#cursos_usuario', :as => 'cursos_usuario'

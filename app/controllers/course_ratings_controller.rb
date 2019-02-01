@@ -16,15 +16,21 @@ class CourseRatingsController < ApplicationController
 
   def avaliar_curso
     if CourseRating.where(course_id: params[:course_rating][:course_id], user_id: params[:course_rating][:user_id]).count == 0
-      @course_rating = CourseRating.new(course_rating_params)
-      if @course_rating.save
-        render status: 200, json: {
-            message: "Avaliação feita com sucesso",
+      if (params[:course_rating][:rating]).to_f > 5.0 or (params[:course_rating][:rating]).to_f < 0.0
+        render status: 400, json: {
+            message: "A nota está fora do intervalo! Coloque uma nota entre 0 e 5.",
         }.to_json
       else
-        render status: 400, json: {
-            message: "Não foi possível avaliar esse curso",
-        }.to_json
+        @course_rating = CourseRating.new(course_rating_params)
+        if @course_rating.save
+          render status: 200, json: {
+              message: "Avaliação feita com sucesso",
+          }.to_json
+        else
+          render status: 400, json: {
+              message: "Não foi possível avaliar esse curso",
+          }.to_json
+        end
       end
     else
       render status: 400, json: {

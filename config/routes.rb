@@ -36,6 +36,10 @@ Rails.application.routes.draw do
   post 'cursos/registro/' => 'course_registrations#create', :as => 'registrado_curso'
   post '/cursos/confirmar' => 'course_registrations#confirmacao_matricula', :as => 'confirmacao'
 
+  #Avaliação curso
+  post '/curso/avaliar' => 'course_ratings#avaliar_curso', :as => 'avaliar_curso'
+  get '/curso/avaliacoes' => 'course_ratings#index', :as => 'index'
+
   #Api Keys
   resources :api_accesses, only: [:new,:create,:index,:destroy]
 
@@ -43,8 +47,8 @@ Rails.application.routes.draw do
     scope '/v1' do
       #Cursos
       post '/cursos/registrar' => 'courses#registrar_curso', :as => 'registrar_curso'
-      get '/cursos/avaliar' => 'courses#index_cursos_pendentes', :as => 'index_cursos_pendentes'
-      post '/cursos/avaliar' => 'courses#avaliar_curso', :as => 'avaliar_curso'
+      get '/cursos/aprovar' => 'courses#index_cursos_pendentes', :as => 'index_cursos_pendentes'
+      post '/cursos/aprovar' => 'courses#aprovar_curso', :as => 'aprovar_curso'
       get '/cursos/' => 'courses#index', :as => 'cursos'
       post '/cursos/buscar' => 'courses#buscar_cursos', :as => 'buscar_cursos'
       #Categoria de curso

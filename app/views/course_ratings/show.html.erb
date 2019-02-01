@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Course:</strong>
+  <%= @course_rating.course %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @course_rating.user %>
+</p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @course_rating.rating %>
+</p>
+
+<p>
+  <strong>Observation:</strong>
+  <%= @course_rating.observation %>
+</p>
+
+<%= link_to 'Edit', edit_course_rating_path(@course_rating) %> |
+<%= link_to 'Back', course_ratings_path %>

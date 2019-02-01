@@ -4,4 +4,5 @@ class Course < ApplicationRecord
   has_one_attached :logo
   has_many :certificates
   has_many :course_registrations
+  has_many :course_rating
 end

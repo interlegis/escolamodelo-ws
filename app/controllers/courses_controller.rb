@@ -59,7 +59,7 @@ class CoursesController < ApplicationController
     end
   end
 
-  def avaliar_curso
+  def aprovar_curso
     if params[:status].capitalize != "Aprovado" && params[:status].capitalize != "Reprovado" && params[:status].capitalize != "Pendente"
       render status: 400, json: {
           message: "Estado inválido",
@@ -131,7 +131,7 @@ class CoursesController < ApplicationController
          'carga_horaria' => c.carga_horaria,
          'iniciais_escola' => c.school.initials,
          'status' => c.status,
-         'visible' => c.visible
+         'visible' => c.visible,
         }
       end
       render status: 200, json: {
@@ -166,6 +166,7 @@ class CoursesController < ApplicationController
            'iniciais_escola' => c.school.initials,
            'status' => c.status,
            'visible' => c.visible,
+           'rating' => c.course_rating.average(:rating).to_s,
           }
         end
         render status: 200, json: {

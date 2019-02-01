@@ -2,18 +2,12 @@ class SchoolsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def registrar_escola
-    @api_key = ApiAccess.find_by(key: params[:key])
-    if @api_key.present?
-      if @api_key.api_access_level_id == 4
-        if params[:initials_school].present?
-          @school = School.find_by(initials: params[:initials_school])
-          if !params[:school][:initials].present?
-            params[:school][:initials] = @school.initials
-          end
-          if @school.update(school_params)
-            if params[:school][:logo].present?
+        @school = School.find_by(initials: params[:initials])
+        if @school.present?
+          if @school.update(url: params[:url], name: params[:name])
+            if params[:logo].present?
               require 'open-uri'
-              @school.logo.attach(io: open(params[:school][:logo]), filename: @school.name.downcase)
+              @school.logo.attach(io: open(params[:logo]), filename: @school.name.downcase)
             end
             render status: 200, json: {
                 message: "Escola atualizada com sucesso",
@@ -24,11 +18,11 @@ class SchoolsController < ApplicationController
             }.to_json
           end
         else
-          @school = School.new(school_params)
+          @school = School.new(url: params[:url], name: params[:name], initials: params[:initials])
           if @school.save
-            if params[:school][:logo].present?
+            if params[:logo].present?
               require 'open-uri'
-              @school.logo.attach(io: open(params[:school][:logo]), filename: @school.name.downcase)
+              @school.logo.attach(io: open(params[:logo]), filename: @school.name.downcase)
             end
             render status: 200, json: {
                 message: "Escola criada com sucesso",
@@ -39,16 +33,6 @@ class SchoolsController < ApplicationController
             }.to_json
           end
         end
-      else
-        render status: 400, json: {
-            message: "Permissão negada",
-        }.to_json
-      end
-    else
-      render status: 400, json: {
-          message: "Chave não encontrada",
-      }.to_json
-    end
   end
 
   def index

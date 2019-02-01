@@ -2,6 +2,9 @@ class SchoolsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def registrar_escola
+    @api_key = ApiAccess.find_by(key: params[:key])
+    if @api_key.present?
+      if @api_key.api_access_level_id == 4
         @school = School.find_by(initials: params[:initials])
         if @school.present?
           if @school.update(url: params[:url], name: params[:name])
@@ -33,6 +36,16 @@ class SchoolsController < ApplicationController
             }.to_json
           end
         end
+      else
+        render status: 400, json: {
+            message: "Permissão negada",
+        }.to_json
+      end
+    else
+      render status: 400, json: {
+          message: "Chave não encontrada",
+      }.to_json
+    end
   end
 
   def index

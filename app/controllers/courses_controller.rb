@@ -11,11 +11,7 @@ class CoursesController < ApplicationController
           @course = Course.find_by(ead_id: course_params[:ead_id], school_id: school.id)
           if @course #Verifica se o curso existe
             if @course.update(course_params)
-              if params[:course][:logo].present?
-                require 'open-uri'
-                @course.logo.purge
-                @course.logo.attach(io: open(params[:course][:logo]), filename: @course.name.downcase)
-              end
+              #Verificar presença de imagem da logo
               render status: 200, json: {
                   message: "Curso atualizado com sucesso",
               }.to_json
@@ -29,10 +25,7 @@ class CoursesController < ApplicationController
             @course.school_id = school.id
             @course.status = "Pendente"
             if @course.save
-              if params[:course][:logo].present?
-                require 'open-uri'
-                @course.logo.attach(io: open(params[:course][:logo]), filename: @course.name.downcase)
-              end
+              #@course.logo.attach(io: StringIO.new('https://saberes.senado.leg.br/images/logo_saberes_xl.png'), filename: 'logo_saberes.png', content_type: 'image/png')
               render status: 200, json: {
                   message: "Curso criado com sucesso",
               }.to_json
@@ -145,9 +138,6 @@ class CoursesController < ApplicationController
   end
 
   def index
-    @api_key = ApiAccess.find_by(key: params[:key])
-    if @api_key.present?
-      if @api_key.api_access_level_id >= 3
         courses = Course.all.where.not(status: ['Pendente', 'Reprovado'], visible: 'false')
         hash_courses = courses.map do |c|
           {'id' => c.id,
@@ -166,22 +156,18 @@ class CoursesController < ApplicationController
            'iniciais_escola' => c.school.initials,
            'status' => c.status,
            'visible' => c.visible,
-           'rating' => c.course_rating.average(:rating).to_s,
+           'rating' => c.course_rating.average(:rating),
+           'rating_percentage' =>
+                       if c.course_rating.average(:rating)
+                          (c.course_rating.average(:rating)/5*100).round(1).to_s
+                       else
+                          nil
+                       end,
           }
         end
         render status: 200, json: {
             cursos: hash_courses,
         }.to_json
-      else
-        render status: 400, json: {
-            message: "Permissão negada",
-        }.to_json
-      end
-    else
-      render status: 400, json: {
-          message: "Chave não encontrada",
-      }.to_json
-    end
   end
 
 

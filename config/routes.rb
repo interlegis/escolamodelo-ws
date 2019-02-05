@@ -62,7 +62,7 @@ Rails.application.routes.draw do
       get '/registros/' => 'course_registrations#cursos_usuario', :as => 'cursos_usuario'
       #Certificados
       post 'certificados/adicionar' => 'certificates#adicionar_certificado', :as => 'adicionar_certificado'
-      post 'certificados/detalhar' => 'certificates#detalhes_certificado', :as => 'detalhes_certificado'
+      get 'certificados/detalhar' => 'certificates#detalhes_certificado', :as => 'detalhes_certificado'
       get 'certificados/' => 'certificates#certificado_usuario', :as => 'certificado_usuario'
       #Fale conosco
       post '/fale_conosco/conversa' => 'contact_us_conversations#index', :as => 'conversa'

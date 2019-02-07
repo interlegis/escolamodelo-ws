@@ -41,13 +41,10 @@
                                             <div class="form-group">
                                                 <%= f.submit 'Entrar', class: 'btn btn-success btn-block' %>
                                             </div>
-                                            <a class="btn btn-block btn-social btn-facebook">
-                                                <span class="fab fa-facebook whitef"></span>
-                                                <div class="whitef">
-                                                    Sign in with Facebook
-                                                </div>
-                                            </a>
-                                            <a class="btn btn-block btn-social btn-google">
+                                            <div cclass="mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-phone mdc-layout-grid__cell--span-4-tablet">
+                                              <%= link_to image_tag('facebook_signin.png', border: 0, style: 'width: 200%; height: auto'), auth_at_provider_path(:provider => :facebook) %>
+                                            </div>
+                                                        <%= link_to image_tag('google_signin/1x/btn_google_signin_dark_normal_web.png', border: 0, style: 'width: 50%; height: auto'), auth_at_provider_path(:provider => :google) %>
                                                 <span class="fab fa-google whitef"></span>
                                                 <div class="whitef">
                                                     Sign in with Google

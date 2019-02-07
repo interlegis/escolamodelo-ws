@@ -9,8 +9,12 @@ class SchoolsController < ApplicationController
         if @school.present?
           if @school.update(url: params[:url], name: params[:name])
             if params[:logo].present?
-              require 'open-uri'
-              @school.logo.attach(io: open(params[:logo]), filename: @school.name.downcase)
+              begin
+                require 'open-uri'
+                @school.logo.attach(io: open(params[:logo]), filename: @school.name.downcase)
+              rescue => ex
+                logger.error ex.message
+              end
             end
             render status: 200, json: {
                 message: "Escola atualizada com sucesso",

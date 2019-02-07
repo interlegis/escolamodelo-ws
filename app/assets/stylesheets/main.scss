@@ -200,12 +200,17 @@ input:focus{
 .links a{
   margin-left: 4px;
 }
-
-.t30{
-  height: 30% !important;
+.spacing_buttons{
+  margin-bottom: 2%;
 }
-.t40{
-  height: 50% !important;
+.t15{
+  height: 15% !important;
+}
+.t60{
+  height: 60% !important;
+}
+.block{
+  display: block !important;
 }
 .titleProperties{
   color: whitesmoke;
@@ -229,6 +234,11 @@ hr.two:after {
 
 .whitef{
   color:white;
+
+}
+.sign_in_text{
+  color:white;
+  font-family: 'Numans', sans-serif !important;
 }
 .card-body{
   width: 100% !important;

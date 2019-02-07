@@ -1,4 +1,11 @@
-
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.1/css/mdb.min.css" rel="stylesheet">
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.1/js/mdb.min.js"></script>
 <header class="business-header bg-signin">
   <div class="container">
     <div class="row">
@@ -48,8 +55,6 @@
                         </label>
                     </div>
 
-
-
                       <div class="form-container-2">
                           <%= f.password_field :password, id: "password", placeholder: "Senha", :required => true %>
                       </div>
@@ -61,10 +66,10 @@
 
                     <div class="card-body row" style="margin: 0px !important;">
                       <div class="half" style="padding: 1%">
-                        <%= link_to 'Voltar', :back, class: "btn btn-primary btn-lg btn-block" %>
+                        <%= link_to 'Voltar', :back, class: "btn btn-primary btn-block block" %>
                       </div>
                       <div class="half" style="padding: 1%">
-                        <button type="submit" name="action" type="button" class="btn btn-success btn-lg btn-block">Concluir</button>
+                        <button type="submit" name="action" type="button" class="btn btn-success btn-block block">Concluir</button>
                       </div>
                     </div>
                     <% end %>
@@ -83,3 +88,5 @@
     </div>
   </div>
 </header>
+
+

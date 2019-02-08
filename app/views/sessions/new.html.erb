@@ -1,35 +1,10 @@
 <%= form_with url: sessions_path, scope: :user, local: true do |f| %>
-
-
-
-
-
-
-
 <!-- Material Design Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.1/css/mdb.min.css" rel="stylesheet">
-
 <!-- Bootstrap tooltips -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-<!-- Bootstrap core JavaScript -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.1/js/mdb.min.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <header class="business-header bg-overlay ">
     <div class="container animated fadeIn  ">
         <div class="row">
@@ -70,19 +45,18 @@
                                                 <a href="#">Esqueceu sua senha?</a>
                                             </div>
 
-                                            <div class="spacing_buttons">
-                                                <%= f.submit 'Entrar', class: 'btn btn-success btn-block block' %>
+                                            <div class="spacing_buttons" style="width: 100%">
+                                                <%= f.submit 'Entrar', class: 'btn btn-success btn-block block displaybck'%>
                                             </div>
+                                            <div class="customRow spacing_buttons">
+                                              <div class="" style="width: 50%; padding-right: 1%;">
+                                                   <%= link_to "", auth_at_provider_path(:provider => :facebook), class: "btn btn-block btn-social btn-facebook fab fa-facebook whitef" %>
+                                              </div>
 
-                                            <div class="spacing_buttons">
-                                                 <%= link_to "", auth_at_provider_path(:provider => :facebook), class: "btn btn-block btn-social btn-facebook fab fa-facebook whitef" %>
+                                              <div class="" style="width: 50%; padding-left: 1%;">
+                                                <%= link_to "", auth_at_provider_path(:provider => :google), class: "btn btn-block btn-social btn-google fab fa-google whitef" %>
+                                              </div>
                                             </div>
-
-                                            <div class="spacing_buttons">
-                                              <%= link_to "", auth_at_provider_path(:provider => :google), class: "btn btn-block btn-social btn-google fab fa-google whitef" %>
-                                            </div>
-
-
 
                                             <hr class="two">
                                             <div class="d-flex justify-content-center links" style="margin-top: 3%;">

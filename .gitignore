@@ -15,6 +15,7 @@
 .idea/*
 log/*
 tmp/*
+rvm-install
 
 
 # Ignore uploaded files in development

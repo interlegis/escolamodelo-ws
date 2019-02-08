@@ -462,7 +462,13 @@ form[role=login] > div {
 .form-links a {
   color: #fff;
 }
-
+.customRow{
+  display: flex;
+  width: 100%;
+}
+.displaybck{
+  display: block !important;
+}
 
 
 

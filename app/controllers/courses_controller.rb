@@ -168,12 +168,17 @@ class CoursesController < ApplicationController
            'status' => c.status,
            'visible' => c.visible,
            'rating' => c.course_rating.average(:rating),
-           'rating_percentage' =>
-                       if c.course_rating.average(:rating)
-                          (c.course_rating.average(:rating)/5*100).round(1).to_s
-                       else
-                          nil
-                       end,
+           'url' => if c.url?
+                      c.url
+                    else
+                      c.school.url +  "/course/view.php?id=" + c.ead_id.to_s
+                    end,
+          'rating_percentage' =>
+                   if c.course_rating.average(:rating)
+                      (c.course_rating.average(:rating)/5*100).round(1).to_s
+                   else
+                      nil
+             end,
           }
         end
         render status: 200, json: {

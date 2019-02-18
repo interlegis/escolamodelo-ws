@@ -74,6 +74,11 @@ class ContactUsConversationsController < ApplicationController
       end
     else # Conversa ainda não existe
       user=User.find_by(cpf: params[:cpf])
+      if user.nil?
+        return render status: 404, json: {
+          message: "Ocorreu um erro! CPF não encontrado no sistema."
+        }.to_json
+      end
       if params[:school_initials].present? == true and user.present?
         @conversation = user.contact_us_conversations.create(contact_us_conversation_params.merge(was_answered: false))
       else
@@ -154,6 +159,6 @@ class ContactUsConversationsController < ApplicationController
     params.permit(:type_conversation, :title, :school_initials, :course_id, :course_category_id, :description, :cpf, :name, :email, :user_id)
   end
   def contact_us_message_params
-    params.permit(:user_id, :cpf, :name, :email, :description, :is_student)
+    params.permit(:user_id, :cpf, :name, :email, :phone, :description, :is_student)
   end
 end

@@ -124,9 +124,17 @@ class CoursesController < ApplicationController
          'carga_horaria' => c.carga_horaria,
          'iniciais_escola' => c.school.initials,
          'status' => c.status,
+         'school' => c.school.initials,
+         'school_url' => c.school.url,
+         'url' => if c.url?
+                    c.url
+                  else
+                    c.school.url +  "/course/view.php?id=" + c.ead_id.to_s
+                  end,
          'visible' => c.visible,
         }
       end
+      print(hash_courses)
       render status: 200, json: {
           cursos: hash_courses,
       }.to_json
@@ -138,6 +146,9 @@ class CoursesController < ApplicationController
   end
 
   def index
+    @api_key = ApiAccess.find_by(key: params[:key])
+    if @api_key.present?
+      if @api_key.api_access_level_id >= 3
         courses = Course.all.where.not(status: ['Pendente', 'Reprovado'], visible: 'false')
         hash_courses = courses.map do |c|
           {'id' => c.id,
@@ -157,17 +168,32 @@ class CoursesController < ApplicationController
            'status' => c.status,
            'visible' => c.visible,
            'rating' => c.course_rating.average(:rating),
-           'rating_percentage' =>
-                       if c.course_rating.average(:rating)
-                          (c.course_rating.average(:rating)/5*100).round(1).to_s
-                       else
-                          nil
-                       end,
+           'url' => if c.url?
+                      c.url
+                    else
+                      c.school.url +  "/course/view.php?id=" + c.ead_id.to_s
+                    end,
+          'rating_percentage' =>
+                   if c.course_rating.average(:rating)
+                      (c.course_rating.average(:rating)/5*100).round(1).to_s
+                   else
+                      nil
+             end,
           }
         end
         render status: 200, json: {
             cursos: hash_courses,
         }.to_json
+      else
+        render status: 400, json: {
+            message: "Permissão negada",
+        }.to_json
+      end
+    else
+      render status: 400, json: {
+          message: "Chave não encontrada",
+      }.to_json
+    end
   end
 
 

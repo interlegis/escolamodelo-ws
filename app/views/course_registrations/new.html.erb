@@ -1,14 +1,37 @@
-<%= form_with url: registrado_curso_path, scope: :registration, local: true do |f| %>
-  <%= f.hidden_field :course_id, :value => @course.id %>
-  <%= f.hidden_field :redirect, :value => @redirect %>
-  <% @quiz_questions.each do |question| %>
-    <div class="mdc-select">
-      <%= f.select 'question' + question.id.to_s, options_for_select(question.quiz_answers.map {|answer| [answer.answer, answer.id]}), {}, {:class => 'mdc-select__native-control'} %>
-      <%= f.label 'question' + question.id.to_s, question.question, class: 'mdc-floating-label mdc-floating-label--float-above' %>
-      <div class="mdc-line-ripple"></div>
+<header class="business-header bg-overlay" style="overflow-y: hidden">
+    <div class="container animated fadeIn  ">
+        <div class="row">
+            <div class="col-lg-12  text-center align">
+                <div class="t60">
+                    <div class="card-body">
+                        <div class="container">
+                            <h3 class="titleProperties">INSCREVER-SE</h3>
+                            <div class="d-flex justify-content-center h-100">
+                                <div class="card cardSize">
+                                    <div class="card-body">
+                                        <%= form_with url: registrado_curso_path, scope: :registration, local: true do |f| %>
+                                          <%= f.hidden_field :course_id, :value => @course.id %>
+                                          <%= f.hidden_field :redirect, :value => @redirect %>
+                                          <% @quiz_questions.each do |question| %>
+                                            <div class="mdc-select" style="width: 100%; margin: 2px;">
+                                              <%= f.select 'question' + question.id.to_s, options_for_select(question.quiz_answers.map {|answer| [answer.answer, answer.id]}), {}, {:class => 'mdc-select__native-control maxWidth'} %>
+                                              <%= f.label 'question' + question.id.to_s, question.question, class: 'mdc-floating-label mdc-floating-label--float-above maxWidth' %>
+                                              <div class="mdc-line-ripple"></div>
+                                            </div>
+                                            <br>
+                                          <% end %>
+                                          <br>
+                                          <div class="propertiesButtonInscrever">
+                                           <%= f.submit 'Inscrever', class: 'mdc-button mdc-button--raised btn-block', style: 'background-color: red;' %>
+                                          </div>
+                                        <% end %>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <br>
-  <% end %>
-  <br>
-  <%= f.submit 'Inscrever', class: 'mdc-button mdc-button--raised', style: 'background-color: red;' %>
-<% end %>
+</header>

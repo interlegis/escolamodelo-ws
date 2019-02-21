@@ -6,6 +6,14 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.1/js/mdb.min.js"></script>
+<head>
+<script src="https://www.google.com/recaptcha/api.js"> </script>
+</head>
+
+
+<body>
+
+
 <header class="business-header bg-signin">
   <div class="container">
     <div class="row">
@@ -18,6 +26,7 @@
                 <div class="card tamanhoCardSign">
                   <div class="card-body text-color">
                       <%= form_for @user do |f| %>
+
                     <div class="form-container-2">
                         <label>
                             <%= f.text_field :first_name, :required => true, class: 'inputCampos', placeholder: "Nome" %>
@@ -64,6 +73,12 @@
                         <div class="pwstrength_viewport_progress"></div>
                       </div>
 
+
+
+
+
+<div class="g-recaptcha" data-sitekey="6LeuTJIUAAAAAABrepBzg2kjJx7j1Rerq7sgSTl7"></div>
+
                     <div class="card-body row" style="margin: 0px !important;">
                       <div class="half" style="padding: 1%">
                         <%= link_to 'Voltar', :back, class: "btn btn-primary btn-block block" %>
@@ -76,6 +91,7 @@
                     <div>
                       <% flash.each do |key, value| %>
                       <p style="color: red; text-align: right"><%= value %></p>
+
                       <% end %>
                     </div>
                   </div>
@@ -88,5 +104,5 @@
     </div>
   </div>
 </header>
-
+</body>
 

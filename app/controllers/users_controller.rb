@@ -12,7 +12,20 @@ class UsersController < ApplicationController
     existent_user = User.find_by('email = ? or cpf = ?', user_params[:email], user_params[:cpf])
     conseguiu = false
     email_cpf_repetido = false
-    if existent_user.present?
+
+
+
+
+    if verify_recaptcha && existent_user.present?
+
+
+
+
+
+
+
+
+
       if existent_user.crypted_password.present?
         email_cpf_repetido = true
       else

@@ -1,8 +1,10 @@
+
 <p><%= current_user.first_name %> <%= current_user.last_name %></p>
 <p><%= current_user.email %></p>
-<% if current_user.api_access.api_access_level_id > 2 %>
-  <p>Minha chave: <%= current_user.api_access.key %></p>
-<% end %>
+
+<%# if current_user.api_access.api_access_level_id > 2 %>
+<!--  <p>Minha chave: <%#= current_user.api_access.key %></p>-->
+<%# end %>
 <%= link_to 'Atualizar Perfil', edit_user_path(current_user) %>
 <br>
 <%= link_to 'Apagar conta', user_path(current_user.id), method: 'delete',

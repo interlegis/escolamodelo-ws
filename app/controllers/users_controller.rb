@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 
 
 
-    if verify_recaptcha && existent_user.present?
+    if existent_user.present?
 
 
 
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
       else
         redirect_to log_in_path(social: true)
       end
-    else
+    elsif verify_recaptcha
       conseguiu = @user.save
     end
     if conseguiu

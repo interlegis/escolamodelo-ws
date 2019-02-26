@@ -4,6 +4,18 @@
   .tamanhoCard{
     width: 100% !important;
   }
+  .tamanhoCardSign{
+    width: 100% !important;
+  }
+  .classPaddingVoltar{
+    width: 100% !important;
+  }
+  .classPaddingConcluir{
+    width: 100% !important;
+  }
+  .propertiesDivCaptcha{
+    margin-bottom: -5% !important;
+  }
 
 }
 
@@ -14,7 +26,18 @@
   .tamanhoCard{
     width: 100% !important;
   }
-
+  .tamanhoCardSign{
+    width: 100% !important;
+  }
+  .classPaddingVoltar{
+    width: 100% !important;
+  }
+  .classPaddingConcluir{
+    width: 100% !important;
+  }
+  .propertiesDivCaptcha{
+    margin-bottom: -3% !important;
+  }
 }
 
 @media screen and
@@ -23,7 +46,12 @@
   .tamanhoCard{
     width: 80% !important;
   }
-
+  .tamanhoCardSign{
+    width: 80% !important;
+  }
+  .propertiesDivCaptcha{
+    margin-bottom: -3% !important;
+  }
 }
 
 @media screen and
@@ -33,6 +61,12 @@
   .tamanhoCard{
     width: 80% !important;
   }
+  .tamanhoCardSign{
+    width: 80% !important;
+  }
+  .propertiesDivCaptcha{
+    margin-bottom: -3% !important;
+  }
 }
 
 @media screen and
@@ -41,7 +75,12 @@
   .tamanhoCard{
     width: 70% !important;
   }
-
+  .tamanhoCardSign{
+    width: 70% !important;
+  }
+  .propertiesDivCaptcha{
+    margin-bottom: -2% !important;
+  }
 }
 
 @media screen and
@@ -488,5 +527,23 @@ form[role=login] > div {
 .cardSize{
   width: 50%;
 }
+.classPaddingVoltar{
+  padding-left: 1%;
+  padding-right: 2px;
+  padding-top: 1%;
+  width: 50%;
 
-
+}
+.classPaddingConcluir{
+  padding-right: 1%;
+  padding-left: 2px;
+  padding-top: 1%;
+  width: 50%;
+}
+.propertiesDivCaptcha{
+  width: 100%;
+  text-align: center;
+  margin-top: 3%;
+  margin-left: 1%;
+  margin-bottom: -2%;
+}

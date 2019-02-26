@@ -53,7 +53,7 @@ Rails.application.routes.draw do
       post '/cursos/buscar' => 'courses#buscar_cursos', :as => 'buscar_cursos'
       #Categoria de curso
       post '/categorias_cursos/adicionar' => 'course_categories#adicionar_categoria', :as => 'adicionar_categoria'
-      patch '/categorias_cursos/atualizar' => 'course_categories#atualizar_categoria', :as => 'atualizar_categoria'
+      post '/categorias_cursos/atualizar' => 'course_categories#atualizar_categoria', :as => 'atualizar_categoria'
       get '/categorias_cursos/' => 'course_categories#index', :as => 'categorias_cursos'
       #Escolas
       post '/escolas/registrar' => 'schools#registrar_escola', :as => 'registrar_escola'

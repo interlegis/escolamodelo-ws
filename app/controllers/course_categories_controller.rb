@@ -5,7 +5,7 @@ class CourseCategoriesController < ApplicationController
     @api_key = ApiAccess.find_by(key: params[:key])
     if @api_key.present?
       if @api_key.api_access_level_id == 4
-        @category = CourseCategory.new(course_category_params)
+        @category = CourseCategory.new(:name => params[:name], :created_at => DateTime.now.to_date, :updated_at => DateTime.now.to_date)
         if @category.save
           #@course.logo.attach(io: StringIO.new('https://saberes.senado.leg.br/images/logo_saberes_xl.png'), filename: 'logo_saberes.png', content_type: 'image/png')
           render status: 200, json: {
@@ -32,9 +32,10 @@ class CourseCategoriesController < ApplicationController
     @api_key = ApiAccess.find_by(key: params[:key])
     if @api_key.present?
       if @api_key.api_access_level_id == 4
-        nome_cat = course_category_params[:name].split.map(&:capitalize).join(' ') if course_category_params[:name].present?
-        @category = CourseCategory.find_by(name: nome_cat)
-        @category.update(course_category_params)
+        if params[:id].present?
+          @category = CourseCategory.find_by(id: params[:id])
+          @category.update(name: params[:name])
+        end
         #verificar presença de imagem
         render status: 200, json: {
             message: "Categoria atualizada com sucesso",

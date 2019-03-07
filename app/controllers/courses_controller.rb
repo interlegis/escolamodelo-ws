@@ -11,10 +11,24 @@ class CoursesController < ApplicationController
           @course = Course.find_by(ead_id: course_params[:ead_id], school_id: school.id)
           if @course #Verifica se o curso existe
             if @course.update(course_params)
-              #Verificar presença de imagem da logo
-              render status: 200, json: {
-                  message: "Curso atualizado com sucesso",
-              }.to_json
+              if params[:course][:logo].present?
+                begin
+                  require 'open-uri'
+                  @course.logo.attach(io: open(params[:course][:logo]), filename: @course.name.downcase)
+                  render status: 200, json: {
+                      message: "Curso atualizado com sucesso",
+                  }.to_json
+                rescue => ex
+                  logger.error ex.message
+                  render status: 400, json: {
+                      message: "Não foi possível atualizar a logo do curso",
+                  }.to_json
+                end
+              else
+                render status: 200, json: {
+                    message: "Curso atualizado com sucesso",
+                }.to_json
+              end
             else
               render status: 400, json: {
                   message: "Não foi possível atualizar curso",
@@ -25,10 +39,24 @@ class CoursesController < ApplicationController
             @course.school_id = school.id
             @course.status = "Pendente"
             if @course.save
-              #@course.logo.attach(io: StringIO.new('https://saberes.senado.leg.br/images/logo_saberes_xl.png'), filename: 'logo_saberes.png', content_type: 'image/png')
-              render status: 200, json: {
-                  message: "Curso criado com sucesso",
-              }.to_json
+              if params[:course][:logo].present?
+                begin
+                  require 'open-uri'
+                  @course.logo.attach(io: open(params[:course][:logo]), filename: @course.name.downcase)
+                  render status: 200, json: {
+                      message: "Curso criado com sucesso",
+                  }.to_json
+                rescue => ex
+                  logger.error ex.message
+                  render status: 400, json: {
+                      message: "Não foi possível criar a logo do curso",
+                  }.to_json
+                end
+              else
+                render status: 200, json: {
+                    message: "Curso criado com sucesso",
+                }.to_json
+              end
             else
               render status: 400, json: {
                   message: "Não foi possível criar curso",

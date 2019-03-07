@@ -12,13 +12,20 @@ class SchoolsController < ApplicationController
               begin
                 require 'open-uri'
                 @school.logo.attach(io: open(params[:logo]), filename: @school.name.downcase)
+                render status: 200, json: {
+                    message: "Escola atualizada com sucesso",
+                }.to_json
               rescue => ex
                 logger.error ex.message
+                render status: 400, json: {
+                    message: "Não foi possível atualizar a logo da escola",
+                }.to_json
               end
+            else
+              render status: 200, json: {
+                  message: "Escola atualizada com sucesso",
+              }.to_json
             end
-            render status: 200, json: {
-                message: "Escola atualizada com sucesso",
-            }.to_json
           else
             render status: 400, json: {
                 message: "Não foi possível atualizar a escola",
@@ -28,12 +35,23 @@ class SchoolsController < ApplicationController
           @school = School.new(url: params[:url], name: params[:name], initials: params[:initials])
           if @school.save
             if params[:logo].present?
-              require 'open-uri'
-              @school.logo.attach(io: open(params[:logo]), filename: @school.name.downcase)
+              begin
+                require 'open-uri'
+                @school.logo.attach(io: open(params[:logo]), filename: @school.name.downcase)
+                render status: 200, json: {
+                    message: "Escola criada com sucesso",
+                }.to_json
+              rescue => ex
+                logger.error ex.message
+                render status: 400, json: {
+                    message: "Não foi possível criar a logo da escola",
+                }.to_json
+              end
+            else
+              render status: 200, json: {
+                  message: "Escola criada com sucesso",
+              }.to_json
             end
-            render status: 200, json: {
-                message: "Escola criada com sucesso",
-            }.to_json
           else
             render status: 400, json: {
                 message: "Não foi possível criar escola",

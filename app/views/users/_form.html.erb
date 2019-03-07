@@ -64,6 +64,11 @@
                         </label>
                     </div>
 
+                    <div class="custom-file">
+                        <%= f.file_field :avatar, class: 'custom-file-input' %>
+                        <%= f.label :avatar, 'Escolher Imagem de Perfil', class: 'custom-file-label' %>
+                    </div>
+
                       <div class="form-container-2">
                           <%= f.password_field :password, id: "password", placeholder: "Senha", :required => true %>
                       </div>

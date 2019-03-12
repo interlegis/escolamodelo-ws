@@ -7,7 +7,9 @@ class OauthsController < ApplicationController
   def callback
     provider = params[:provider]
     if @user = login_from(provider)
-      redirect_to user_path, :notice => "Logged in from #{provider.titleize}!"
+      @retorno = session[:login_back_url]
+      session[:login_back_url] = user_path
+      redirect_to @retorno, :notice => "Logged in from #{provider.titleize}!"
     else
       @user = build_from(provider)
       existent_user = User.find_by(email: @user.email)
@@ -27,7 +29,6 @@ class OauthsController < ApplicationController
       end
       @api=ApiAccess.create(user_id: @user.id, api_access_level_id: 1, key: key)
       login(params[:user][:email], params[:user][:password])
-      redirect_to user_path(@user)
       redirect_to adicionar_dados_path, :notice => "Logged in from #{provider.titleize}!"
     end
   end

@@ -31,7 +31,9 @@ class UsersController < ApplicationController
       end
       @api=ApiAccess.create(user_id: @user.id, api_access_level_id: 2, key: key)
       login(params[:user][:email], params[:user][:password])
-      redirect_to user_path(@user)
+      @retorno = session[:login_back_url]
+      session[:login_back_url] = user_path
+      redirect_to @retorno || user_path
     else
       @user = User.new(user_params)
       if @user.password.length < 8
@@ -83,7 +85,9 @@ class UsersController < ApplicationController
       if @user.cpf.present? and @user.api_access.api_access_level_id == 1
         @user.api_access.update(api_access_level_id: 2)
       end
-      redirect_to @user
+      @retorno = session[:login_back_url]
+      session[:login_back_url] = user_path
+      redirect_to @retorno || user_path
     else
       render 'edit'
     end
@@ -108,7 +112,9 @@ class UsersController < ApplicationController
   def adicionar_dados
     if current_user
       if current_user.cpf.present?
-        redirect_to user_path
+        @retorno = session[:login_back_url]
+        session[:login_back_url] = user_path
+        redirect_to @retorno || user_path
       else
         @user = current_user
       end

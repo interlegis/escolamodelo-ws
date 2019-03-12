@@ -5,15 +5,16 @@ class SessionsController < ApplicationController
       redirect_to root_path
     else
       @social = params[:social] #indica que o login deve ser feito por redes sociais
-      @retorno = params[:return]
+      session[:login_back_url] = params[:return] || user_path
     end
   end
 
   def create
     if login(params[:user][:email], params[:user][:password])
-      redirect_to params[:user][:return]
+      @retorno = session[:login_back_url]
+      session[:login_back_url] = user_path
+      redirect_to @retorno
     else
-      @retorno = params[:user][:return]
       render 'new'
     end
   end

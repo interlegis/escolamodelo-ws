@@ -12,20 +12,7 @@ class UsersController < ApplicationController
     existent_user = User.find_by('email = ? or cpf = ?', user_params[:email], user_params[:cpf])
     conseguiu = false
     email_cpf_repetido = false
-
-
-
-
     if existent_user.present?
-
-
-
-
-
-
-
-
-
       if existent_user.crypted_password.present?
         email_cpf_repetido = true
       else
@@ -42,7 +29,7 @@ class UsersController < ApplicationController
         api=ApiAccess.find_by(key: key)
         break if !api.present?
       end
-      @api=ApiAccess.new(user_id: @user.id, api_access_level_id: 1, key: key)
+      @api=ApiAccess.create(user_id: @user.id, api_access_level_id: 2, key: key)
       login(params[:user][:email], params[:user][:password])
       redirect_to user_path(@user)
     else

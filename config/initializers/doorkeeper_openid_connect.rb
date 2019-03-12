@@ -110,5 +110,14 @@ EOL
     claim :token_id, scope: :openid do |user, scopes, token|
       token.id
     end
+    claim :profile_image, scope: :openid do |user,scopes|
+      if scopes.exists?(:profile)
+        if user.avatar.attached?
+          Rails.application.routes.url_helpers.rails_blob_path(user.avatar, only_path: true)
+        else
+          ''
+        end
+      end
+    end
   end
 end

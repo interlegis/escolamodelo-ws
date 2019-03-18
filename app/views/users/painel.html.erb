@@ -1,8 +1,111 @@
-<p><%= current_user.first_name %> <%= current_user.last_name %></p>
-<p><%= current_user.email %></p>
-<p>Minha chave: <%= current_user.api_access.key %></p>
-<%= link_to 'Chaves de usuários', api_accesses_path %>
-<br>
-<%= link_to 'Aplicações OAUTH', oauth_applications_path %>
-<br>
-<%= link_to 'Atualizar Perfil', edit_user_path(current_user) %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="Author" content="Shapeways Inc." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Test</title>
+  <link rel="stylesheet" type="text/css" href="https://static1.sw-cdn.net/rrstatic/stylesheets/screen.css?tag=jX6n_7ioYUIrDbnK">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="style.css">
+<script type="text/javascript" src="../../assets/javascripts/panel_1.js"></script>
+</head>
+<body class="sct-sw ">
+  <div class="sw--clearfix sw--position-relative">
+    <div class="sw-dms-section sw-grid-flex sw--width-full sw-grid-flex--wrap--mob sw-grid-flex--wrap--tab sw-dms-flex--nowrap--mob-landscape">
+    <div class="sw-dms-banner sw-dms-panel--mob sw-dms-panel--mob-tab sw-dms-panel--mob-xs sw-dms-panel--tab sw-dms-banner--tab sw-dms-banner--mob sw-grid-flex__cell-1-4 sw--width-full sw--padding-hor-7 sw-grid-flex__cell-1-1--mob sw-grid-flex__cell-1-1--tab sw-dms-flex__cell-1-4--mob-landscape sw--position-relative">
+        <div class="sw-logo-container">
+            <!-- <img src="https://static1.sw-cdn.net/files/cms/dms/homepage/ShapewaysLogo_RGB_Red.svg" class="sw-logo sw--hide-mobile sw--hide-tablet"> -->
+        </div>
+        <label style="word-break: break-all;padding-right: 35px;" class="sw-dms-banner__text sw-dms__text--responsive sw-dms__text--responsive-small sw-dms-banner__textÃÂ¢ÃÂÃÂ-tab sw-dms-banner__text--mob sw--position-absolute sw--text-white">NOME:<%= current_user.first_name %> <%= current_user.last_name %> <br> EMAIL: <%= current_user.email %><br>MINHA CHAVE: <%= current_user.api_access.key %></label>
+        <!-- <img class="sw--position-absolute sw-red-cursor sw--hide-mobile sw--hide-tablet" src="https://static1.sw-cdn.net/files/cms/dms/homepage/ruby-carrot.svg"> -->
+    </div>
+    <div data-sw-dms-panel-container class="sw-dms-panel-container sw--text-white sw-grid-flex sw-grid-flex__cell-3-4 sw-grid-flex__cell-1-1--mob sw-grid-flex__cell-1-1--tab sw-dms-flex__cell-3-4--mob-landscape sw-grid-flex--wrap--mob sw-grid-flex--wrap--tab sw-dms-flex--nowrap--mob-landscape sw--position-relative">
+        <div data-sw-dms-panel-container-bg="design" class="sw-dms-panel-container-bg sw-dms-panel-container-bg__design"></div>
+        <div data-sw-dms-panel-container-bg="make" class="sw-dms-panel-container-bg sw-dms-panel-container-bg__make"></div>
+        <div data-sw-dms-panel-container-bg="sell" class="sw-dms-panel-container-bg sw-dms-panel-container-bg__sell"></div>
+        <div data-sw-dms-panel="design" class="sw-dms-panel sw-dms-panel--tab-xl sw-dms-panel--mob-tab sw-dms-panel--mob-xs sw-design-panel sw-design-panel--mob-tab sw-grid-flex__cell-1-3 sw-grid-flex__cell-1-1--mob sw-grid-flex__cell-1-1--tab sw-dms-flex__cell-1-3--mob-landscape sw--position-relative">
+            <div class="sw-design-panel__bg sw-bg-panel sw-bg-panel--mob-tab"></div>
+            <div class="sw-dms-panel__inner-div sw-dms-panel__inner-div--tab sw-dms-panel__inner-div--mob sw--position-absolute sw--padding-hor-7">
+                <h2 class="sw--margin-bottom-1 sw-dms-panel-header sw-dms__text--responsive sw-dms__text--responsive-small sw-dms-panel-header--big sw-dms-panel-header--mob sw-dms-panel-headerÃÂ¢ÃÂÃÂ-tab sw--font-family-sharp-grotesque">Chaves de usuários</h2>
+      <br>
+                  <%= link_to 'Chaves de usuários', api_accesses_path, class: 'sw--uppercase sw--hide-mobile sw--hide-tablet sw-dms-button sw-dms-button--red sw-dms-button--big sw--margin-bottom-k' %>
+                <p class="sw--margin-top-1 sw-dms-panel__inner-div__main-text sw-dms-panel__inner-div__main-text--tab sw-dms-panel__inner-div__main-text--mob-tab">Consulte todas as chaves de usuários do sistema</p>
+                <a data-creator-choice-button="/img/rrstatic/design.img" class="sw--uppercase sw--hide-desktop sw-dms-button sw-dms-button--red sw-dms-button--big sw--margin-top-5" href="#">Button</a>
+            </div>
+        </div>
+        <div data-sw-dms-panel="make" class="sw-dms-panel sw-dms-panel--tab-xl sw-dms-panel--mob-tab sw-dms-panel--mob-xs sw-make-panel sw-make-panel--mob-tab sw-grid-flex__cell-1-3 sw-grid-flex__cell-1-1--mob sw-grid-flex__cell-1-1--tab sw-dms-flex__cell-1-3--mob-landscape sw--position-relative">
+            <div class="sw-make-panel__left-border sw-make-panel-border sw--is-hidden"></div>
+            <div class="sw-make-panel__right-border sw-make-panel-border sw--is-hidden"></div>
+            <div class="sw-make-panel__bg sw-bg-panel sw-bg-panel--mob-tab"></div>
+            <div class="sw-dms-panel__inner-div sw-dms-panel__inner-div--tab sw-dms-panel__inner-div--mob sw--position-absolute sw--padding-hor-7">
+                <h2 class="sw--margin-bottom-1 sw-dms-panel-header sw-dms-panel-header--big sw-dms__text--responsive sw-dms__text--responsive-small sw-dms-panel-header--mob sw-dms-panel-headerÃÂ¢ÃÂÃÂ-tab sw--font-family-sharp-grotesque">Aplicações OAUTH </h2>
+                  <br>
+                  <%= link_to 'Aplicações OAUTH', oauth_applications_path, class: 'sw--uppercase sw--hide-mobile sw--hide-tablet sw-dms-button sw-dms-button--red sw-dms-button--big sw--margin-bottom-'%>
+                <p class="sw--margin-top-1 sw-dms-panel__inner-div__main-text sw-dms-panel__inner-div__main-text--tab sw-dms-panel__inner-div__main-text--mob-tab">Veja aqui todas as aplicações OAUTH disponíveis.</p>
+                <a data-creator-choice-button="/img/rrstatic/make.img" class="sw--uppercase sw--hide-desktop sw-dms-button sw-dms-button--red sw-dms-button--big sw--margin-top-5" href="#">Button</a>
+            </div>
+        </div>
+        <div data-sw-dms-panel="sell" class="sw-dms-panel sw-dms-panel--tab-xl sw-dms-panel--mob-tab sw-dms-panel--mob-xs sw-sell-panel sw-sell-panel--mob-tab sw-grid-flex__cell-1-3 sw-grid-flex__cell-1-1--mob sw-grid-flex__cell-1-1--tab sw-dms-flex__cell-1-3--mob-landscape sw--position-relative">
+            <div class="sw-sell-panel__bg sw-bg-panel sw-bg-panel--mob-tab"></div>
+            <div class="sw-dms-panel__inner-div sw-dms-panel__inner-div--tab sw-dms-panel__inner-div--mob sw--position-absolute sw--padding-hor-7">
+                <h2 class="sw--margin-bottom-1 sw-dms-panel-header sw-dms-panel-header--big sw-dms__text--responsive sw-dms__text--responsive-small sw-dms-panel-header--mob sw-dms-panel-headerÃÂ¢ÃÂÃÂ-tab sw--font-family-sharp-grotesque">Atualizar Perfil</h2>
+                 <br>
+                  <%= link_to 'Atualizar Perfil', edit_user_path(current_user), class:'sw--uppercase sw--hide-mobile sw--hide-tablet sw-dms-button sw-dms-button--red sw-dms-button--big sw--margin-bottom-' %>
+                <p class="sw--margin-top-1 sw-dms-panel__inner-div__main-text sw-dms-panel__inner-div__main-text--tab sw-dms-panel__inner-div__main-text--mob-tab">Faça aqui alterações do seu perfil, tais como e-mail, senha, foto de usuário, nome e muito mais.</p>
+                <a data-creator-choice-button="/img/rrstatic/sell.img" class="sw--uppercase sw--hide-desktop sw-dms-button sw-dms-button--red sw-dms-button--big sw--margin-top-5" href="#">Button</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    //Load this JS for non-touch devices
+    if (!window.Modernizr.touch) {
+      var $dmsSectionPanels = $('[data-sw-dms-panel]');
+      var $dmsSectionContainer = $('[data-sw-dms-panel-container]');
+      var dmsValue = '';
+
+      $dmsSectionPanels.mouseenter(function () {
+        var _this = $(this);
+        var newDmsValue = _this.data('swDmsPanel');
+        var str = "[data-sw-dms-panel-container-bg=" + newDmsValue + ']';
+        var activeContainerBg = $('.sw-dms-panel-container-bg--active');
+        var container = $dmsSectionContainer.find(str);
+
+        container.css('opacity', 1);
+        container.addClass('sw-dms-panel-container-bg--active');
+
+        $('.sw-make-panel-border').show();
+
+        $dmsSectionPanels.each(function (i, obj) {
+          if ($(obj).data('swDmsPanel') !== newDmsValue) {
+            $(obj).find('.sw-dms-panel__inner-div').addClass('sw-dms-panel__inner-div--transparent');
+          }
+          else {
+            $(obj).find('.sw-dms-panel__inner-div').removeClass('sw-dms-panel__inner-div--transparent');
+            $(obj).find('.sw-dms-panel__inner-div__main-text').css('opacity', 1);
+          }
+          $(obj).find('.sw-bg-panel').css('opacity', 0);
+        });
+
+        if (dmsValue !== newDmsValue) {
+          dmsValue = newDmsValue;
+          activeContainerBg.css('opacity', 0);
+          activeContainerBg.removeClass('sw-dms-panel-container-bg--active');
+        }
+      });
+
+      $dmsSectionPanels.mouseleave(function () {
+        $('.sw-make-panel-border').hide();
+        $dmsSectionPanels.each(function (i, obj) {
+          $(obj).find('.sw-bg-panel').css('opacity', 1);
+          $(obj).find('.sw-dms-panel__inner-div').removeClass('sw-dms-panel__inner-div--transparent');
+          $(obj).find('.sw-dms-panel__inner-div__main-text').css('opacity', 0);
+        });
+      });
+
+    }
+</script>
+  </div>
+</body>
+</html>

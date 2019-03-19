@@ -17,7 +17,7 @@
         <div class="sw-logo-container">
             <!-- <img src="https://static1.sw-cdn.net/files/cms/dms/homepage/ShapewaysLogo_RGB_Red.svg" class="sw-logo sw--hide-mobile sw--hide-tablet"> -->
         </div>
-        <h7 style="word-break: break-all;padding-right: 35px;" class="sw-dms-banner__text sw-dms__text--responsive sw-dms__text--responsive-small sw-dms-banner__textÃÂ¢ÃÂÃÂ-tab sw-dms-banner__text--mob sw--position-absolute sw--text-white">NOME:<%= current_user.first_name %> <%= current_user.last_name %> <br> EMAIL: <%= current_user.email %><br>MINHA CHAVE: <%= current_user.api_access.key %></h7>
+        <h7 style="word-break: break-all;padding-right: 35px;" class="sw-dms-banner__text  sw-dms-banner__textÃÂ¢ÃÂÃÂ-tab sw-dms-banner__text--mob sw--position-absolute sw--text-white">NOME:<%= current_user.first_name %> <%= current_user.last_name %> <br> EMAIL: <%= current_user.email %><br>MINHA CHAVE: <%= current_user.api_access.key %></h7>
         <!-- <img class="sw--position-absolute sw-red-cursor sw--hide-mobile sw--hide-tablet" src="https://static1.sw-cdn.net/files/cms/dms/homepage/ruby-carrot.svg"> -->
     </div>
     <div data-sw-dms-panel-container class="sw-dms-panel-container sw--text-white sw-grid-flex sw-grid-flex__cell-3-4 sw-grid-flex__cell-1-1--mob sw-grid-flex__cell-1-1--tab sw-dms-flex__cell-3-4--mob-landscape sw-grid-flex--wrap--mob sw-grid-flex--wrap--tab sw-dms-flex--nowrap--mob-landscape sw--position-relative">
@@ -31,7 +31,7 @@
       <br>
                   <%= link_to 'Chaves de usuários', api_accesses_path, class: 'sw--uppercase sw--hide-mobile sw--hide-tablet sw-dms-button sw-dms-button--red sw-dms-button--big sw--margin-bottom-k' %>
                 <p class="sw--margin-top-1 sw-dms-panel__inner-div__main-text sw-dms-panel__inner-div__main-text--tab sw-dms-panel__inner-div__main-text--mob-tab">Consulte todas as chaves de usuários do sistema</p>
-                <a data-creator-choice-button="/img/rrstatic/design.img" class="sw--uppercase sw--hide-desktop sw-dms-button sw-dms-button--red sw-dms-button--big sw--margin-top-5" href="#">Button</a>
+                 <%= link_to 'Chaves de usuários', api_accesses_path, class: 'sw--uppercase sw--hide-desktop sw-dms-button sw-dms-button--red sw-dms-button--big sw--margin-top-k' %>
             </div>
         </div>
         <div data-sw-dms-panel="make" class="sw-dms-panel sw-dms-panel--tab-xl sw-dms-panel--mob-tab sw-dms-panel--mob-xs sw-make-panel sw-make-panel--mob-tab sw-grid-flex__cell-1-3 sw-grid-flex__cell-1-1--mob sw-grid-flex__cell-1-1--tab sw-dms-flex__cell-1-3--mob-landscape sw--position-relative">
@@ -43,7 +43,7 @@
                   <br>
                   <%= link_to 'Aplicações OAUTH', oauth_applications_path, class: 'sw--uppercase sw--hide-mobile sw--hide-tablet sw-dms-button sw-dms-button--red sw-dms-button--big sw--margin-bottom-'%>
                 <p class="sw--margin-top-1 sw-dms-panel__inner-div__main-text sw-dms-panel__inner-div__main-text--tab sw-dms-panel__inner-div__main-text--mob-tab">Veja aqui todas as aplicações OAUTH disponíveis.</p>
-                <a data-creator-choice-button="/img/rrstatic/make.img" class="sw--uppercase sw--hide-desktop sw-dms-button sw-dms-button--red sw-dms-button--big sw--margin-top-5" href="#">Button</a>
+                <%= link_to 'Aplicações OAUTH', oauth_applications_path, class: 'sw--uppercase sw--hide-desktop sw-dms-button sw-dms-button--red sw-dms-button--big sw--margin-top-5'%>
             </div>
         </div>
         <div data-sw-dms-panel="sell" class="sw-dms-panel sw-dms-panel--tab-xl sw-dms-panel--mob-tab sw-dms-panel--mob-xs sw-sell-panel sw-sell-panel--mob-tab sw-grid-flex__cell-1-3 sw-grid-flex__cell-1-1--mob sw-grid-flex__cell-1-1--tab sw-dms-flex__cell-1-3--mob-landscape sw--position-relative">
@@ -53,7 +53,7 @@
                  <br>
                   <%= link_to 'Atualizar Perfil', edit_user_path(current_user), class:'sw--uppercase sw--hide-mobile sw--hide-tablet sw-dms-button sw-dms-button--red sw-dms-button--big sw--margin-bottom-' %>
                 <p class="sw--margin-top-1 sw-dms-panel__inner-div__main-text sw-dms-panel__inner-div__main-text--tab sw-dms-panel__inner-div__main-text--mob-tab">Faça aqui alterações do seu perfil, tais como e-mail, senha, foto de usuário, nome e muito mais.</p>
-                <a data-creator-choice-button="/img/rrstatic/sell.img" class="sw--uppercase sw--hide-desktop sw-dms-button sw-dms-button--red sw-dms-button--big sw--margin-top-5" href="#">Button</a>
+                 <%= link_to 'Atualizar Perfil', edit_user_path(current_user), class:'sw--uppercase sw--hide-desktop sw-dms-button sw-dms-button--red sw-dms-button--big sw--margin-top-5' %>
             </div>
         </div>
     </div>

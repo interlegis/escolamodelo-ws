@@ -16,13 +16,23 @@
   .propertiesDivCaptcha{
     margin-bottom: -5% !important;
   }
+  .tamPadding{
+    padding-left: 1px !important;
+    padding-right: 1px !important;
+  }
+  .txt-properties{
+    font-size: 20px !important;
+  }
 
 }
 
 @media screen and
 (min-width: 450px) and
 (max-width: 575px) {
-
+  .tamPadding{
+    padding-left: 1% !important;
+    padding-right: 1% !important;
+  }
   .tamanhoCard{
     width: 100% !important;
   }
@@ -43,6 +53,10 @@
 @media screen and
 (min-width: 576px) and
 (max-width: 639px) {
+  .tamPadding{
+    padding-left: 2% !important;
+    padding-right: 2% !important;
+  }
   .tamanhoCard{
     width: 80% !important;
   }
@@ -542,4 +556,21 @@ form[role=login] > div {
   margin-top: 3%;
   margin-left: 1%;
   margin-bottom: -2%;
+}
+.bgProperties{
+    background-color: rgba(0,0,0,0.9);
+}
+.txt-properties{
+  text-align: center;
+  font-weight: bolder;
+  color: white;
+  font-size: 40px;
+}
+.txt-bg-properties{
+  padding-top: 5%;
+  padding-bottom: 2%;
+}
+.tamPadding{
+  padding-left: 20%;
+  padding-right: 20%;
 }

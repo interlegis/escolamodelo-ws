@@ -5,73 +5,73 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.1/js/mdb.min.js"></script>
-<header class="business-header bg-overlay ">
+  <header class="business-header bg-overlay ">
     <div class="container animated fadeIn  ">
-        <div class="row">
-            <div class="col-lg-12  text-center align">
-                <div class="t15">
-                </div>
-                <div class="t60">
-                    <div class="card-body">
-                        <div class="container">
-                            <h3 class="titleProperties">LOG IN</h3>
-                            <div class="d-flex justify-content-center h-100">
-                                <div class="card tamanhoCard">
-                                    <div class="card-body">
-                                        <form>
-                                            <div class="form-container-2">
-                                                <lable>
-                                                    <%= f.text_field :email, class: 'inputCampos',
-                                                    'aria-controls': 'email-helper-text',
-                                                    'aria-describedby': 'email-helper-text', placeholder: "E-Mail" %>
-                                                </lable>
-                                            </div>
-
-                                            <div class="form-container-2">
-                                                <label>
-                                                    <%= f.password_field :password, class: 'inputCampos', placeholder: "Senha"  %>
-                                                </label>
-                                            </div>
-
-                                            <p id="email-helper-text" class="mdc-text-field-helper-text mdc-text-field-helper-text--validation-msg" aria-hidden="true">
-                                            Um email é necessário
-                                            </p>
-
-                                            <div class="d-flex row" style="width: 100%; justify-content: space-between;">
-                                              <div class="remember">
-                                                  <input type="checkbox">Lembrar
-                                              </div>
-                                                <a href="#">Esqueceu sua senha?</a>
-                                            </div>
-
-                                            <div class="spacing_buttons" style="width: 100%">
-                                                <%= f.submit 'Entrar', class: 'btn btn-success btn-block block displaybck'%>
-                                            </div>
-                                            <div class="customRow spacing_buttons">
-                                              <div class="" style="width: 50%; padding-right: 1%;">
-                                                   <%= link_to "", auth_at_provider_path(:provider => :facebook), class: "btn btn-block btn-social btn-facebook fab fa-facebook whitef" %>
-                                              </div>
-
-                                              <div class="" style="width: 50%; padding-left: 1%;">
-                                                <%= link_to "", auth_at_provider_path(:provider => :google), class: "btn btn-block btn-social btn-google fab fa-google whitef" %>
-                                              </div>
-                                            </div>
-
-                                            <hr class="two">
-                                            <div class="d-flex justify-content-center links" style="margin-top: 3%;">
-                                                <%= link_to 'Registrar', new_user_path, class: 'btn btn-danger btn-block' %>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
+      <div class="row">
+        <div class="col-lg-12  text-center align">
+          <div class="t15">
+          </div>
+          <div class="t60">
+            <div class="card-body">
+              <div class="container">
+                <div class="d-flex justify-content-center h-100">
+                  <div class="card tamanhoCard">
+                    <div class="card-body padding2pc">
+                      <form>
+                        <label class="titleProperties">Log In</label>
+                        <div class="form-container-2 padding2px">
+                          <lable>
+                          <%= f.text_field :email, class: 'inputCampos',
+                          'aria-controls': 'email-helper-text',
+                          'aria-describedby': 'email-helper-text', placeholder: "E-Mail" %>
+                          </lable>
                         </div>
+                        <div class="form-container-2 padding2px">
+                          <label>
+                            <%= f.password_field :password, class: 'inputCampos', placeholder: "Senha"  %>
+                          </label>
+                        </div>
+                        <p id="email-helper-text" class="mdc-text-field-helper-text mdc-text-field-helper-text--validation-msg padding2px" aria-hidden="true">
+                          Um email é necessário
+                        </p>
+                        <div class="d-flex row propertiesRowLembrar">
+                          <div class="remember">
+                            <input type="checkbox">Lembrar
+                          </div>
+                          <a href="#">Esqueceu sua senha?</a>
+                        </div>
+                        <div class="spacing_buttons padding2px" style="width: 100%">
+                          <%= f.submit 'Entrar', class: 'btn btn-success btn-block block displaybck'%>
+                        </div>
+                        <div class="row propertiesRowSocial">
+                          <div class="tamanhoRowSocial">
+                            <button style="" class="btn-block loginBtn loginBtn--facebook">
+                              Login
+                              <%= link_to "", auth_at_provider_path(:provider => :facebook) %>
+                            </button>
+                          </div>
+                          <div class="tamanhoRowSocial">
+                            <button style="" class="btn-block loginBtn loginBtn--google">
+                              Login
+                              <%= link_to "", auth_at_provider_path(:provider => :google) %>
+                            </button>
+                          </div>
+                        </div>
+                        <hr class="two">
+                        <div class="d-flex justify-content-center links padding2px">
+                          <%= link_to 'Registrar', new_user_path, class: 'btn btn-danger btn-block block displaybck' %>
+                        </div>
+                      </form>
                     </div>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-</header>
+  </header>
 <% end %>
 <style>
 .waves-input-wrapper{

@@ -7,6 +7,6 @@
 <%# end %>
 <%= link_to 'Atualizar Perfil', edit_user_path(current_user) %>
 <br>
-<%= link_to 'Apagar conta', user_path(current_user.id), method: 'delete',
+<%= link_to 'Apagar conta', apagar_usuario_path(current_user.id), method: 'delete',
               class:'btn-floating halfway-fab waves-effect waves-light logo-color-orange',
               data: {confirm: "Tem certeza que deseja excluir sua conta?"} %>

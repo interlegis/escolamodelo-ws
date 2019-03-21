@@ -10,11 +10,12 @@ Rails.application.routes.draw do
   use_doorkeeper
   root 'pages#index'
   get '/minha_conta' => 'users#show', :as => 'user'
-  resources :users, only: [:new, :create, :edit, :destroy]
+  resources :users, only: [:new, :create, :edit]
   patch '/users/:id' => 'users#update', :as => 'atualizar_usuario'
   get '/users/dados' => 'users#adicionar_dados', :as => 'adicionar_dados'
   get '/painel' => 'users#painel', :as => 'painel'
   get '/sign_up' => 'users#new', :as => 'sign_up'
+  delete '/users/:id' => 'users#destroy', :as => 'apagar_usuario'
   resources :password_resets, only: [:new, :create, :edit, :update]
   resources :sessions, only: [:new, :create]
   get '/log_in', to: 'sessions#new', as: :log_in

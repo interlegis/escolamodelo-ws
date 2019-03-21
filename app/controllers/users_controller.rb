@@ -74,6 +74,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    @retorno = session[:login_back_url]
     @user = User.find(params[:id])
     unless current_user == @user
       redirect_to log_in_path
@@ -85,7 +86,6 @@ class UsersController < ApplicationController
       if @user.cpf.present? and @user.api_access.api_access_level_id == 1
         @user.api_access.update(api_access_level_id: 2)
       end
-      @retorno = session[:login_back_url]
       session[:login_back_url] = user_path
       redirect_to @retorno || user_path
     else
@@ -111,6 +111,8 @@ class UsersController < ApplicationController
 
   def adicionar_dados
     if current_user
+      @retorno = session[:login_back_url]
+      print('retorno: ' + @retorno)
       if current_user.cpf.present?
         @retorno = session[:login_back_url]
         session[:login_back_url] = user_path

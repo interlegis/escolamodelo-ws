@@ -21,10 +21,10 @@
         <div>
           <div class="card-body">
             <div class="container">
-              <h3 class="titleProperties">Registrar Conta</h3>
               <div class="d-flex justify-content-center h-100">
                 <div class="card tamanhoCardSign">
                   <div class="card-body text-color">
+                      <h3 class="titleProperties">Registrar Conta</h3>
                       <%= form_for @user do |f| %>
 
                     <div class="form-container-2">
@@ -65,9 +65,9 @@
                     </div>
 
                     <div class="form-container-2">
-                       <label class="inputCampos2">
+                       <label class="inputPropertiesPhoto">
                         <%= f.file_field :avatar, placeholder: "Escolher Imagem de Perfil" %>
-                        <%= f.label :avatar, 'Escolher Imagem de Perfil', class: 'custom-file-label' %>
+                        <%= f.label :avatar, '⠀', class: '' %>
                         </label>
                     </div>
 
@@ -86,11 +86,11 @@
                     <div class="card-body row" style="margin: 0px !important;  padding: 0px !important;">
 
                       <div class="classPaddingVoltar" style="padding: 1%;">
-                        <%= link_to 'Voltar', :back, class: "btn btn-primary btn-block block" %>
+                        <%= link_to 'Voltar', :back, class: "btn btn-primary btn-block block hoverPrimary" %>
                       </div>
 
                       <div class="classPaddingConcluir" style="padding: 1%;">
-                        <button type="submit" name="action" type="button" class="btn btn-success btn-block block">Concluir</button>
+                        <button type="submit" name="action" type="button" class="btn btn-success btn-block block hoverSuccess">Concluir</button>
                       </div>
                     </div>
                     <% end %>

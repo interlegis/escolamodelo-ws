@@ -1,4 +1,3 @@
-
 <header class="business-header bg-signin">
   <div class="container">
     <div class="row">
@@ -6,10 +5,11 @@
         <div>
           <div class="card-body">
             <div class="container">
-              <h3 class="titleProperties">Atualizar Perfil</h3>
+
               <div class="d-flex justify-content-center h-100">
                 <div class="card tamanhoCardSign">
                   <div class="card-body text-color">
+                  <h3 class="titleProperties">Atualizar Perfil</h3>
                       <%= form_for @user do |f| %>
                     <div class="form-container-2">
                         <label>
@@ -35,7 +35,6 @@
                         </label>
                     </div>
 
-
                     <div class="form-container-2">
                         <label>
                             <%= f.text_field :birth, 'data-mask': '00/00/0000', class: 'inputCampos', placeholder: "Data de Nascimento", :required => true %>
@@ -48,23 +47,25 @@
                         </label>
                     </div>
 
-                    <div class="custom-file">
-                        <%= f.file_field :avatar, class: 'custom-file-input' %>
-                        <%= f.label :avatar, 'Escolher Imagem de Perfil', class: 'custom-file-label' %>
+                    <div class="form-container-2">
+                    <label class="inputPropertiesPhoto">
+                        <%= f.file_field :avatar, placeholder: "Escolher Imagem de Perfil" %>
+                        <%= f.label :avatar, '⠀', class: '' %>
+                        </label>
                     </div>
 
                       <div class="form-container-2">
-                          <%= f.password_field :password, id: "Password", placeholder: "Nova Senha" %>
+                          <%= f.password_field :password, id: "Password", placeholder: "Nova Senha", class:'mb1pc' %>
                           <%= f.password_field :password_confirmation, placeholder: "Confirmação de nova senha" %>
-                          <div class="pwstrength_viewport_progress"></div>
                       </div>
 
                     <div class="card-body row" style="margin: 0px !important;">
                       <div class="half" style="padding: 1%">
-                        <%= link_to 'Voltar', :back, class: "btn btn-primary btn-lg btn-block" %>
+                      <a href="/painel" class="btn btn-dangerImp btn-block block displaybck white"> Voltar</a>
+
                       </div>
                       <div class="half" style="padding: 1%">
-                        <button type="submit" name="action" type="button" class="btn btn-success btn-lg btn-block">Concluir</button>
+                        <button type="submit" name="action" type="button" class="btn btn-successImp btn-block block displaybck white">Concluir</button>
                       </div>
                     </div>
                     <% end %>

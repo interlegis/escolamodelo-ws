@@ -11123,7 +11123,7 @@ div.confirmedSales {
 .btn-secondary,
 .sw-image-edit__file-upload-button,
 .btn-white {
-    color: #000 !important;
+    color: #000;
     width: auto
 }
 

@@ -5,7 +5,7 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.1/js/mdb.min.js"></script>
-  <header class="business-header bg-overlay ">
+  <header class="business-header bg-overlay oh ">
     <div class="container animated fadeIn  ">
       <div class="row">
         <div class="col-lg-12  text-center align">
@@ -45,16 +45,14 @@
                         </div>
                         <div class="row propertiesRowSocial">
                           <div class="tamanhoRowSocial">
-                            <button style="" class="btn-block loginBtn loginBtn--facebook">
-                              Login
-                              <%= link_to "", auth_at_provider_path(:provider => :facebook) %>
-                            </button>
+                            <div>
+                              <%= link_to "Login", auth_at_provider_path(:provider => :facebook), class: 'btn loginBtn loginBtn--facebook btn-block block displaybck' %>
+                            </div>
                           </div>
                           <div class="tamanhoRowSocial">
-                            <button style="" class="btn-block loginBtn loginBtn--google">
-                              Login
-                              <%= link_to "", auth_at_provider_path(:provider => :google) %>
-                            </button>
+                            <div>
+                              <%= link_to "Login", auth_at_provider_path(:provider => :google), class: 'btn loginBtn loginBtn--google btn-block block displaybck googleTextColor' %>
+                            </div>
                           </div>
                         </div>
                         <hr class="two">

@@ -9,9 +9,7 @@
 <head>
 <script src="https://www.google.com/recaptcha/api.js"> </script>
 </head>
-
-
-<body>
+<body class="oh">
 
 
 <header class="business-header bg-signin">
@@ -64,12 +62,12 @@
                         </label>
                     </div>
 
-                    <div class="form-container-2">
-                       <label class="inputPropertiesPhoto">
-                        <%= f.file_field :avatar, placeholder: "Escolher Imagem de Perfil" %>
-                        <%= f.label :avatar, '⠀', class: '' %>
-                        </label>
-                    </div>
+                      <div class="form-container-2" id="main-content" role="main" style="max-height: 55px;">
+                        <span class="control-fileupload">
+                          <label for="file">Escolha sua foto de perfil :</label>
+                          <input type="file" id="file">
+                        </span>
+                      </div>
 
                       <div class="form-container-2">
                           <%= f.password_field :password, id: "password", placeholder: "Senha", :required => true %>
@@ -112,3 +110,12 @@
 </header>
 </body>
 
+<script>
+$(function() {
+  $('input[type=file]').change(function(){
+    var t = $(this).val();
+    var labelText = 'File : ' + t.substr(12, t.length);
+    $(this).prev('label').text(labelText);
+  })
+});
+</script>

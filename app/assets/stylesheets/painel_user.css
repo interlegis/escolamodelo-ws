@@ -10354,7 +10354,7 @@ div.confirmedSales {
 }
 
 .quote-container .icon.icon-materials {
-    background: image-url("icon-materials.svg");
+    background: url("icon-materials.svg");
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

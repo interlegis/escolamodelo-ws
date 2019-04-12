@@ -10354,7 +10354,7 @@ div.confirmedSales {
 }
 
 .quote-container .icon.icon-materials {
-    background: image-url("icon-materials.svg");
+    background: url("icon-materials.svg");
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -21231,7 +21231,7 @@ input[type=checkbox].sw-image-checkbox:checked+label .sw-image-checkbox__icon {
 }
 
 .sw-faq-question::after {
-    content: url(https: //static1.sw-cdn.net/files/cms/partnerships/valve/open-close-blue-02.png);
+    content: url(https://static1.sw-cdn.net/files/cms/partnerships/valve/open-close-blue-02.png);
     position:absolute;
     right:0;
     top:25%;
@@ -23022,7 +23022,7 @@ input[type="text"].sw-dms-nav__search-input {
 }
 
 .sw-dms-panel-container-bg__make {
-    background-image: url(https: //static1.sw-cdn.net/files/cms/dms/homepage/make-image-04.jpg);
+    background-image: url(https://static1.sw-cdn.net/files/cms/dms/homepage/make-image-04.jpg);
     height:100%;
     width: 100%;
     background-size: cover;
@@ -23030,7 +23030,7 @@ input[type="text"].sw-dms-nav__search-input {
 }
 
 .sw-dms-panel-container-bg__sell {
-    background-image: url(https: //static1.sw-cdn.net/files/cms/dms/homepage/sell-image-02.jpg);
+    background-image: url(https://static1.sw-cdn.net/files/cms/dms/homepage/sell-image-02.jpg);
     height:100%;
     width: 100%;
     background-size: cover;
@@ -23075,13 +23075,13 @@ input[type="text"].sw-dms-nav__search-input {
 }
 
 .sw-make-panel__bg {
-    background-image: url(https: //static1.sw-cdn.net/files/cms/dms/homepage/make-slice-04.jpg);
+    background-image: url(https://static1.sw-cdn.net/files/cms/dms/homepage/make-slice-04.jpg);
     -webkit-transition:opacity 0.9s ease-in-out;
     transition: opacity 0.9s ease-in-out
 }
 
 .sw-sell-panel__bg {
-    background-image: url(https: //static1.sw-cdn.net/files/cms/dms/homepage/sell-slice-02.jpg);
+    background-image: url(https://static1.sw-cdn.net/files/cms/dms/homepage/sell-slice-02.jpg);
     -webkit-transition:opacity 0.9s ease-in-out;
     transition: opacity 0.9s ease-in-out
 }
@@ -23202,17 +23202,17 @@ input[type="text"].sw-dms-nav__search-input {
         background-image: url(https://i.ytimg.com/vi/5-LyRjHlRgQ/maxresdefault.jpg)}
 
     .sw-make-panel--mob-tab {
-        background-image: url(https: //static1.sw-cdn.net/files/cms/dms/homepage/mobile-make-slice-04.jpg)}
+        background-image: url(https://static1.sw-cdn.net/files/cms/dms/homepage/mobile-make-slice-04.jpg)}
 
     .sw-sell-panel--mob-tab {
-        background-image: url(https: //static1.sw-cdn.net/files/cms/dms/homepage/mobile-sell-slice-02.jpg)}
+        background-image: url(https://static1.sw-cdn.net/files/cms/dms/homepage/mobile-sell-slice-02.jpg)}
 
     .sw-international-numbers--mob-tab {
         background-color: #E9E9E9
     }
 
     .sw-marketplace-banner--mob-tab {
-        background-image: url(https: //static1.sw-cdn.net/files/cms/dms/homepage/mobile-marketplace.jpg)}
+        background-image: url(https://static1.sw-cdn.net/files/cms/dms/homepage/mobile-marketplace.jpg)}
 
     .sw-dms-panel__inner-div__main-text--mob-tab {
         opacity: 1

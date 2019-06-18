@@ -7,7 +7,7 @@ class CoursesController < ApplicationController
     if @api_key.present?
       if @api_key.api_access_level_id == 4
         school = School.find_by(initials: params[:school])
-        category = CourseCategory.find_by('name = ? or id = ?', params[:course][:category], params[:course][:category].to_i)
+        category = CourseCategory.find_by('lower(name) = ? or id = ?', params[:course][:category], params[:course][:category].to_i)
         if school.present?
           @course = Course.find_by(ead_id: course_params[:ead_id], school_id: school.id)
           if @course #Verifica se o curso existe

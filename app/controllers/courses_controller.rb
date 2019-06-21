@@ -16,7 +16,7 @@ class CoursesController < ApplicationController
               if params[:course][:logo].present?
                 begin
                   require 'open-uri'
-                  @course.logo.attach(io: open(params[:course][:logo]), filename: @course.name.downcase)
+                  @course.logo.attach(io: open(URI::encode(params[:course][:logo])), filename: @course.name.downcase)
                   render status: 200, json: {
                       message: "Curso atualizado com sucesso",
                   }.to_json
@@ -45,7 +45,7 @@ class CoursesController < ApplicationController
               if params[:course][:logo].present?
                 begin
                   require 'open-uri'
-                  @course.logo.attach(io: open(params[:course][:logo]), filename: @course.name.downcase)
+                  @course.logo.attach(io: open(URI::encode(params[:course][:logo])), filename: @course.name.downcase)
                   render status: 200, json: {
                       message: "Curso criado com sucesso",
                   }.to_json

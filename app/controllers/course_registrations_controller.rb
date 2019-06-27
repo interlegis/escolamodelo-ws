@@ -63,6 +63,8 @@ class CourseRegistrationsController < ApplicationController
         if registration.save
           params[:registration].each do |key, value| #Pode ser necessária uma verificação de que as perguntas foram respondidas
             UserQuizAnswer.create(quiz_answer_id: value, course_registration_id: registration.id)
+        
+          end
         end
         redirect_to params[:registration][:redirect]
       end

@@ -7,14 +7,16 @@ class CoursesController < ApplicationController
     if @api_key.present?
       if @api_key.api_access_level_id == 4
         school = School.find_by(initials: params[:school])
+        category = CourseCategory.find_by('lower(name) = lower(?) or id = ?', params[:course][:category], params[:course][:category].to_i)
         if school.present?
           @course = Course.find_by(ead_id: course_params[:ead_id], school_id: school.id)
           if @course #Verifica se o curso existe
+            @course.course_category_id = category.id if category.present?
             if @course.update(course_params)
               if params[:course][:logo].present?
                 begin
                   require 'open-uri'
-                  @course.logo.attach(io: open(params[:course][:logo]), filename: @course.name.downcase)
+                  @course.logo.attach(io: open(URI::encode(params[:course][:logo])), filename: @course.name.downcase)
                   render status: 200, json: {
                       message: "Curso atualizado com sucesso",
                   }.to_json
@@ -34,15 +36,16 @@ class CoursesController < ApplicationController
                   message: "Não foi possível atualizar curso",
               }.to_json
             end
-          else
+          elsif category.present?
             @course = Course.new(course_params)
             @course.school_id = school.id
-            @course.status = "Pendente"
+            @course.course_category_id = category.id
+            @course.status = "Aprovado"
             if @course.save
               if params[:course][:logo].present?
                 begin
                   require 'open-uri'
-                  @course.logo.attach(io: open(params[:course][:logo]), filename: @course.name.downcase)
+                  @course.logo.attach(io: open(URI::encode(params[:course][:logo])), filename: @course.name.downcase)
                   render status: 200, json: {
                       message: "Curso criado com sucesso",
                   }.to_json
@@ -62,6 +65,10 @@ class CoursesController < ApplicationController
                   message: "Não foi possível criar curso",
               }.to_json
             end
+          else
+            render status: 400, json: {
+                message: "Categoria ausente ao criar curso",
+            }.to_json
           end
         else
           render status: 404, json: {

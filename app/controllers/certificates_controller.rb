@@ -6,8 +6,16 @@ class CertificatesController < ApplicationController
     error=[]
     certificates.each do |certificate|
       course=Course.find_by('ead_id = ? and school_id = ?', certificate[:course], school.id)
-      time=DateTime.strptime(certificate[:date], '%s')
+      time=Time.at(certificate[:date].to_i)
+      # if certificate[:student]!="admin"
       user=User.find_by(cpf: certificate[:student])
+      # else 
+      #   render status: 400, json: {
+      #     message: "Não foi possível salvar algum certificado",
+      #     school: school.name,
+      #     codes_id: error
+      #   }.to_json
+      # end
       c=Certificate.new(course_id: course.id, user_id: user.id, issue_date: time, grade: certificate[:grade], code_id: certificate[:code])
       if !c.save
         error.push(c.code_id)

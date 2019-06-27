@@ -1,10 +1,16 @@
 <div class="bgProperties" style="min-height: 110%;">
   <div class="tamPadding">
   <div class="txt-bg-properties">
-    <label class="txt-properties" style="font-family: serif;"> INSCREVER-SE</label>
+    <label class="txt-properties" style="font-family: serif;">
+    <% if @quiz_flag == true %>  
+      <%= "FINALIZAR INSCRIÇÃO"%>
+    <% else %>
+      <%= "INSCRIÇÃO:"%> 
+    <% end %>
+    </label>
   </div>
     <div class="card-body" style=" background-color: rgba(0,0,0,0.3);">
-      <%= form_with url: registrado_curso_path, scope: :registration, local: true do |f| %>
+      <%= form_with url: @quiz_flag == true ? preencher_quiz_path : registrado_curso_path, scope: :registration, local: true do |f| %>
       <%= f.hidden_field :course_id, :value => @course.id %>
       <%= f.hidden_field :redirect, :value => @redirect %>
       <% @quiz_questions.each do |question| %>

@@ -12,6 +12,7 @@ class UsersController < ApplicationController
     existent_user = User.find_by('email = ? or cpf = ?', user_params[:email], user_params[:cpf])
     conseguiu = false
     email_cpf_repetido = false
+
     if existent_user.present?
       if existent_user.crypted_password.present?
         email_cpf_repetido = true
@@ -36,6 +37,7 @@ class UsersController < ApplicationController
       redirect_to @retorno || user_path
     else
       @user = User.new(user_params)
+      @user.avatar.attach(params[:avatar])
       if @user.password.length < 8
         flash.now[:senha] = 'A senha deve conter no mínimo 8 caracteres.'
       end
@@ -86,6 +88,7 @@ class UsersController < ApplicationController
       if @user.cpf.present? and @user.api_access.api_access_level_id == 1
         @user.api_access.update(api_access_level_id: 2)
       end
+      # @user.avatar.attach(params[:avatar])
       session[:login_back_url] = user_path
       redirect_to @retorno || user_path
     else

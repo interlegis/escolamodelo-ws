@@ -64,8 +64,9 @@
 
                       <div class="form-container-2" id="main-content" role="main" style="max-height: 55px;">
                         <span class="control-fileupload">
-                          <label for="file">Escolha sua foto de perfil :</label>
-                          <input type="file" id="file">
+                          <%= f.label "Escolha sua foto de perfil:", :required => true %>
+                          <%= f.file_field :avatar %>
+
                         </span>
                       </div>
 

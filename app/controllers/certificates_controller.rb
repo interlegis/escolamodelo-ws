@@ -1,5 +1,7 @@
 class CertificatesController < ApplicationController
   skip_before_action :verify_authenticity_token
+  before_action :admin_access, only: [:adicionar_certificado]
+
   def adicionar_certificado
     certificates=params[:certificates]
     school=School.find_by(initials: params[:school]) #adicionar render em caso de não encontrar escola

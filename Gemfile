@@ -76,3 +76,4 @@ gem 'rails-assets-tether'
 gem 'jquery-rails'
 gem 'jquery_mask_rails'
 gem "recaptcha", require: "recaptcha/rails"
+gem 'httparty'

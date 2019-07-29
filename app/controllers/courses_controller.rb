@@ -1,88 +1,77 @@
 class CoursesController < ApplicationController
   skip_before_action :verify_authenticity_token
+  before_action :admin_access, only: [:registrar_curso, :aprovar_curso, :index_cursos_pendentes]
+  before_action :basic_api_access, only: [:index]
   # Acrescentar mensagens de erro
 
   def registrar_curso
-    @api_key = ApiAccess.find_by(key: params[:key])
-    if @api_key.present?
-      if @api_key.api_access_level_id == 4
-        school = School.find_by(initials: params[:school])
-        category = CourseCategory.find_by('lower(name) = lower(?) or id = ?', params[:course][:category], params[:course][:category].to_i)
-        if school.present?
-          @course = Course.find_by(ead_id: course_params[:ead_id], school_id: school.id)
-          if @course #Verifica se o curso existe
-            @course.course_category_id = category.id if category.present?
-            if @course.update(course_params)
-              if params[:course][:logo].present?
-                begin
-                  require 'open-uri'
-                  @course.logo.attach(io: open(URI::encode(params[:course][:logo])), filename: @course.name.downcase)
-                  render status: 200, json: {
-                      message: "Curso atualizado com sucesso",
-                  }.to_json
-                rescue => ex
-                  logger.error ex.message
-                  render status: 400, json: {
-                      message: "Não foi possível atualizar a logo do curso",
-                  }.to_json
-                end
-              else
-                render status: 200, json: {
-                    message: "Curso atualizado com sucesso",
-                }.to_json
-              end
-            else
-              render status: 400, json: {
-                  message: "Não foi possível atualizar curso",
+    school = School.find_by(initials: params[:school])
+    category = CourseCategory.find_by('lower(name) = lower(?) or id = ?', params[:course][:category], params[:course][:category].to_i)
+    if school.present?
+      @course = Course.find_by(ead_id: course_params[:ead_id], school_id: school.id)
+      if @course #Verifica se o curso existe
+        @course.course_category_id = category.id if category.present?
+        if @course.update(course_params)
+          if params[:course][:logo].present?
+            begin
+              require 'open-uri'
+              @course.logo.attach(io: open(URI::encode(params[:course][:logo])), filename: @course.name.downcase)
+              render status: 200, json: {
+                  message: "Curso atualizado com sucesso",
               }.to_json
-            end
-          elsif category.present?
-            @course = Course.new(course_params)
-            @course.school_id = school.id
-            @course.course_category_id = category.id
-            @course.status = "Aprovado"
-            if @course.save
-              if params[:course][:logo].present?
-                begin
-                  require 'open-uri'
-                  @course.logo.attach(io: open(URI::encode(params[:course][:logo])), filename: @course.name.downcase)
-                  render status: 200, json: {
-                      message: "Curso criado com sucesso",
-                  }.to_json
-                rescue => ex
-                  logger.error ex.message
-                  render status: 400, json: {
-                      message: "Não foi possível criar a logo do curso",
-                  }.to_json
-                end
-              else
-                render status: 200, json: {
-                    message: "Curso criado com sucesso",
-                }.to_json
-              end
-            else
+            rescue => ex
+              logger.error ex.message
               render status: 400, json: {
-                  message: "Não foi possível criar curso",
+                  message: "Não foi possível atualizar a logo do curso",
               }.to_json
             end
           else
-            render status: 400, json: {
-                message: "Categoria ausente ao criar curso",
+            render status: 200, json: {
+                message: "Curso atualizado com sucesso",
             }.to_json
           end
         else
-          render status: 404, json: {
-              message: "Escola não encontrada",
+          render status: 400, json: {
+              message: "Não foi possível atualizar curso",
+          }.to_json
+        end
+      elsif category.present?
+        @course = Course.new(course_params)
+        @course.school_id = school.id
+        @course.course_category_id = category.id
+        @course.status = "Aprovado"
+        if @course.save
+          if params[:course][:logo].present?
+            begin
+              require 'open-uri'
+              @course.logo.attach(io: open(URI::encode(params[:course][:logo])), filename: @course.name.downcase)
+              render status: 200, json: {
+                  message: "Curso criado com sucesso",
+              }.to_json
+            rescue => ex
+              logger.error ex.message
+              render status: 400, json: {
+                  message: "Não foi possível criar a logo do curso",
+              }.to_json
+            end
+          else
+            render status: 200, json: {
+                message: "Curso criado com sucesso",
+            }.to_json
+          end
+        else
+          render status: 400, json: {
+              message: "Não foi possível criar curso",
           }.to_json
         end
       else
         render status: 400, json: {
-            message: "Permissão negada",
+            message: "Categoria ausente ao criar curso",
         }.to_json
       end
     else
-      render status: 400, json: {
-          message: "Chave não encontrada",
+      render status: 404, json: {
+          message: "Escola não encontrada",
       }.to_json
     end
   end
@@ -127,7 +116,7 @@ class CoursesController < ApplicationController
          'url' => if c.url?
                     c.url
                   else
-                    c.school.url +  "/course/view.php?id=" + c.ead_id.to_s
+                    c.school.url + "/course/view.php?id=" + c.ead_id.to_s
                   end,
         }
       end
@@ -164,7 +153,7 @@ class CoursesController < ApplicationController
          'url' => if c.url?
                     c.url
                   else
-                    c.school.url +  "/course/view.php?id=" + c.ead_id.to_s
+                    c.school.url + "/course/view.php?id=" + c.ead_id.to_s
                   end,
          'visible' => c.visible,
         }
@@ -181,54 +170,41 @@ class CoursesController < ApplicationController
   end
 
   def index
-    @api_key = ApiAccess.find_by(key: params[:key])
-    if @api_key.present?
-      if @api_key.api_access_level_id >= 3
-        courses = Course.all.where.not(status: ['Pendente', 'Reprovado'], visible: 'false')
-        hash_courses = courses.map do |c|
-          {'id' => c.id,
-           'ead_id' => c.ead_id,
-           'nome' => c.name,
-           'logo' => if c.logo.attached?
-                       url_for(c.logo)
-                     else
-                       ''
-                     end,
-           'descricao' => c.description,
-           'categoria' => c.course_category_id,
-           'certificador' => c.certificador,
-           'conteudista' => c.conteudista,
-           'carga_horaria' => c.carga_horaria,
-           'iniciais_escola' => c.school.initials,
-           'status' => c.status,
-           'visible' => c.visible,
-           'rating' => c.course_rating.average(:rating),
-           'url' => if c.url?
-                      c.url
-                    else
-                      c.school.url +  "/course/view.php?id=" + c.ead_id.to_s
-                    end,
-          'rating_percentage' =>
-                   if c.course_rating.average(:rating)
-                      (c.course_rating.average(:rating)/5*100).round(1).to_s
-                   else
-                      nil
-             end,
-          }
-        end
-        render status: 200, json: {
-            cursos: hash_courses,
-        }.to_json
-      else
-        render status: 400, json: {
-            message: "Permissão negada",
-        }.to_json
-      end
-    else
-      render status: 400, json: {
-          message: "Chave não encontrada",
-      }.to_json
+    courses = Course.all.where.not(status: ['Pendente', 'Reprovado'], visible: 'false')
+    hash_courses = courses.map do |c|
+      {'id' => c.id,
+       'ead_id' => c.ead_id,
+       'nome' => c.name,
+       'logo' => if c.logo.attached?
+                   url_for(c.logo)
+                 else
+                   ''
+                 end,
+       'descricao' => c.description,
+       'categoria' => c.course_category_id,
+       'certificador' => c.certificador,
+       'conteudista' => c.conteudista,
+       'carga_horaria' => c.carga_horaria,
+       'iniciais_escola' => c.school.initials,
+       'status' => c.status,
+       'visible' => c.visible,
+       'rating' => c.course_rating.average(:rating),
+       'url' => if c.url?
+                  c.url
+                else
+                  c.school.url + "/course/view.php?id=" + c.ead_id.to_s
+                end,
+       'rating_percentage' =>
+           if c.course_rating.average(:rating)
+             (c.course_rating.average(:rating) / 5 * 100).round(1).to_s
+           else
+             nil
+           end,
+      }
     end
+    render status: 200, json: {
+        cursos: hash_courses,
+    }.to_json
   end
 
 

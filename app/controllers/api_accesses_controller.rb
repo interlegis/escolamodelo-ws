@@ -1,4 +1,5 @@
 class ApiAccessesController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: :create
   def new
     if current_user
       if current_user.role_id == 1

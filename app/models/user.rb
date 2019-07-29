@@ -10,7 +10,6 @@ class User < ApplicationRecord
   has_many :certificates
   has_many :contact_us_conversations
   has_many :course_registrations
-  has_one :api_access, dependent: :destroy
   has_one_attached :avatar
   def capitalize_name
     self.first_name=self.first_name.split.map(&:capitalize).join(' ')

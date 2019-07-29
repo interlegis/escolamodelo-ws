@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_01_162003) do
+ActiveRecord::Schema.define(version: 2019_07_29_134505) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,13 +44,10 @@ ActiveRecord::Schema.define(version: 2019_02_01_162003) do
 
   create_table "api_accesses", force: :cascade do |t|
     t.string "key", null: false
-    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "api_access_level_id"
-    t.index ["api_access_level_id"], name: "index_api_accesses_on_api_access_level_id"
+    t.string "cpf"
     t.index ["key"], name: "index_api_accesses_on_key", unique: true
-    t.index ["user_id"], name: "index_api_accesses_on_user_id"
   end
 
   create_table "authentications", force: :cascade do |t|
@@ -282,8 +279,6 @@ ActiveRecord::Schema.define(version: 2019_02_01_162003) do
     t.index ["role_id"], name: "index_users_on_role_id"
   end
 
-  add_foreign_key "api_accesses", "api_access_levels"
-  add_foreign_key "api_accesses", "users"
   add_foreign_key "certificates", "courses"
   add_foreign_key "certificates", "users"
   add_foreign_key "contact_us_conversations", "schools"

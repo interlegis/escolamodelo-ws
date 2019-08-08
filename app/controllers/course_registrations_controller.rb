@@ -1,43 +1,24 @@
 class CourseRegistrationsController < ApplicationController
   skip_before_action :verify_authenticity_token
+  #before_action :user_data_access
 
   def new
-    if current_user
-      if !current_user.restriction
-        if params[:id].present?
-          @course = Course.find(params[:id])
-        else
-          school = School.find_by(initials: params[:school])
-          if school.present?
-            @course = Course.find_by(school_id: school.id, ead_id: params[:school_course])
-          else
-            @course = nil
-          end
-        end
-        if @course.present?
-          @redirect = params[:redirect]
-          @quiz = Quiz.order(:id).last
-          @quiz_questions = @quiz.quiz_questions
-          registration = CourseRegistration.find_by(user_id: current_user.id, course_id: @course.id)
-          if registration.present? #Verifica se já está matriculado na evl
-            quiz = UserQuizAnswer.find_by(course_registration_id: registration.id)
-            if quiz.present?
-              redirect_to params[:redirect] #Redireciona para o moodle        
-            else
-              @quiz_flag = true
-            end
-          end
-        else
-          redirect_to user_path
-        end
-      else
-        redirect_to user_path
-      end
+    if params[:id].present?
+      @course = Course.find(params[:id])
     else
-      redirect_to log_in_path(return: registro_curso_path(id: params[:id],
-                                                             school: params[:school],
-                                                             school_course: params[:school_course],
-                                                             redirect: params[:redirect]))
+      school = School.find_by(initials: params[:school])
+      if school.present?
+        @course = Course.find_by(school_id: school.id, ead_id: params[:school_course])
+      else
+        @course = nil
+      end
+    end
+    if @course.present?
+      @redirect = params[:redirect]
+      @quiz = Quiz.order(:id).last
+      @quiz_questions = @quiz.quiz_questions
+    else
+      redirect_to user_path
     end
   end
 
@@ -63,7 +44,7 @@ class CourseRegistrationsController < ApplicationController
         if registration.save
           params[:registration].each do |key, value| #Pode ser necessária uma verificação de que as perguntas foram respondidas
             UserQuizAnswer.create(quiz_answer_id: value, course_registration_id: registration.id)
-        
+
           end
         end
         redirect_to params[:registration][:redirect]
@@ -82,14 +63,14 @@ class CourseRegistrationsController < ApplicationController
       registration = CourseRegistration.new(user_id: user.id, course_id: course.id, course_registration_status_id: 2)
       if registration.save
         render status: 200, json: {
-          mensagem: "Usuário " + user.first_name + " " + user.last_name + " foi matriculado no curso " + params[:course] + "\n",
+            mensagem: "Usuário " + user.first_name + " " + user.last_name + " foi matriculado no curso " + params[:course] + "\n",
         }.to_json
       else
         render status: 400, json: {
-          mensagem: 'Ocorreu um erro, não foi possível matricular o aluno ' + user.first_name + " " + user.last_name + "\n",
-        }.to_json  
+            mensagem: 'Ocorreu um erro, não foi possível matricular o aluno ' + user.first_name + " " + user.last_name + "\n",
+        }.to_json
       end
-    end  
+    end
   end
 
   def cursos_usuario
@@ -150,7 +131,7 @@ class CourseRegistrationsController < ApplicationController
             quiz = UserQuizAnswer.find_by(course_registration_id: registration.id)
             if quiz.present?
               return render status: 200, json: {
-                result: true,
+                  result: true,
               }.to_json
             end
           end
@@ -158,34 +139,34 @@ class CourseRegistrationsController < ApplicationController
       end
     end
     return render status: 200, json: {
-      result: false,
+        result: false,
     }.to_json
   end
 
   def confirmacao_matricula
     school = School.find_by(initials: params[:school])
     if school
-      course = Course.find_by(school_id: school.id , ead_id: params[:course])
+      course = Course.find_by(school_id: school.id, ead_id: params[:course])
       if course
         api_key = ApiAccess.find_by(key: params[:key])
         course_registration = CourseRegistration.find_by(course_id: course.id, user_id: api_key.user_id)
         if course_registration
           render status: 200, json: {
-            situacao: course_registration.course_registration_status.status,
+              situacao: course_registration.course_registration_status.status,
           }.to_json
         else
           render status: 200, json: {
-            situacao: 'Não registrado',
+              situacao: 'Não registrado',
           }.to_json
         end
       else
         render status: 400, json: {
-          mensagem: 'Curso não encontrado',
+            mensagem: 'Curso não encontrado',
         }.to_json
       end
     else
       render status: 400, json: {
-        mensagem: 'Escola não encontrada',
+          mensagem: 'Escola não encontrada',
       }.to_json
     end
 

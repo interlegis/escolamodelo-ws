@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
 
   def verify_permission(key, level)
     if key.present?
-      response = HTTParty.get(ENV['ESCOLA_MODELO_WS_Central_Auth'].present? ? 'https://autenticacaoh.interlegis.leg.br/api/level?key=': 'http://localhost:3001/api/level?key=' + key, format: :plain) # TODO Alterar essa URL para produção
+      response = HTTParty.get(ENV['ESCOLA_MODELO_WS_Central_Auth'].present? ? ENV['ESCOLA_MODELO_WS_Central_Auth'] + '/api/level?key=' : 'http://localhost:3001/api/level?key=' + key, format: :plain) # TODO Alterar essa URL para produção
       response = JSON.parse response, symbolize_names: true
       if response[:error].present?
         render status: 400, json: {

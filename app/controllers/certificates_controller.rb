@@ -36,7 +36,8 @@ class CertificatesController < ApplicationController
     end
   end
   def certificado_usuario
-    user = User.find_by(user_data_access)
+    cpf = user_data_access
+    user = User.find_by_cpf(cpf)
     if user.present?
       hash_certificates=user.certificates.map do |certificate|
         {'id' => certificate.id,

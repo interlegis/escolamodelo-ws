@@ -67,7 +67,8 @@ class CertificatesController < ApplicationController
         'cpf' => certificado.user.cpf,
         'curso' => certificado.course.name,
         'duracao' => certificado.course.carga_horaria,
-        'escola' => escola.name
+        'escola' => escola.name,
+        'nota' => certificado.grade
       }
       render status: 200, json:{
         certificado: certificado_json,

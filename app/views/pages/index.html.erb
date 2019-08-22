@@ -1,16 +1,74 @@
-<meta http-equiv="refresh" content=1;url="/minha_conta">
+
 <header class="business-header bg-overlay ">
     <div class="container">
         <div class="row">
             <div class="col-lg-12  text-center align">
               <div id="circle" style="margin-top: 30% !important;">
                 <div class="loader">
-                  <div class="loader">
-                      <div class="loader">
-                         <div class="loader">
-                         </div>
-                      </div>
-                  </div>
+
+                <h1>Web Services</h1>
+
+                U = api key do usuário
+                E = api key da EVL
+                M = api key do Moodle (Escola Modelo)
+
+                CERTIFICATES_CONTROLLER
+                - chamado pelo cron do Moodle para registrar que usuário terminou curso e foi aprovado
+                M adicionar_certificado      post 'certificados/adicionar' => 'certificates#adicionar_certificado', :as => 'adicionar_certificado'
+                - chamado pela EVL, na página do Usuário
+                U certificado_usuario      get 'certificados/' => 'certificates#certificado_usuario', :as => 'certificado_usuario'
+                - chamado pela EVL, na página de validação de certificados, e para gerar o próprio certificado (?)
+                E detalhes_certificado      get 'certificados/detalhar' => 'certificates#detalhes_certificado', :as => 'detalhes_certificado'
+                
+                CONTACT_US_CONVERSATIONS
+                M index	post '/fale_conosco/conversa' => 'contact_us_conversations#index', :as => 'conversa'
+                conversa_usuario      post '/fale_conosco/conversa_usuario' => 'contact_us_conversations#conversa_usuario', :as => 'conversa_usuario'
+                adicionar_conversa      post '/fale_conosco/adicionar' => 'contact_us_conversations#adicionar_conversa', :as => 'adicionar_conversa'
+                detalhar_conversa      post '/fale_conosco/mensagens' => 'contact_us_conversations#detalhar_conversa', :as => 'detalhar_conversa'
+                atualizar_conversa
+                apagar_conversa      post '/fale_conosco/apagar_conversa' => 'contact_us_conversations#apagar_conversa', :as => 'apagar_conversa'
+                
+                CONTACT_US_MESSAGES
+                index
+                apagar_mensagem      post '/fale_conosco/apagar_mensagem' => 'contact_us_messages#apagar_mensagem', :as => 'apagar_mensagem'
+                atualizar_mensagem	patch '/fale_conosco/atualizar_mensagem' => 'contact_us_messages#atualizar_mensagem', :as => 'atualizar_mensagem'
+                      
+                COURSE_CATEGORIES
+                - chamado pela EVL, para montar o catálogo
+                E index	get '/categorias_cursos/' => 'course_categories#index', :as => 'categorias_cursos'
+                - chamado pela EVL, pelo administrador, ao adicionar nova categoria
+                E adicionar_categoria      post '/categorias_cursos/adicionar' => 'course_categories#adicionar_categoria', :as => 'adicionar_categoria'
+                - chamado pela EVL, pelo administrador, ao atualizar categoria
+                E atualizar_categoria	post '/categorias_cursos/atualizar' => 'course_categories#atualizar_categoria', :as => 'atualizar_categoria'
+                
+                COURSE_RATINGS
+                index  get '/curso/avaliacoes' => 'course_ratings#index', :as => 'index'
+                avaliar_curso  post '/curso/avaliar' => 'course_ratings#avaliar_curso', :as => 'avaliar_curso'
+                
+                COURSE_REGISTRATIONS
+                new  get 'cursos/registro/' => 'course_registrations#new', :as => 'registro_curso'
+                create  post 'cursos/registro/' => 'course_registrations#create', :as => 'registrado_curso'
+                matricula_alunos  post '/matricula/alunos/' => 'course_registrations#matricula_alunos', :as => 'matricula_alunos'
+                cursos_usuario  get '/registros/' => 'course_registrations#cursos_usuario', :as => 'cursos_usuario'
+                consulta_quiz  get 'cursos/registro/quiz' => 'course_registrations#consulta_quiz', :as => 'consulta_quiz'
+                confirmacao_matricula  post '/cursos/confirmar' => 'course_registrations#confirmacao_matricula', :as => 'confirmacao'
+                
+                COURSES
+                EM index    get '/cursos/' => 'courses#index', :as => 'cursos'
+                M registrar_curso	post '/cursos/registrar' => 'courses#registrar_curso', :as => 'registrar_curso'
+                E aprovar_curso	      post '/cursos/aprovar' => 'courses#aprovar_curso', :as => 'aprovar_curso'
+                EM buscar_cursos      post '/cursos/buscar' => 'courses#buscar_cursos', :as => 'buscar_cursos'
+                E index_cursos_pendentes	get '/cursos/aprovar' => 'courses#index_cursos_pendentes', :as => 'index_cursos_pendentes'
+                
+                REVIEWS
+                index  get '/analise' => 'reviews#index'
+                criar	post '/analise' => 'reviews#criar'
+                atualizar  patch '/analise' => 'reviews#atualizar'
+                deletar	post '/analiseDeletar' => 'reviews#deletar'
+                
+                SCHOOLS
+                E index      get '/escolas/' => 'schools#index', :as => 'escolas'
+                M registrar_escola      post '/escolas/registrar' => 'schools#registrar_escola', :as => 'registrar_escola'
                 </div>
               </div>
             </div>
@@ -18,25 +76,3 @@
     </div>
 </header>
 
-<style>
-#circle {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-	  width: 150px;
-    height: 150px;
-    margin-top: -75px;
-}
-.loader {
-    width: calc(100% - 0px);
-	height: calc(100% - 0px);
-	border: 8px solid #162534;
-	border-top: 8px solid #09f;
-	border-radius: 50%;
-	animation: rotate 5s linear infinite;
-}
-@keyframes rotate {
-100% {transform: rotate(360deg);}
-}
-</style>

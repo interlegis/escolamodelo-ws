@@ -2,6 +2,7 @@ class ContactUsMessagesController < ApplicationController
   require 'date'
   skip_before_action :verify_authenticity_token
 
+  # Método não chamado atualmente
   def index
     messages = ContactUsMessage.all
     render json:messages

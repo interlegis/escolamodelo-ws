@@ -129,6 +129,7 @@ class ContactUsConversationsController < ApplicationController
     end
   end
 
+  # Método não utilizado atualmente
   def atualizar_conversa
     @conversation = ContactUsConversation.where(id: params[:conversation_id]).first
     if @conversation.update(contact_us_conversation_params)

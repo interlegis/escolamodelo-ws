@@ -172,17 +172,24 @@ class CourseRegistrationsController < ApplicationController
   end
 
   def cursos_destaque
-    cursos = CourseRegistration.group(:course_id).count(:course_id).sort_by {|k, v| -v}[0..8]
+    api_key = ApiAccess.find_by(key: params[:key])
+    if api_key.present?
+      cursos = CourseRegistration.group(:course_id).count(:course_id).sort_by {|k, v| -v}[0..8]
 
-    cursos_ids = []
-    cursos.each do |id, c|
-      cursos_ids.push(id)
+      cursos_ids = []
+      cursos.each do |id, c|
+        cursos_ids.push(id)
+      end
+
+      coursos_destaque = Course.where(id: cursos_ids)
+
+      render status: 200, json: {
+          coursos_destaque: coursos_destaque,
+      }.to_json
+    else
+      render status: 400, json: {
+          erro: 'Chave não encontrada'
+      }.to_json
     end
-
-    coursos_destaque = Course.where(id: cursos_ids)
-
-    render status: 200, json: {
-        coursos_destaque: coursos_destaque,
-    }.to_json
   end
 end

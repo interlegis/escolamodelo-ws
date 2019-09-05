@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :news
   if Rails.env.development?
     mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql"
   end
@@ -35,6 +36,7 @@ Rails.application.routes.draw do
   #Registro em curso
   get 'cursos/registro/' => 'course_registrations#new', :as => 'registro_curso'
   get 'cursos/registro/quiz' => 'course_registrations#consulta_quiz', :as => 'consulta_quiz'
+  get 'cursos/destaque' => 'course_registrations#cursos_destaque'
   post 'cursos/registro/' => 'course_registrations#create', :as => 'registrado_curso'
   # post 'cursos/preencher_quiz/' => 'course_registrations#preencher_quiz', :as => 'preencher_quiz'
   post '/cursos/confirmar' => 'course_registrations#confirmacao_matricula', :as => 'confirmacao'

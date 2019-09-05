@@ -1,13 +1,12 @@
 class CertificatesController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :admin_access, only: [:adicionar_certificado]
+  before_action :basic_api_access, only: [:adicionar_certificado]
 
   def adicionar_certificado
     certificates=params[:certificates]
-    school=School.find_by(initials: params[:school]) #adicionar render em caso de não encontrar escola
     error=[]
     certificates.each do |certificate|
-      course=Course.find_by('ead_id = ? and school_id = ?', certificate[:course], school.id)
+      course=Course.find_by('ead_id = ? and school_id = ?', certificate[:course], @school.id)
       time=Time.at(certificate[:date].to_i)
       # if certificate[:student]!="admin"
       user=User.find_by(cpf: certificate[:student])
@@ -30,7 +29,7 @@ class CertificatesController < ApplicationController
     else
       render status: 400, json: {
           message: "Não foi possível salvar algum certificado",
-          school: school.name,
+          school: @school.name,
           codes_id: error
       }.to_json
     end

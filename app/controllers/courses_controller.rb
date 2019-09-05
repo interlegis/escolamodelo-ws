@@ -1,14 +1,11 @@
 class CoursesController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :admin_access, only: [:registrar_curso, :aprovar_curso, :index_cursos_pendentes]
-  before_action :basic_api_access, only: [:index]
+  before_action :basic_api_access, only: [:index, :registrar_curso, :aprovar_curso, :index_cursos_pendentes]
   # Acrescentar mensagens de erro
 
   def registrar_curso
-    school = School.find_by(initials: params[:school])
     category = CourseCategory.find_by('lower(name) = lower(?) or id = ?', params[:course][:category], params[:course][:category].to_i)
-    if school.present?
-      @course = Course.find_by(ead_id: course_params[:ead_id], school_id: school.id)
+      @course = Course.find_by(ead_id: course_params[:ead_id], school_id: @school.id)
       if @course #Verifica se o curso existe
         @course.course_category_id = category.id if category.present?
         if @course.update(course_params)
@@ -37,7 +34,7 @@ class CoursesController < ApplicationController
         end
       elsif category.present?
         @course = Course.new(course_params)
-        @course.school_id = school.id
+        @course.school_id = @school.id
         @course.course_category_id = category.id
         @course.status = "Aprovado"
         if @course.save
@@ -69,11 +66,6 @@ class CoursesController < ApplicationController
             message: "Categoria ausente ao criar curso",
         }.to_json
       end
-    else
-      render status: 404, json: {
-          message: "Escola não encontrada",
-      }.to_json
-    end
   end
 
   def aprovar_curso
@@ -86,7 +78,6 @@ class CoursesController < ApplicationController
           message: "Categoria não informada",
       }.to_json
     else
-      school = School.find_by(initials: params[:school])
       @course = Course.find_by(id: params[:id])
       @course.status = params[:status].capitalize
       if params[:status].capitalize == "Aprovado"
@@ -106,9 +97,7 @@ class CoursesController < ApplicationController
   end
 
   def buscar_cursos
-    school = School.find_by(initials: params[:school])
-    puts school
-    courses = Course.where('(lower(name) LIKE ? OR lower(description) LIKE ?) AND school_id != ?', "%#{params[:expression].downcase}%", "%#{params[:expression].downcase}%", school.id)
+    courses = Course.where('(lower(name) LIKE ? OR lower(description) LIKE ?) AND school_id != ?', "%#{params[:expression].downcase}%", "%#{params[:expression].downcase}%", @school.id)
     if courses.present?
       hash_courses = courses.map do |c|
         {'name' => c.name,

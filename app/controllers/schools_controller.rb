@@ -1,10 +1,8 @@
 class SchoolsController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :admin_access, only: [:registrar_escola]
-  before_action :basic_api_access, only: [:index]
+  before_action :basic_api_access, only: [:index, :registrar_escola]
 
   def registrar_escola
-    @school = School.find_by(initials: params[:initials])
     if @school.present?
       if @school.update(url: params[:url], name: params[:name])
         if params[:logo].present?

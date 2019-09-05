@@ -4,11 +4,21 @@ class ApplicationController < ActionController::Base
   end
 
   def basic_api_access
-    verify_permission(params[:key], 3)
+    @api = verify_permission(params[:key], 3)
+    @school = if @api['level'] < 4
+                School.find_by_initials(@api['ext_id'])
+              else
+                School.find_by_initials(params[:school])
+              end
+    unless @school.present?
+      render status: 400, json: {
+          message: 'Escola não encontrada, verifique se você possui a sigla da escola correta.'
+      }.to_json
+    end
   end
 
   def user_data_access
-    verify_permission(params[:key], 2)
+    @api = verify_permission(params[:key], 2)
   end
 
   private
@@ -26,7 +36,7 @@ class ApplicationController < ActionController::Base
             message: 'Não foi possível realizar essa ação'
         }.to_json
       else
-        response[:api][:cpf]
+        {'cpf': response[:api][:cpf], 'ext_id': response[:api][:ext_id], 'level': response[:api][:level]}
       end
     else
       render status: 400, json: {

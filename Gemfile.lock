@@ -110,7 +110,7 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     jquery_mask_rails (0.1.0)
-    json (2.1.0)
+    json (2.3.1)
     json-jwt (1.9.4)
       activesupport
       aes_key_wrap
